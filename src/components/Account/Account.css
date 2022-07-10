@@ -1,0 +1,7 @@
+@import '../../fonts/fonts.css';
+
+.account-text {
+    font-family: "Montserrat-SemiBold";
+    color: #1e1e1e;
+    text-shadow: 0 0 5px rgba(104, 112, 118, 0.3);
+}

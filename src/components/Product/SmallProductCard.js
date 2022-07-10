@@ -42,7 +42,6 @@ const SmallProductCard = ({ product }) => {
                 <Button
                     auto
                     color="white"
-                    flat
                     rounded
                     css={{
                         position: "absolute",

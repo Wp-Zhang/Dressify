@@ -1,9 +1,24 @@
-/* .navbar .navbar-nav {
-    display: inline-block;
-    float: none;
-    vertical-align: top;
+@import url('../../fonts/fonts.css');
+
+.NavBrand {
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-column-gap: 5px;
+    align-items: center;
+    width: 80%;
+    padding-top: 8px;
 }
 
-.navbar .navbar-collapse {
-    text-align: center;
-} */
+.Logo {
+    grid-column-start: 2;
+}
+
+.Account {
+    align-self: right;
+}
+
+.NavLink {
+    font-family: "Montserrat-Medium";
+    font-size: 16px;
+    color: #16181A;
+    text-shadow: 0 0 5px rgba(104, 112, 118, 0.3);
+}

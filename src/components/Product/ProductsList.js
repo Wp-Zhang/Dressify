@@ -89,25 +89,23 @@ const ProductsList = ({ user, favorites, addFavorite, deleteFavorite }) => {
 
     return (
         <div className="App">
-            <div className="blur">
-                <Container lg>
-                    <Grid.Container gap={2} justify="flex-start">
-                        {products.map((product, index) => (
-                            <Grid xs={6} sm={3} key={index}>
-                                <SmallProductCard product={product} />
-                            </Grid>
-                        ))}
-                    </Grid.Container>
-                </Container>
-                <br />
-                {/* Showing page: {currentPage + 1}. */}
-                {/* <Button
+            <Container lg>
+                <Grid.Container gap={2} justify="flex-start">
+                    {products.map((product, index) => (
+                        <Grid xs={6} sm={3} key={index}>
+                            <SmallProductCard product={product} />
+                        </Grid>
+                    ))}
+                </Grid.Container>
+            </Container>
+            <br />
+            {/* Showing page: {currentPage + 1}. */}
+            {/* <Button
                 variant="link"
                 onClick={() => { setCurrentPage(currentPage + 1) }}>
                 Get next {entriesPerPage} results
             </Button> */}
-                <Pagination shadow total={totalPageNum} initialPage={1} onChange={onPageChange} style={{ paddingBottom: "100px" }} />
-            </div>
+            <Pagination shadow total={totalPageNum} initialPage={1} onChange={onPageChange} style={{ paddingBottom: "100px" }} />
         </div>
     )
 }

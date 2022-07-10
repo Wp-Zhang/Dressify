@@ -2,7 +2,7 @@ import { Routes, Route, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Container from "react-bootstrap/Container";
 
-import Navbar1 from "./components/Navbars/Navbar";
+import Navbar1 from "./components/NavBars/NavBar";
 import ProductsList from "./components/Product/ProductsList";
 // import Product from "./components/Product/Product";
 import { useState, useEffect, useCallback } from 'react';
@@ -81,27 +81,28 @@ function App() {
 
     return (
         <GoogleOAuthProvider clientId={clientId}>
-            <div className="App" >
-                <Navbar1 user={user} setUser={setUser} />
-                <Routes>
-                    <Route exact path={"/"} element={
-                        <ProductsList
-                            user={user}
-                            addFavorite={addFavorite}
-                            deleteFavorite={deleteFavorite}
-                            favorites={favorites}
-                        />
-                    } />
-                    <Route exact path={"/products"} element={
-                        <ProductsList
-                            user={user}
-                            addFavorite={addFavorite}
-                            deleteFavorite={deleteFavorite}
-                            favorites={favorites}
-                        />
-                    } />
-                    {/* <Route path={"/products/:id"} element={<Product user={user} />} /> */}
-                    {/* <Route path={"/favorites"} element={
+            <div className="App Background">
+                <div className="blur">
+                    <Navbar1 user={user} setUser={setUser} />
+                    <Routes>
+                        <Route exact path={"/"} element={
+                            <ProductsList
+                                user={user}
+                                addFavorite={addFavorite}
+                                deleteFavorite={deleteFavorite}
+                                favorites={favorites}
+                            />
+                        } />
+                        <Route exact path={"/products"} element={
+                            <ProductsList
+                                user={user}
+                                addFavorite={addFavorite}
+                                deleteFavorite={deleteFavorite}
+                                favorites={favorites}
+                            />
+                        } />
+                        {/* <Route path={"/products/:id"} element={<Product user={user} />} /> */}
+                        {/* <Route path={"/favorites"} element={
                         user ?
                             <DndProvider backend={HTML5Backend}>
                                 <Favorites
@@ -118,12 +119,13 @@ function App() {
                                 favorites={favorites}
                             />
                     } /> */}
-                    {/* <Route path={"/favorites"} element={
+                        {/* <Route path={"/favorites"} element={
                         <DndProvider backend={HTML5Backend}>
                             <Demo />
                         </DndProvider>
                     } /> */}
-                </Routes>
+                    </Routes>
+                </div>
             </div >
         </GoogleOAuthProvider>
     );
