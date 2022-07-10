@@ -1,0 +1,116 @@
+@import '../../fonts/fonts.css';
+
+.Black {
+    background: #2b3236;
+}
+
+.White,
+.undefined,
+.Unknown {
+    background: #ffffff;
+}
+
+.Beige {
+    background: rgb(255, 255, 203);
+}
+
+.Grey {
+    background: #DFE3E6
+}
+
+.Blue {
+    background: #4594ef
+}
+
+.Pink {
+    background: #FFA3E5;
+}
+
+.Lilac-Purple {
+    background: #EADCF8;
+}
+
+.Red {
+    background: #b72d4f;
+}
+
+.Mole {
+    background: #C59A80;
+}
+
+.Orange {
+    background: #f7803c;
+}
+
+.Metal {
+    background: #C1C8CD;
+}
+
+.Brown {
+    background: #4E3104;
+}
+
+.Turquoise {
+    background: #2ECEC2;
+}
+
+.Yellow {
+    background: #F5A524;
+}
+
+.Khaki-green {
+    background: #6E8237;
+}
+
+.Green {
+    background: #108944;
+}
+
+.Yellowish-Green {
+    background: #CEF72C;
+}
+
+.Bluish-Green {
+    background: #088B8B;
+}
+
+
+.small-card-title {
+    font-family: "Montserrat-SemiBold";
+    max-width: 63%;
+    line-height: 100%;
+}
+
+.small-card-price {
+    font-family: "Montserrat-Medium";
+    color: #3D3D3D;
+    text-shadow: 0 0 5px rgba(104, 112, 118, 0.3);
+}
+
+.small-card-body {
+    padding-left: 18px;
+    padding-right: 18px;
+    /* margin-top: -3px; */
+}
+
+.small-card-colorgroup {
+    /* padding-left: 18px; */
+    /* padding-right: 18px; */
+    margin-top: 5px;
+}
+
+.small-card-color {
+    position: absolute;
+    position: absolute;
+    margin-top: 0px;
+    margin-bottom: 10px;
+}
+
+.nextui-tooltip {
+    font-family: "Montserrat-SemiBold";
+}
+
+.blur {
+    /* background: rgba(255, 255, 255, 0); */
+    backdrop-filter: blur(150px);
+}

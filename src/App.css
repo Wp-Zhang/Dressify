@@ -1,5 +1,12 @@
 .App {
   text-align: center;
+  background-image: url("../public/images/bg.png");
+  background-position: center;
+  width: 100%;
+}
+
+body {
+  height: 100%;
 }
 
 .App-logo {
@@ -32,6 +39,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
