@@ -57,6 +57,7 @@ const SmallProductCard = ({ user, product }) => {
                     <Text size={19} transform={"capitalize"} className="small-card-title">{product.prod_name}</Text>
                     <Text size={19} className="small-card-price">{"$ " + product.price.toFixed(2)}</Text>
                 </Row>
+                {/* <Row wrap="wrap" justify="space-between" align="center" className='small-card-body'> */}
                 {
                     product.perceived_colour_master_name.length > 6 ?
                         <Avatar.Group count={product.perceived_colour_master_name.length} className="small-card-large-colorgroup">
@@ -71,7 +72,7 @@ const SmallProductCard = ({ user, product }) => {
                             }
                         </Avatar.Group>
                         :
-                        <Row wrap="wrap" justify="space-between" align="left" className="small-card-colorgroup">
+                        <div className="small-card-colorgroup">
                             {
                                 product.perceived_colour_master_name.map((color, index) => {
                                     return (
@@ -83,9 +84,10 @@ const SmallProductCard = ({ user, product }) => {
                                     )
                                 })
                             }
-                        </Row>
-
+                        </div>
                 }
+                {/* <Text size={12} className="small-card-sale">{"Sold: " + product.sale}</Text> */}
+                {/* </Row> */}
             </Card.Body>
 
         </Card >
