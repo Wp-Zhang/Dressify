@@ -87,6 +87,12 @@
     text-shadow: 0 0 5px rgba(104, 112, 118, 0.3);
 }
 
+.small-card-sale {
+    font-family: "Montserrat-Medium";
+    color: #3D3D3D;
+    text-shadow: 0 0 5px rgba(104, 112, 118, 0.3);
+}
+
 .small-card-body {
     padding-left: 18px;
     padding-right: 18px;
