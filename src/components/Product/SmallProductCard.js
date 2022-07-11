@@ -8,7 +8,7 @@ import ExtendedImg from './ExtendedImg';
 import './Product.css'
 import { IconButton } from './IconButton';
 
-const SmallProductCard = ({ product }) => {
+const SmallProductCard = ({ user, product }) => {
 
     return (
         <Card
@@ -20,7 +20,7 @@ const SmallProductCard = ({ product }) => {
 
             <Card.Body css={{ p: 0, w: "100%", backgroundColor: "rgba(255, 255, 255, 0.4)" }}>
                 <ExtendedImg articleId={product.article_id[0]} height="330px" />
-                <IconButton
+                {user && < IconButton
                     css={{
                         position: "absolute",
                         marginBottom: 441 - 330 + 15 + "px",
@@ -30,8 +30,8 @@ const SmallProductCard = ({ product }) => {
                     }}
                 >
                     <FavoriteIcon />
-                </IconButton>
-                <IconButton
+                </IconButton>}
+                {user && <IconButton
                     css={{
                         position: "absolute",
                         marginBottom: 441 - 330 + 15 + "px",
@@ -43,7 +43,8 @@ const SmallProductCard = ({ product }) => {
                     }}
                 >
                     <CartIcon size={15}></CartIcon>
-                </IconButton>
+                </IconButton>}
+
 
 
                 {/* <box-icon name='cart-alt' color='#11181c' style={{

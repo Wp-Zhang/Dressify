@@ -85,6 +85,7 @@ const ProductsList = ({ user, favorites, addFavorite, deleteFavorite }) => {
                         <Grid xs={6} sm={3} key={index}>
                             <SmallProductCard
                                 key={product}
+                                user={user}
                                 product={product}
                             />
                         </Grid>
