@@ -10,8 +10,8 @@ export default class ProductsController {
         const page = "page" in req.query ? parseInt(req.query.page) : 0;
 
         let filters = {}
-        if ("name" in req.query) {
-            filters.name = req.query.name;
+        if ("kw" in req.query) {
+            filters.kw = req.query.kw;
         }
         if ("index" in req.query) {
             filters.index = req.query.index;

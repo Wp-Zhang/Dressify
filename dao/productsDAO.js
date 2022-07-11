@@ -22,8 +22,8 @@ export default class ProductsDAO {
     } = {}) {
         let query = {};
         if (filters) {
-            if ("name" in filters) {
-                query = { ...query, $text: { $search: filters['name'] } };
+            if ("kw" in filters) {
+                query = { ...query, $text: { $search: filters['kw'] } };
             }
             if ("index" in filters) {
                 query = { ...query, "index_group_name": { $eq: filters['index'] } }
