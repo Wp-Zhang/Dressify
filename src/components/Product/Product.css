@@ -94,9 +94,13 @@
 }
 
 .small-card-colorgroup {
-    /* padding-left: 18px; */
-    /* padding-right: 18px; */
     margin-top: 5px;
+}
+
+.small-card-large-colorgroup {
+    padding-left: 25px;
+    /* padding-right: 18px; */
+    margin-top: 10px;
 }
 
 .small-card-color {

@@ -57,20 +57,35 @@ const SmallProductCard = ({ user, product }) => {
                     <Text size={19} transform={"capitalize"} className="small-card-title">{product.prod_name}</Text>
                     <Text size={19} className="small-card-price">{"$ " + product.price.toFixed(2)}</Text>
                 </Row>
+                {
+                    product.perceived_colour_master_name.length > 6 ?
+                        <Avatar.Group count={product.perceived_colour_master_name.length} className="small-card-large-colorgroup">
+                            {
+                                product.perceived_colour_master_name.slice(0, 6).map((color, index) => {
+                                    return (
+                                        <Tooltip content={color} placement="bottom" hideArrow>
+                                            <Avatar className={color.replace(' ', '-')} size="sm" color="" stacked />
+                                        </Tooltip>
+                                    )
+                                })
+                            }
+                        </Avatar.Group>
+                        :
+                        <Row wrap="wrap" justify="space-between" align="left" className="small-card-colorgroup">
+                            {
+                                product.perceived_colour_master_name.map((color, index) => {
+                                    return (
+                                        <div className="small-card-color" key={index} style={{ marginLeft: 35 * index + 15 + "px" }}>
+                                            <Tooltip content={color} placement="bottom" hideArrow>
+                                                <Avatar className={color.replace(' ', '-')} size="sm" color="" />
+                                            </Tooltip>
+                                        </div>
+                                    )
+                                })
+                            }
+                        </Row>
 
-                <Row wrap="wrap" justify="space-between" align="left" className="small-card-colorgroup">
-                    {
-                        product.perceived_colour_master_name.map((color, index) => {
-                            return (
-                                <div className="small-card-color" key={index} style={{ marginLeft: 35 * index + 15 + "px" }}>
-                                    <Tooltip content={color} placement="bottom" hideArrow>
-                                        <Avatar className={color.replace(' ', '-')} size="sm" color="" />
-                                    </Tooltip>
-                                </div>
-                            )
-                        })
-                    }
-                </Row>
+                }
             </Card.Body>
 
         </Card >

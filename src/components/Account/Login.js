@@ -1,6 +1,5 @@
 import { useState } from 'react';
-import { GoogleLogin, useGoogleLogin } from '@react-oauth/google';
-import jwt_decode from 'jwt-decode';
+import { useGoogleLogin } from '@react-oauth/google';
 import { Button, Text, Modal, Image } from '@nextui-org/react';
 
 import 'boxicons'
