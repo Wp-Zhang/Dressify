@@ -2,23 +2,24 @@ import './SearchBar.css';
 
 import { Input, Button, Grid, Dropdown, Container } from '@nextui-org/react';
 
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState } from 'react';
 
 import CategoryDataService from '../../services/category';
 
-const SearchBar = ({ index, filters, setFilters }) => {
+const SearchBar = ({ index, setFilters }) => {
 
 
     const [keyword, setKeyWord] = useState()
-    const [orderBy, setOrderBy] = useState("Order By")
+    const [orderBy, setOrderBy] = useState(new Set(["Order By"]))
     const [sections, setSections] = useState([])
-    const [curSection, setCurSection] = useState("Section")
+    const [curSection, setCurSection] = useState(new Set(["Section"]))
     const [types, setTypes] = useState([])
-    const [curProductType, setCurProductType] = useState("Product Type")
+    const [curProductType, setCurProductType] = useState(new Set(["Product Type"]))
 
     useEffect(() => {
         let new_filters = {}
         let section, type, by
+
         if (orderBy !== "Order By") {
             [by] = orderBy
             const lookup_dict = { "Price ↓": "priceDecr", "Price ↑": "priceIncr", "Popularity": "popularity" }
@@ -33,17 +34,12 @@ const SearchBar = ({ index, filters, setFilters }) => {
         new_filters.index = index
         new_filters.kw = keyword
         new_filters.section = section
-        new_filters.productType = type
+        new_filters.garmentGroup = type
         new_filters.by = by
 
         console.log("New filters:", new_filters)
         setFilters(new_filters)
-        // return new_filters
     }, [index, keyword, orderBy, curSection, curProductType, setFilters])
-
-    // const findByFilters = useCallback((keyword, orderBy, curSection, curProductType) => {
-    //     updateFilters(keyword, orderBy, curSection, curProductType)
-    // }, [keyword, orderBy, curSection, curProductType, updateFilters])
 
 
     useEffect(() => {
@@ -117,6 +113,7 @@ const SearchBar = ({ index, filters, setFilters }) => {
                         <Dropdown.Menu
                             aria-label='order'
                             selectionMode="single"
+                            disallowEmptySelection
                             selectedKeys={orderBy}
                             onSelectionChange={setOrderBy}
                             css={{ width: "100%" }}
@@ -137,6 +134,7 @@ const SearchBar = ({ index, filters, setFilters }) => {
                             aria-label='section'
                             selectionMode="single"
                             selectedKeys={curSection}
+                            disallowEmptySelection
                             onSelectionChange={setCurSection}
                             css={{ width: "100%" }}
                             disabledKeys={["Section"]}
@@ -155,6 +153,7 @@ const SearchBar = ({ index, filters, setFilters }) => {
                             aria-label="type"
                             selectionMode="single"
                             selectedKeys={curProductType}
+                            disallowEmptySelection
                             onSelectionChange={setCurProductType}
                             css={{ width: "100%" }}
                             disabledKeys={["Product Type"]}

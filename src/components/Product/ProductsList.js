@@ -24,6 +24,7 @@ const ProductsList = ({ user, favorites, addFavorite, deleteFavorite }) => {
 
     const retrieveProducts = useCallback(() => {
         console.log("Retrieve items, page:", currentPage, "Filters:", filters)
+        // setProducts([])
         ProductDataService.find(filters, currentPage)
             .then(response => {
                 setProducts(response.data.products);
@@ -57,7 +58,7 @@ const ProductsList = ({ user, favorites, addFavorite, deleteFavorite }) => {
                     {
                         indexList.map(idx => {
                             return (
-                                <Grid justify="center">
+                                <Grid key={idx} justify="center">
                                     <Button
                                         auto
                                         color=""
@@ -76,7 +77,6 @@ const ProductsList = ({ user, favorites, addFavorite, deleteFavorite }) => {
 
             <SearchBar
                 index={index}
-                filters={filters}
                 setFilters={setFilters}
             />
             <Container lg>

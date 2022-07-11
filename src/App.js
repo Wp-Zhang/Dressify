@@ -28,7 +28,7 @@ function App() {
             if (now < loginExp) {
                 // Not expired
                 setUser(loginData);
-                // getFavorites(loginData.googleId);
+                // getFavorites(loginData.id);
             } else {
                 // Expired
                 localStorage.setItem("login", null);
