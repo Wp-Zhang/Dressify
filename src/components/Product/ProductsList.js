@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import ProductDataService from "../../services/products";
-// import Container from "react-bootstrap/Container";
-import { Container, Grid, Pagination } from '@nextui-org/react';
+import { Container, Grid, Pagination, Button } from '@nextui-org/react';
+import Toolbar from '@mui/material/Toolbar';
 
 import SearchBar from "../SearchBar/SearchBar";
 import SmallProductCard from "./SmallProductCard";
@@ -10,87 +10,65 @@ import SmallProductCard from "./SmallProductCard";
 import 'boxicons';
 // import "./ProductsList.css";
 
+
 const ProductsList = ({ user, favorites, addFavorite, deleteFavorite }) => {
 
-    const [index, setIndex] = useState();
+    const indexList = ["All", 'Ladieswear', 'Baby/Children', 'Menswear', 'Sport', 'Divided']
+    const [index, setIndex] = useState(indexList[0])
 
     const [products, setProducts] = useState([]);
     const [currentPage, setCurrentPage] = useState(0);
-    const [entriesPerPage, setEntriesPerPage] = useState(0);
     const [totalPageNum, setTotalPageNum] = useState(0);
 
     const [filters, setFilters] = useState({})
 
     const retrieveProducts = useCallback(() => {
-        ProductDataService.getAll(currentPage)
+        console.log(currentPage)
+        ProductDataService.find(filters, currentPage)
             .then(response => {
                 setProducts(response.data.products);
                 setCurrentPage(response.data.page);
-                setEntriesPerPage(response.data.entries_per_page);
                 setTotalPageNum(Math.ceil(response.data.total_results / 16))
             })
             .catch(e => {
                 console.log(e);
             });
-    }, [currentPage]);
+    }, [currentPage, filters]);
 
     useEffect(() => {
         retrieveProducts();
     }, [currentPage])
 
-    // const find = useCallback((query, by) => {
-    //     ProductDataService.find(query, by, currentPage)
-    //         .then(response => {
-    //             setProducts(response.data.products);
-    //         })
-    //         .catch(e => {
-    //             console.log(e);
-    //         });
-    // }, [currentPage]);
+    useEffect(() => {
+        console.log("Reset Page for New Filter")
+        setCurrentPage(0);
+    }, [filters])
 
-    // const findByName = useCallback(() => {
-    //     setCurrentSearchMode("findByName");
-    //     find(searchName, "title");
-    // }, [find, searchName]);
-
-    // const retrieveNextPage = useCallback(() => {
-    //     // if (currentSearchMode === "findByName") {
-    //     //     findByName();
-    //     // } else if (currentSearchMode === "findByRating") {
-    //     //     findByRating();
-    //     // } else {
-    //     //     retrieveProducts();
-    //     // }
-    //     retrieveProducts();
-    // }, [currentSearchMode, retrieveProducts]);
-
-
-    // useEffect(() => {
-    //     setCurrentPage(0);
-    // }, [currentSearchMode]);
-
-    // useEffect(() => {
-    //     retrieveNextPage();
-    // }, [currentPage, retrieveNextPage]);
-
-
-    // const onChangeSearchName = e => {
-    //     const searchName = e.targety.value;
-    //     setSearchName(searchName);
-    // }
-
-    // const onChangeSearchRating = e => {
-    //     const searchRating = e.target.value;
-    //     setSearchRating(searchRating);
-    // }
-
-    const onPageChange = (value) => {
-        // navigate("/", { page: value })
-        setCurrentPage(value - 1);
-    }
 
     return (
         <div className="App">
+            <Toolbar sx={{ marginTop: "-10px", borderColor: 'rgba(0,0,0,0)' }}>
+                <Grid.Container gap={0} justify="center">
+                    {
+                        indexList.map(idx => {
+                            return (
+                                <Grid justify="center">
+                                    <Button
+                                        auto
+                                        color=""
+                                        className={index === idx ? "NavLink-clicked" : "NavLink"}
+                                        style={{ background: "transparent" }}
+                                        onPress={(e) => { setIndex(e.target.textContent) }}
+                                    >
+                                        {idx}
+                                    </Button>
+                                </Grid>
+                            )
+                        })
+                    }
+                </Grid.Container>
+            </Toolbar>
+
             <SearchBar
                 index={index}
                 filters={filters}
@@ -109,13 +87,7 @@ const ProductsList = ({ user, favorites, addFavorite, deleteFavorite }) => {
                 </Grid.Container>
             </Container>
             <br />
-            {/* Showing page: {currentPage + 1}. */}
-            {/* <Button
-                variant="link"
-                onClick={() => { setCurrentPage(currentPage + 1) }}>
-                Get next {entriesPerPage} results
-            </Button> */}
-            <Pagination shadow total={totalPageNum} initialPage={1} onChange={onPageChange} style={{ paddingBottom: "100px" }} />
+            <Pagination shadow total={totalPageNum} initialPage={1} onChange={(v) => setCurrentPage(v - 1)} style={{ paddingBottom: "100px" }} />
         </div>
     )
 }

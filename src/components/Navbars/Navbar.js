@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { Container, Image, Link, Grid } from '@nextui-org/react';
+import { Container, Image, Link, Grid, Button } from '@nextui-org/react';
 import './NavBar.css';
 
 import Toolbar from '@mui/material/Toolbar';
@@ -7,9 +7,11 @@ import Toolbar from '@mui/material/Toolbar';
 import Login from '../Account/Login';
 import Logout from '../Account/Logout';
 
+
 import 'boxicons';
 
 const Navbar1 = ({ user, setUser }) => {
+
     return (
         <Container>
             <Toolbar sx={{ borderBottom: 1, borderColor: 'rgba(0,0,0,0)' }}>
@@ -22,11 +24,7 @@ const Navbar1 = ({ user, setUser }) => {
 
 
                     <div className="Account">
-                        {user ? (
-                            <Logout setUser={setUser} />
-                        ) : (
-                            <Login setUser={setUser} />
-                        )}
+                        {user ? <Logout setUser={setUser} /> : <Login setUser={setUser} />}
                     </div>
                     {/* <Navbar.Collapse id="reponsive-navbar-nav">
                         <Nav className="m-auto">
@@ -37,32 +35,11 @@ const Navbar1 = ({ user, setUser }) => {
                     </Navbar.Collapse> */}
 
                 </Container>
-
-
-            </Toolbar>
-            <Toolbar sx={{ marginTop: "-10px", borderColor: 'rgba(0,0,0,0)' }}>
-                <Grid.Container gap={1.9} justify="center">
-                    <Grid justify="center">
-                        <Link href="/products" className="NavLink">Ladieswear</Link>
-                    </Grid>
-                    <Grid justify="center">
-                        <Link href="/products" className="NavLink">Baby/Children</Link>
-                    </Grid>
-                    <Grid justify="center">
-                        <Link href="/products" className="NavLink">Menswear</Link>
-                    </Grid>
-                    <Grid justify="center">
-                        <Link href="/products" className="NavLink">Sport</Link>
-                    </Grid>
-                    <Grid justify="center">
-                        <Link href="/products" className="NavLink">Divided</Link>
-                    </Grid>
-                </Grid.Container>
             </Toolbar>
             {/* </Navbar> */}
 
 
-        </Container>
+        </Container >
     )
 }
 

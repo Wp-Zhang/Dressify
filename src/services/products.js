@@ -1,11 +1,10 @@
 import axios from "axios";
 
 class ProductDataService {
-    getAll(page = 0) {
-        return axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/v1/products`, { params: { page: page } });
-    }
-
     find(filters, page = 0) {
+        if (filters && filters.index === "All") {
+            filters.index = undefined
+        }
         let data = {
             ...filters,
             "page": page

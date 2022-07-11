@@ -5,7 +5,7 @@ import Container from "react-bootstrap/Container";
 import Navbar1 from "./components/NavBars/NavBar";
 import ProductsList from "./components/Product/ProductsList";
 // import Product from "./components/Product/Product";
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, createContext } from 'react';
 
 import { GoogleOAuthProvider } from '@react-oauth/google';
 
@@ -17,7 +17,8 @@ const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
 
 function App() {
     const [user, setUser] = useState(null);
-    // const [favorites, setFavorites] = useState([]);
+    const [index, setIndex] = useState();
+    const [favorites, setFavorites] = useState([]);
 
     useEffect(() => {
         let loginData = JSON.parse(localStorage.getItem("login"));
@@ -36,7 +37,10 @@ function App() {
         }
     }, []);
 
-    const [favorites, setFavorites] = useState([]);
+    const getCurIndex = () => {
+        return index;
+    }
+
 
     const getFavorites = (userId) => {
         // FavoritesDataService.getFavoritesById(userId)
@@ -101,7 +105,6 @@ function App() {
                                 favorites={favorites}
                             />
                         } />
-                        {/* <Route path={"/products/:id"} element={<Product user={user} />} /> */}
                         {/* <Route path={"/favorites"} element={
                         user ?
                             <DndProvider backend={HTML5Backend}>

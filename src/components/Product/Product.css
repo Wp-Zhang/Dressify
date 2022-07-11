@@ -109,3 +109,21 @@
 .nextui-tooltip {
     font-family: "Montserrat-SemiBold";
 }
+
+.NavLink {
+    font-family: "Montserrat-Medium";
+    font-size: 16px;
+    color: #16181A;
+    text-shadow: 0 0 3px rgba(104, 112, 118, 0.2);
+    padding-left: 9px;
+    padding-right: 9px;
+}
+
+.NavLink-clicked {
+    font-family: "Montserrat-Medium";
+    font-size: 16px;
+    color: #4ea7ff;
+    text-shadow: 0 0 3px rgba(200, 226, 252, 0.2);
+    padding-left: 9px;
+    padding-right: 9px;
+}

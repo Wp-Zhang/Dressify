@@ -8,6 +8,7 @@ import CategoryDataService from '../../services/category';
 
 const SearchBar = ({ index, filters, setFilters }) => {
 
+
     const [keyword, setKeyWord] = useState()
     const [orderBy, setOrderBy] = useState("Order By")
     const [sections, setSections] = useState([])
@@ -15,13 +16,13 @@ const SearchBar = ({ index, filters, setFilters }) => {
     const [types, setTypes] = useState([])
     const [curProductType, setCurProductType] = useState("Product Type")
 
-
-    const updateFilters = () => {
-        let new_filters = { ...filters }
+    useEffect(() => {
+        let new_filters = {}
         let section, type, by
         if (orderBy !== "Order By") {
             [by] = orderBy
-            by = { "Price ↓": "priceDecr", "Price ↑": "priceIncr", "popularity": "popularity" }[by]
+            const lookup_dict = { "Price ↓": "priceDecr", "Price ↑": "priceIncr", "Popularity": "popularity" }
+            by = lookup_dict[by]
         }
         if (curSection !== "Section") {
             [section] = curSection
@@ -29,44 +30,58 @@ const SearchBar = ({ index, filters, setFilters }) => {
         if (curProductType !== "Product Type") {
             [type] = curProductType
         }
+        new_filters.index = index
         new_filters.kw = keyword
         new_filters.section = section
-        new_filters.type = type
+        new_filters.productType = type
         new_filters.by = by
+
+        console.log("New filters:", new_filters)
         setFilters(new_filters)
-    }
+        // return new_filters
+    }, [index, keyword, orderBy, curSection, curProductType, setFilters])
 
+    // const findByFilters = useCallback((keyword, orderBy, curSection, curProductType) => {
+    //     updateFilters(keyword, orderBy, curSection, curProductType)
+    // }, [keyword, orderBy, curSection, curProductType, updateFilters])
 
-
-
-    const findByFilters = useCallback(() => {
-        updateFilters()
-        console.log(filters)
-    }, [orderBy, keyword])
 
     useEffect(() => {
+        console.log("Search bar:", index)
         CategoryDataService.getSections(index)
             .then(response => {
                 let new_sections = response.data.map(
                     section => ({ 'key': section, 'name': section })
                 )
                 setSections(new_sections);
-                updateFilters()
+                setOrderBy("Order By");
+                setCurSection("Section");
+                setCurProductType("Product Type");
             })
     }, [index])
 
     useEffect(() => {
-        const [section] = curSection;
-        CategoryDataService.getTypes(index, section)
-            .then(response => {
-                let new_types = response.data.map(
-                    type => ({ 'key': type, 'name': type })
-                )
-                setTypes(new_types);
-                updateFilters()
-            })
-    }, [curSection])
+        if (curSection !== "Section") {
+            const [section] = curSection;
+            console.log("Cur section:", section)
+            CategoryDataService.getTypes(index, section)
+                .then(response => {
+                    let new_types = response.data.map(
+                        type => ({ 'key': type, 'name': type })
+                    )
+                    setTypes(new_types);
+                    setCurProductType("Product Type");
+                })
+        }
+    }, [curSection, index])
 
+    useEffect(() => {
+        if (curProductType !== "Product Type") {
+            const [type] = curProductType;
+            console.log("Cur type:", type);
+        }
+        // updateFilters();
+    }, [curProductType])
 
 
     return (
@@ -80,13 +95,15 @@ const SearchBar = ({ index, filters, setFilters }) => {
                         // color=""
                         placeholder='Search ...'
                         initialValue=''
+                        id="search"
+                        aria-label='search-input'
                         contentRight={
                             <Button
                                 auto
                                 color=""
                                 rounded
                                 css={{ background: "rgb(255,255,255,0)" }}
-                                icon={<img src="./icons/search.svg" width={15}></img>}
+                                icon={<img src="./icons/search.svg" width={15} alt="search-button"></img>}
                                 onClick={(e) => { setKeyWord(e.view.document.getElementById("search").value) }}
                             />
                         }
@@ -103,9 +120,9 @@ const SearchBar = ({ index, filters, setFilters }) => {
                             selectedKeys={orderBy}
                             onSelectionChange={setOrderBy}
                             css={{ width: "100%" }}
-                            disabledKeys={["title"]}
+                            disabledKeys={["Order By"]}
                         >
-                            <Dropdown.Item key="title">Order By</Dropdown.Item>
+                            <Dropdown.Item key="Order By">Order By</Dropdown.Item>
                             <Dropdown.Item key="Popularity">Popularity</Dropdown.Item>
                             <Dropdown.Item key="Price ↓">Price ↓</Dropdown.Item>
                             <Dropdown.Item key="Price ↑">Price ↑</Dropdown.Item>
@@ -122,8 +139,8 @@ const SearchBar = ({ index, filters, setFilters }) => {
                             selectedKeys={curSection}
                             onSelectionChange={setCurSection}
                             css={{ width: "100%" }}
-                            disabledKeys={["title"]}
-                            items={[{ "key": "title", "name": "Section" }, ...sections]}
+                            disabledKeys={["Section"]}
+                            items={[{ "key": "Section", "name": "Section" }, ...sections]}
                         >
                             {item => (<Dropdown.Item key={item.key} > {item.name}</Dropdown.Item>)}
                         </Dropdown.Menu>
@@ -140,8 +157,8 @@ const SearchBar = ({ index, filters, setFilters }) => {
                             selectedKeys={curProductType}
                             onSelectionChange={setCurProductType}
                             css={{ width: "100%" }}
-                            disabledKeys={["title"]}
-                            items={[{ "key": "title", "name": "Section" }, ...types]}
+                            disabledKeys={["Product Type"]}
+                            items={[{ "key": "Product Type", "name": "Product Type" }, ...types]}
                         >
                             {item => (<Dropdown.Item key={item.key} > {item.name}</Dropdown.Item>)}
                         </Dropdown.Menu>
