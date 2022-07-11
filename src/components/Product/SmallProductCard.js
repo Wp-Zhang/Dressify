@@ -20,36 +20,44 @@ const SmallProductCard = ({ user, product }) => {
 
             <Card.Body css={{ p: 0, w: "100%", backgroundColor: "rgba(255, 255, 255, 0.4)" }}>
                 <ExtendedImg articleId={product.article_id[0]} height="330px" />
-                {user && < IconButton
+                {user &&
+                    <Button
+                        auto
+                        rounded
+                        css={{
+                            backgroundColor: "rgba(255,255,255,0.5)",
+                            backdropFilter: "blur(5px)",
+                            position: "absolute",
+                            marginBottom: 441 - 330 + 15 + "px",
+                            marginLeft: "15px",
+                            left: 0,
+                            bottom: 0,
+                            aspectRatio: 1
+                        }}
+                    >
+                        <FavoriteIcon size={20} fill="black" strokeWidth='0.2px' />
+                    </Button>}
+
+
+                {user && <Button
+                    auto
+                    rounded
                     css={{
-                        position: "absolute",
-                        marginBottom: 441 - 330 + 15 + "px",
-                        marginLeft: "15px",
-                        left: 0,
-                        bottom: 0,
-                    }}
-                >
-                    <FavoriteIcon />
-                </IconButton>}
-                {user && <IconButton
-                    css={{
+                        backgroundColor: "rgba(255,255,255,0.5)",
                         position: "absolute",
                         marginBottom: 441 - 330 + 15 + "px",
                         marginRight: "15px",
                         right: 0,
                         bottom: 0,
+                        aspectRatio: 1
                     }}
                     onClick={() => {
                     }}
                 >
-                    <CartIcon size={15}></CartIcon>
-                </IconButton>}
+                    <CartIcon size={20} fill="black" ></CartIcon>
+                </Button>}
 
 
-
-                {/* <box-icon name='cart-alt' color='#11181c' style={{
-                        filter: "drop-shadow(0px 4px 2px rgb(0 0 0 / 0.25))"
-                    }}></box-icon> */}
                 <Spacer y={0.5} />
 
 
