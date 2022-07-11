@@ -23,7 +23,7 @@ const ProductsList = ({ user, favorites, addFavorite, deleteFavorite }) => {
     const [filters, setFilters] = useState({})
 
     const retrieveProducts = useCallback(() => {
-        console.log(currentPage)
+        console.log("Retrieve items, page:", currentPage, "Filters:", filters)
         ProductDataService.find(filters, currentPage)
             .then(response => {
                 setProducts(response.data.products);
@@ -36,12 +36,17 @@ const ProductsList = ({ user, favorites, addFavorite, deleteFavorite }) => {
     }, [currentPage, filters]);
 
     useEffect(() => {
+        console.log("Page changed to", currentPage)
         retrieveProducts();
     }, [currentPage])
 
     useEffect(() => {
         console.log("Reset Page for New Filter")
-        setCurrentPage(0);
+        if (currentPage !== 0) {
+            setCurrentPage(0);
+        } else {
+            retrieveProducts()
+        }
     }, [filters])
 
 
