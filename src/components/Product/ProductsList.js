@@ -23,7 +23,7 @@ const ProductsList = ({ user, favorites, addFavorite, deleteFavorite }) => {
     const [filters, setFilters] = useState({})
 
     const retrieveProducts = useCallback(() => {
-        console.log("Retrieve items, page:", currentPage, "Filters:", filters)
+        // console.log("Retrieve items, page:", currentPage, "Filters:", filters)
         // setProducts([])
         ProductDataService.find(filters, currentPage)
             .then(response => {
@@ -42,7 +42,6 @@ const ProductsList = ({ user, favorites, addFavorite, deleteFavorite }) => {
     }, [currentPage])
 
     useEffect(() => {
-        console.log("Reset Page for New Filter")
         if (currentPage !== 0) {
             setCurrentPage(0);
         } else {
@@ -93,7 +92,7 @@ const ProductsList = ({ user, favorites, addFavorite, deleteFavorite }) => {
                 </Grid.Container>
             </Container>
             <br />
-            <Pagination shadow total={totalPageNum} initialPage={1} onChange={(v) => setCurrentPage(v - 1)} style={{ paddingBottom: "100px" }} />
+            <Pagination shadow total={totalPageNum} page={currentPage + 1} initialPage={1} onChange={(v) => setCurrentPage(v - 1)} style={{ paddingBottom: "100px" }} />
         </div>
     )
 }

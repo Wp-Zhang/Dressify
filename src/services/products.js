@@ -5,6 +5,9 @@ class ProductDataService {
         if (filters && filters.index === "All") {
             filters.index = undefined
         }
+        if (filters && filters.kw === "") {
+            filters.kw = undefined
+        }
         let data = {
             ...filters,
             "page": page

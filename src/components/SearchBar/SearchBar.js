@@ -7,10 +7,8 @@ import { useEffect, useState } from 'react';
 import CategoryDataService from '../../services/category';
 
 const SearchBar = ({ index, setFilters }) => {
-
-
     const [keyword, setKeyWord] = useState()
-    const [orderBy, setOrderBy] = useState(new Set(["Order By"]))
+    const [orderBy, setOrderBy] = useState(new Set(["Popuarity"]))
     const [sections, setSections] = useState([])
     const [curSection, setCurSection] = useState(new Set(["Section"]))
     const [types, setTypes] = useState([])
@@ -18,19 +16,24 @@ const SearchBar = ({ index, setFilters }) => {
 
     useEffect(() => {
         let new_filters = {}
-        let section, type, by
 
-        if (orderBy !== "Order By") {
-            [by] = orderBy
+        let [by] = orderBy
+        let [section] = curSection
+        let [type] = curProductType
+
+        if (by !== "Order By") {
             const lookup_dict = { "Price ↓": "priceDecr", "Price ↑": "priceIncr", "Popularity": "popularity" }
             by = lookup_dict[by]
+        } else {
+            by = undefined
         }
-        if (curSection !== "Section") {
-            [section] = curSection
+        if (section === "Section") {
+            section = undefined
         }
-        if (curProductType !== "Product Type") {
-            [type] = curProductType
+        if (type === "Product Type") {
+            type = undefined
         }
+        console.log("--------------------------------------", by, section, type)
         new_filters.index = index
         new_filters.kw = keyword
         new_filters.section = section
@@ -50,15 +53,15 @@ const SearchBar = ({ index, setFilters }) => {
                     section => ({ 'key': section, 'name': section })
                 )
                 setSections(new_sections);
-                setOrderBy("Order By");
-                setCurSection("Section");
-                setCurProductType("Product Type");
+                setOrderBy(new Set(["Popularity"]));
+                setCurSection(new Set(["Section"]));
+                setCurProductType(new Set(["Product Type"]));
             })
     }, [index])
 
     useEffect(() => {
+        const [section] = curSection;
         if (curSection !== "Section") {
-            const [section] = curSection;
             console.log("Cur section:", section)
             CategoryDataService.getTypes(index, section)
                 .then(response => {
@@ -66,19 +69,10 @@ const SearchBar = ({ index, setFilters }) => {
                         type => ({ 'key': type, 'name': type })
                     )
                     setTypes(new_types);
-                    setCurProductType("Product Type");
+                    setCurProductType(new Set(["Product Type"]));
                 })
         }
     }, [curSection, index])
-
-    useEffect(() => {
-        if (curProductType !== "Product Type") {
-            const [type] = curProductType;
-            console.log("Cur type:", type);
-        }
-        // updateFilters();
-    }, [curProductType])
-
 
     return (
         <Container display='flex' justify='center'>
@@ -137,8 +131,8 @@ const SearchBar = ({ index, setFilters }) => {
                             disallowEmptySelection
                             onSelectionChange={setCurSection}
                             css={{ width: "100%" }}
-                            disabledKeys={["Section"]}
-                            items={[{ "key": "Section", "name": "Section" }, ...sections]}
+                            // disabledKeys={["Section"]}
+                            items={[{ "key": "Section", "name": "All" }, ...sections]}
                         >
                             {item => (<Dropdown.Item key={item.key} > {item.name}</Dropdown.Item>)}
                         </Dropdown.Menu>
@@ -156,8 +150,8 @@ const SearchBar = ({ index, setFilters }) => {
                             disallowEmptySelection
                             onSelectionChange={setCurProductType}
                             css={{ width: "100%" }}
-                            disabledKeys={["Product Type"]}
-                            items={[{ "key": "Product Type", "name": "Product Type" }, ...types]}
+                            // disabledKeys={["Product Type"]}
+                            items={[{ "key": "Product Type", "name": "All" }, ...types]}
                         >
                             {item => (<Dropdown.Item key={item.key} > {item.name}</Dropdown.Item>)}
                         </Dropdown.Menu>
