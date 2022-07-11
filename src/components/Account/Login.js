@@ -19,9 +19,10 @@ function Login({ setUser }) {
     const login = useGoogleLogin({
         onSuccess: res => {
             axios.get("https://www.googleapis.com/oauth2/v1/userinfo?access_token=" + res.access_token)
-                .then(res => {
-                    setUser(res.data);
-                    localStorage.setItem("login", JSON.stringify(res.data));
+                .then(res2 => {
+                    let uinfo = { ...res2.data, exp: Date.now() / 1000 + res.expires_in }
+                    setUser(uinfo);
+                    localStorage.setItem("login", JSON.stringify(uinfo));
                     console.log("Login with Google successfully!")
                 })
         },
