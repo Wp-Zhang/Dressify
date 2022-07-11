@@ -2,7 +2,6 @@ import axios from "axios";
 
 class ProductDataService {
     getAll(page = 0) {
-        console.log("request page:", page);
         return axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/v1/products`, { params: { page: page } });
     }
 

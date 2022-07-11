@@ -1,0 +1,20 @@
+@import url('../../fonts/fonts.css');
+
+.search-bar {
+    padding-top: 30px;
+    padding-bottom: 20px;
+    width: 80%;
+}
+
+.search {
+    font-family: "Montserrat-Medium";
+    text-shadow: 0 0 5px rgba(104, 112, 118, 0.3);
+}
+
+.filter {
+    border-color: #d1d6da;
+    color: #3A3A3A;
+    font-family: "Montserrat-SemiBold";
+    text-shadow: 0 0 3px rgba(104, 112, 118, 0.3);
+    /* box-shadow: 0 0 5px rgba(104, 112, 118, 0.3); */
+}

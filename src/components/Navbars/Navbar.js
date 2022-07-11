@@ -1,14 +1,8 @@
 import React, { useState, useEffect, useCallback } from "react";
-// import { Link } from "react-router-dom";
-// import Container from "react-bootstrap/Container";
-import { Button, Container, Image, Link, Grid, Row } from '@nextui-org/react';
-
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
-import './Navbar.css';
+import { Container, Image, Link, Grid } from '@nextui-org/react';
+import './NavBar.css';
 
 import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
 
 import Login from '../Account/Login';
 import Logout from '../Account/Logout';

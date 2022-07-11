@@ -1,65 +1,54 @@
-import { Container, Card, Button, Row, Text, Spacer, Grid, Avatar, Tooltip } from '@nextui-org/react';
+import { Card, Button, Row, Text, Spacer, Avatar, Tooltip } from '@nextui-org/react';
 import { useState } from 'react';
-
-import getImgURL from '../../services/utils';
-// import './Product.css';
-import ExtendedImg from './ExtendedImg';
-
-import './Product.css'
-
 import 'boxicons'
 
+import CartIcon from '../icons/cart';
+import FavoriteIcon from '../icons/favorite';
+import ExtendedImg from './ExtendedImg';
+import './Product.css'
+import { IconButton } from './IconButton';
 
 const SmallProductCard = ({ product }) => {
-    // let v = new Vibrant(getImgURL(product.article_id[0]))
-    // v.getPalette((err, palette) => console.log(palette))
 
     return (
-        <Card isPressable disableRipple isHoverable css={{ w: "330px", h: "441px", backgroundColor: "rgba(255, 255, 255, 0.4)" }}>
-            <Card.Body css={{ p: 0, w: "100%" }}>
-                <ExtendedImg articleId={product.article_id[0]} height="330px" />
+        <Card
+            isPressable
+            disableRipple
+            isHoverable
+            css={{ w: "330px", h: "441px", backgroundColor: "rgba(255, 255, 255, 0)" }}
+        >
 
-                <Button
-                    auto
-                    color=""
-                    rounded
+            <Card.Body css={{ p: 0, w: "100%", backgroundColor: "rgba(255, 255, 255, 0.4)" }}>
+                <ExtendedImg articleId={product.article_id[0]} height="330px" />
+                <IconButton
                     css={{
                         position: "absolute",
-                        background: "rgba(255, 255, 255, 0.5)",
-                        backdropFilter: "blur(5px)",
                         marginBottom: 441 - 330 + 15 + "px",
                         marginLeft: "15px",
-                        position: "absolute",
                         left: 0,
                         bottom: 0,
                     }}
-                    icon={<box-icon name='heart' color='#11181c' style={{
-                        filter: "drop-shadow(0px 4px 4px rgb(0 0 0 / 0.25))"
-                    }}></box-icon>}
-                    onClick={() => {
-                    }}
-                />
-                <Button
-                    auto
-                    color="white"
-                    rounded
+                >
+                    <FavoriteIcon />
+                </IconButton>
+                <IconButton
                     css={{
                         position: "absolute",
-                        background: "rgba(255,255,255,0.5)",
-                        backdropFilter: "blur(5px)",
                         marginBottom: 441 - 330 + 15 + "px",
                         marginRight: "15px",
-                        position: "absolute",
                         right: 0,
                         bottom: 0,
                     }}
-                    icon={<box-icon name='cart-alt' color='#11181c' style={{
-                        filter: "drop-shadow(0px 4px 2px rgb(0 0 0 / 0.25))"
-                    }}></box-icon>}
                     onClick={() => {
                     }}
-                />
+                >
+                    <CartIcon size={15}></CartIcon>
+                </IconButton>
 
+
+                {/* <box-icon name='cart-alt' color='#11181c' style={{
+                        filter: "drop-shadow(0px 4px 2px rgb(0 0 0 / 0.25))"
+                    }}></box-icon> */}
                 <Spacer y={0.5} />
 
 
@@ -74,7 +63,7 @@ const SmallProductCard = ({ product }) => {
                             return (
                                 <div className="small-card-color" style={{ marginLeft: 35 * index + 15 + "px" }}>
                                     <Tooltip content={color} placement="bottom" hideArrow>
-                                        <Avatar className={color} size="sm" color="" />
+                                        <Avatar className={color.replace(' ', '-')} size="sm" color="" />
                                     </Tooltip>
                                 </div>
                             )
@@ -83,7 +72,7 @@ const SmallProductCard = ({ product }) => {
                 </Row>
             </Card.Body>
 
-        </Card>
+        </Card >
     )
 }
 
