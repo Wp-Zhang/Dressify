@@ -25,6 +25,9 @@ export default class ProductsController {
         if ("productType" in req.query) {
             filters.productType = req.query.productType;
         }
+        if ("by" in req.query) {
+            filters.by = req.query.by;
+        }
 
         const { productsList, totalNumProducts } = await ProductsDAO.getProducts({ filters, page, productsPerPage });
 

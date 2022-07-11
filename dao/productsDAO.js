@@ -41,8 +41,17 @@ export default class ProductsDAO {
 
         let cursor;
         try {
-            cursor = await products.find(query)
-                .limit(productsPerPage)
+            cursor = await products.find(query);
+            if ("by" in filters) {
+                if (filters["by"] === "popularity") {
+                    cursor = cursor.sort({ "sale": -1 })
+                } else if (filters["by"] === "priceIncr") {
+                    cursor = cursor.sort({ "price": 1 })
+                } else if (filters["by"] === "priceDecr") {
+                    cursor = cursor.sort({ "price": -1 })
+                }
+            }
+            cursor = cursor.limit(productsPerPage)
                 .skip(productsPerPage * page);
             const productsList = await cursor.toArray();
             const totalNumProducts = await products.countDocuments(query);
