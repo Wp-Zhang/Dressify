@@ -8,7 +8,7 @@ import Login from '../Account/Login';
 import Account from '../Account/Account';
 
 import CartIcon from "../icons/cart";
-import FavoriteIcon from "../icons/favorite";
+import { FavoriteIcon } from "../icons/favorite";
 
 import 'boxicons';
 

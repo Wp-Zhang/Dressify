@@ -33,20 +33,19 @@ const SearchBar = ({ index, setFilters }) => {
         if (type === "Product Type") {
             type = undefined
         }
-        console.log("--------------------------------------", by, section, type)
         new_filters.index = index
         new_filters.kw = keyword
         new_filters.section = section
         new_filters.garmentGroup = type
         new_filters.by = by
 
-        console.log("New filters:", new_filters)
+        // console.log("New filters:", new_filters)
         setFilters(new_filters)
     }, [index, keyword, orderBy, curSection, curProductType, setFilters])
 
 
     useEffect(() => {
-        console.log("Search bar:", index)
+        // console.log("Search bar:", index)
         CategoryDataService.getSections(index)
             .then(response => {
                 let new_sections = response.data.map(
@@ -62,7 +61,7 @@ const SearchBar = ({ index, setFilters }) => {
     useEffect(() => {
         const [section] = curSection;
         if (curSection !== "Section") {
-            console.log("Cur section:", section)
+            // console.log("Cur section:", section)
             CategoryDataService.getTypes(index, section)
                 .then(response => {
                     let new_types = response.data.map(

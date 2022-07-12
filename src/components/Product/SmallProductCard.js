@@ -3,13 +3,13 @@ import { useState } from 'react';
 import 'boxicons'
 
 import CartIcon from '../icons/cart';
-import FavoriteIcon from '../icons/favorite';
+import { FavoriteIcon, FavoriteFillIcon } from '../icons/favorite';
 import ExtendedImg from './ExtendedImg';
 import './Product.css'
 
 import ProductDetailCard from './ProductDetailCard';
 
-const SmallProductCard = ({ user, product }) => {
+const SmallProductCard = ({ user, product, isFavorite, addFavorite, deleteFavorite }) => {
 
     const [visible, setVisible] = useState(false);
     const handler = () => setVisible(true);
@@ -18,7 +18,6 @@ const SmallProductCard = ({ user, product }) => {
         setVisible(false);
         console.log("closed");
     };
-
 
     return (
         <div>
@@ -32,7 +31,7 @@ const SmallProductCard = ({ user, product }) => {
 
                 <Card.Body css={{ p: 0, w: "100%", backgroundColor: "rgba(255, 255, 255, 0.4)" }}>
                     <ExtendedImg articleId={product.article_id[0]} height="330px" />
-                    {user &&
+                    {user && (isFavorite ?
                         <Button
                             auto
                             rounded
@@ -46,9 +45,27 @@ const SmallProductCard = ({ user, product }) => {
                                 bottom: 0,
                                 aspectRatio: 1
                             }}
+                            onClick={() => { deleteFavorite(product.product_code) }}
+                        >
+                            <FavoriteFillIcon size={20} filter="drop-shadow(0px 0px 3px rgb(245 85 85 / 0.8))" />
+                        </Button> :
+                        <Button
+                            auto
+                            rounded
+                            css={{
+                                backgroundColor: "rgba(255,255,255,0.5)",
+                                backdropFilter: "blur(5px)",
+                                position: "absolute",
+                                marginBottom: 441 - 330 + 15 + "px",
+                                marginLeft: "15px",
+                                left: 0,
+                                bottom: 0,
+                                aspectRatio: 1
+                            }}
+                            onClick={() => { addFavorite(product.product_code) }}
                         >
                             <FavoriteIcon size={20} fill="black" strokeWidth='0.2px' />
-                        </Button>}
+                        </Button>)}
 
 
                     {user && <Button
@@ -106,8 +123,6 @@ const SmallProductCard = ({ user, product }) => {
                                 }
                             </div>
                     }
-                    {/* <Text size={12} className="small-card-sale">{"Sold: " + product.sale}</Text> */}
-                    {/* </Row> */}
                 </Card.Body>
             </Card >
 
@@ -116,6 +131,9 @@ const SmallProductCard = ({ user, product }) => {
                 product={product}
                 visible={visible}
                 closeHandler={closeHandler}
+                isFavorite={isFavorite}
+                addFavorite={addFavorite}
+                deleteFavorite={deleteFavorite}
             />
         </div>
     )

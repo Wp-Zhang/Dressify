@@ -3,14 +3,14 @@ import { useState } from 'react';
 import 'boxicons'
 
 import CartIcon from '../icons/cart';
-import FavoriteIcon from '../icons/favorite';
+import { FavoriteIcon, FavoriteFillIcon } from '../icons/favorite';
 import ExtendedImg from './ExtendedImg';
 import './Product.css'
 
 import ImageGallery from 'react-image-gallery';
 import getImgURL from '../../services/utils';
 
-const ProductDetailCard = ({ user, product, visible, closeHandler }) => {
+const ProductDetailCard = ({ user, product, visible, closeHandler, isFavorite, addFavorite, deleteFavorite }) => {
 
     const imgList = product.article_id.map(
         articleId => getImgURL(articleId)
@@ -53,21 +53,22 @@ const ProductDetailCard = ({ user, product, visible, closeHandler }) => {
                             >
                                 {product.prod_name}
                             </Text>
-                            <div style={{ width: "20%", display: "flex", justifyContent: "center" }}>
-                                {user &&
-                                    <Button
-                                        auto
-                                        rounded
-                                        css={{
-                                            backgroundColor: "rgba(255,255,255,1)",
-                                            backdropFilter: "blur(5px)",
-                                            alignSelf: "center",
-                                            aspectRatio: 1
-                                        }}
-                                    >
-                                        <FavoriteIcon size={35} fill="black" strokeWidth='0.2px' filter="drop-shadow(0px 4px 3px rgb(0 0 0 / 0.4))" />
-                                    </Button>
-                                }
+                            <div style={{ width: "20%", display: "flex", justifyContent: "center", alignItems: "center" }}>
+                                {user && (isFavorite ?
+                                    <FavoriteFillIcon
+                                        size={35}
+                                        filter="drop-shadow(0px 0px 8px rgb(245 85 85 / 0.8))"
+                                        onClick={() => { deleteFavorite(product.product_code) }}
+                                    />
+                                    :
+                                    <FavoriteIcon
+                                        size={35}
+                                        fill="black"
+                                        strokeWidth='0.2px'
+                                        filter="drop-shadow(0px 0px 4px rgb(0 0 0 / 0.5))"
+                                        onClick={() => { addFavorite(product.product_code) }}
+                                    />
+                                )}
                             </div>
                         </Row>
                         {product.detail_desc.length > 1 &&

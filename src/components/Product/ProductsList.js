@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import ProductDataService from "../../services/products";
+import AccountDataService from "../../services/account";
 import { Container, Grid, Pagination, Button } from '@nextui-org/react';
 import Toolbar from '@mui/material/Toolbar';
 
@@ -24,6 +25,50 @@ const ProductsList = ({ user }) => {
 
     const [filters, setFilters] = useState({})
 
+    const retrieveFavorites = useCallback(() => {
+        if (user) {
+            console.log("Retrieveing favorites...")
+            AccountDataService.getFavorites(user.id)
+                .then(response => {
+                    setFavorites(response.data.favorites)
+                })
+                .catch(e => {
+                    console.log(e);
+                })
+        }
+    }, [user])
+
+    const addFavorite = (productId) => {
+        let newFavorites = [...favorites, productId];
+        let data = {
+            _id: user.id,
+            favorites: newFavorites
+        }
+        AccountDataService.updateFavorites(data)
+            .then(response => {
+                setFavorites(newFavorites);
+            })
+            .catch(e => {
+                console.log(e);
+            })
+    }
+
+    const deleteFavorite = (productId) => {
+        let filteredFavorites = favorites.filter(f => f !== productId);
+        let data = {
+            _id: user.id,
+            favorites: filteredFavorites
+        }
+        AccountDataService.updateFavorites(data)
+            .then(response => {
+                setFavorites(filteredFavorites);
+            })
+            .catch(e => {
+                console.log(e);
+            });
+    }
+
+
     const retrieveProducts = useCallback(() => {
         // console.log("Retrieve items, page:", currentPage, "Filters:", filters)
         // setProducts([])
@@ -39,7 +84,7 @@ const ProductsList = ({ user }) => {
     }, [currentPage, filters]);
 
     useEffect(() => {
-        console.log("Page changed to", currentPage)
+        // console.log("Page changed to", currentPage)
         retrieveProducts();
     }, [currentPage])
 
@@ -51,48 +96,9 @@ const ProductsList = ({ user }) => {
         }
     }, [filters])
 
-    const getFavorites = (userId) => {
-        // FavoritesDataService.getFavoritesById(userId)
-        //     .then(response => {
-        //         setFavorites(response.data.favorites);
-        //     })
-        //     .catch(e => {
-        //         console.log(`Get favorites by id failed: ${e}`);
-        //     })
-    }
-
-    const addFavorite = (productId) => {
-        // let newFavorites = [...favorites, productId];
-        // let data = {
-        //     _id: user.googleId,
-        //     favorites: newFavorites
-        // }
-        // FavoritesDataService.updateFavorite(data)
-        //     .then(response => {
-        //         setFavorites(newFavorites);
-        //     })
-        //     .catch(e => {
-        //         console.log(e);
-        //     })
-    }
-
-    const deleteFavorite = (productId) => {
-        // let filteredFavorites = favorites.filter(f => f !== productId);
-        // let data = {
-        //     _id: user.googleId,
-        //     favorites: filteredFavorites
-        // }
-        // FavoritesDataService.updateFavorite(data)
-        //     .then(response => {
-        //         setFavorites(filteredFavorites);
-        //     })
-        //     .catch(e => {
-        //         console.log(e);
-        //     });
-    }
-
-
-
+    useEffect(() => {
+        retrieveFavorites();
+    }, [retrieveFavorites]);
 
     return (
         <div className="App">
@@ -127,9 +133,12 @@ const ProductsList = ({ user }) => {
                     {products.map((product, index) => (
                         <Grid xs={6} sm={3} key={index}>
                             <SmallProductCard
-                                key={product}
+                                key={product.product_code}
                                 user={user}
                                 product={product}
+                                isFavorite={favorites.includes(product.product_code)}
+                                addFavorite={addFavorite}
+                                deleteFavorite={deleteFavorite}
                             />
                         </Grid>
                     ))}
