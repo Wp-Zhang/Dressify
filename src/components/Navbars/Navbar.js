@@ -3,7 +3,7 @@ import { Container, Image, Link, Grid, Button, Row } from '@nextui-org/react';
 import './NavBar.css';
 
 import Toolbar from '@mui/material/Toolbar';
-
+import Logo from "../icons/logo";
 import Login from '../Account/Login';
 import Account from '../Account/Account';
 
@@ -17,11 +17,11 @@ const Navbar1 = ({ user, setUser }) => {
     return (
         <Container>
             <Toolbar sx={{ borderBottom: 1, borderColor: 'rgba(0,0,0,0)' }}>
-                <Container className="NavBrand" display="grid" justify="space-between">
+                <Container className="NavBrand" display="grid" justify="space-between" style={{ paddingTop: "20px" }}>
 
 
                     <Link href="/" className="Logo">
-                        <Image src="./logo1.svg" alt="products logo" height={60} />
+                        <Image src="./logo.png" alt="products logo" width={150} />
                     </Link>
 
 

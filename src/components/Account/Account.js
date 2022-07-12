@@ -18,7 +18,7 @@ function Account({ user, setUser }) {
                 <Dropdown.Trigger>
                     <Button
                         auto
-                        style={{ backgroundColor: "rgba(255,255,255,0)", float: "right" }}
+                        style={{ backgroundColor: "rgba(0,0,0,0)", float: "right" }}
                         icon={
                             <img
                                 src="./icons/account.svg"

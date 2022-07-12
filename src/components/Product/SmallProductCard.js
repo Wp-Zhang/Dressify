@@ -126,15 +126,17 @@ const SmallProductCard = ({ user, product, isFavorite, addFavorite, deleteFavori
                 </Card.Body>
             </Card >
 
-            <ProductDetailCard
-                user={user}
-                product={product}
-                visible={visible}
-                closeHandler={closeHandler}
-                isFavorite={isFavorite}
-                addFavorite={addFavorite}
-                deleteFavorite={deleteFavorite}
-            />
+            <div className="product-detail-card">
+                <ProductDetailCard
+                    user={user}
+                    product={product}
+                    visible={visible}
+                    closeHandler={closeHandler}
+                    isFavorite={isFavorite}
+                    addFavorite={addFavorite}
+                    deleteFavorite={deleteFavorite}
+                />
+            </div>
         </div>
     )
 }

@@ -102,7 +102,7 @@ const ProductsList = ({ user }) => {
 
     return (
         <div className="App">
-            <Toolbar sx={{ marginTop: "-10px", borderColor: 'rgba(0,0,0,0)' }}>
+            <Toolbar sx={{ marginTop: "0px", borderColor: 'rgba(0,0,0,0)' }}>
                 <Grid.Container gap={0} justify="center">
                     {
                         indexList.map(idx => {

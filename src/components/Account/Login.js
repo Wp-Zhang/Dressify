@@ -54,7 +54,7 @@ function Login({ setUser }) {
                 onClose={closeHandler}
             >
                 <Modal.Header justify='center'>
-                    <Image src="./logo1.svg" alt="products logo" height={40} />
+                    <Image src="./logo.png" alt="products logo" width={90} />
                     {/* <Text id="modal-title" size={18}>
                         Welcome to
                         <Text b size={18}>

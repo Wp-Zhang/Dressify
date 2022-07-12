@@ -12,3 +12,8 @@
     font-family: "Montserrat-Bold";
     src: url('./Montserrat-Bold.ttf') format('truetype');
 }
+
+@font-face {
+    font-family: "Lora-Regular";
+    src: url('./Lora-Regular.ttf') format('truetype');
+}
