@@ -47,7 +47,9 @@ function Login({ setUser }) {
             </Button>
             <Modal
                 closeButton
-                aria-labelledby="modal-title"
+                blur
+                preventClose
+                aria-labelledby="login"
                 open={visible}
                 onClose={closeHandler}
             >

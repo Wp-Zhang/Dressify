@@ -5,8 +5,9 @@
 
 .Background {
   background-image: url("../public/images/bg.png");
-  background-position: center;
-  width: 100%;
+  background-position: top;
+  background-attachment: fixed;
+  /* width: 100%; */
 }
 
 .blur {

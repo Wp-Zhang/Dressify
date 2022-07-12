@@ -1,4 +1,5 @@
 @import '../../fonts/fonts.css';
+@import "~react-image-gallery/styles/css/image-gallery.css";
 
 .Black {
     background: #2b3236;
@@ -8,10 +9,12 @@
 .undefined,
 .Unknown {
     background: #ffffff;
+    border: 2px solid rgb(173, 173, 173);
 }
 
 .Beige {
     background: rgb(255, 255, 203);
+    border: 2px solid rgb(192, 192, 125);
 }
 
 .Grey {
@@ -74,6 +77,9 @@
     background: #088B8B;
 }
 
+.selected-color {
+    border: 4px solid black;
+}
 
 .small-card-title {
     font-family: "Montserrat-SemiBold";
@@ -136,4 +142,68 @@
     text-shadow: 0 0 3px rgba(200, 226, 252, 0.2);
     padding-left: 9px;
     padding-right: 9px;
+}
+
+.nextui-backdrop-layer {
+    opacity: 0.1;
+    /* background-color: rgba(104, 112, 118, 0); */
+}
+
+.large-card .nextui-image-container {
+    margin: 0;
+    overflow: auto;
+}
+
+.large-card-title {
+    font-family: "Montserrat-Bold";
+    max-width: 75%;
+    line-height: 100%;
+}
+
+.large-card-desc {
+    font-family: "Montserrat-Medium";
+    max-width: 95%;
+    line-height: 110%;
+}
+
+.large-card-price {
+    font-family: "Montserrat-Bold";
+    color: #3D3D3D;
+    text-shadow: 0 0 5px rgba(104, 112, 118, 0.3);
+}
+
+.image-gallery-slides {
+    height: 100%;
+    /* overflow: hidden; */
+
+    text-align: center;
+    vertical-align: center;
+}
+
+.image-gallery-swipe {
+    height: 100%;
+    /* overflow: hidden; */
+}
+
+.image-gallery-slide-wrapper {
+    height: 100%
+        /* overflow: hidden; */
+}
+
+.image-gallery-content {
+    height: 100%;
+
+    /* overflow: hidden; */
+}
+
+.image-gallery {
+    height: 720px;
+    width: 800px;
+}
+
+.image-gallery img {
+    /* max-height: inherit; */
+    /* display: block; */
+    /* height: 720px; */
+    align-self: center;
 }
