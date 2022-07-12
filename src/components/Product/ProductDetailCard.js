@@ -13,9 +13,7 @@ import getImgURL from '../../services/utils';
 const ProductDetailCard = ({ user, product, visible, closeHandler }) => {
 
     const imgList = product.article_id.map(
-        articleId => {
-            return { original: getImgURL(articleId) }
-        }
+        articleId => getImgURL(articleId)
     )
 
     const [curNo, setCurNo] = useState(0)
@@ -43,7 +41,7 @@ const ProductDetailCard = ({ user, product, visible, closeHandler }) => {
                     // infinite={false}
                     /> */}
                     <Container style={{ padding: 0 }}>
-                        <Image src={imgList[curNo].original} objectFit="cover" style={{ height: "600px" }}></Image>
+                        <Image src={imgList[curNo]} objectFit="cover" style={{ height: "600px" }}></Image>
                     </Container>
                     <Container display='flex' alignContent='space-around' style={{ padding: "60px 40px 30px 40px", alignSelf: "center", height: "80%" }}>
                         <Row justify="space-between" align="left">
@@ -72,9 +70,11 @@ const ProductDetailCard = ({ user, product, visible, closeHandler }) => {
                                 }
                             </div>
                         </Row>
-                        <Row justify="space-between" align="left" style={{ marginTop: "10px" }}>
-                            <Text className='large-card-desc' size={19}>{product.detail_desc}</Text>
-                        </Row>
+                        {product.detail_desc.length > 1 &&
+                            <Row justify="space-between" align="left" style={{ marginTop: "10px" }}>
+                                <Text className='large-card-desc' size={19}>{product.detail_desc}</Text>
+                            </Row>
+                        }
                         <Row justify="space-between" align="left" style={{ marginTop: "10px" }}>
                             <Text size={35} className="large-card-price">{"$ " + product.price.toFixed(2)}</Text>
                         </Row>

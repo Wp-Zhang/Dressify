@@ -84,7 +84,7 @@ const SmallProductCard = ({ user, product }) => {
                                 {
                                     product.perceived_colour_master_name.slice(0, 6).map((color, index) => {
                                         return (
-                                            <Tooltip content={color} placement="bottom" hideArrow>
+                                            <Tooltip content={color} key={index} placement="bottom" hideArrow>
                                                 <Avatar className={color.replace(' ', '-')} size="sm" color="" stacked />
                                             </Tooltip>
                                         )

@@ -11,7 +11,9 @@ import 'boxicons';
 // import "./ProductsList.css";
 
 
-const ProductsList = ({ user, favorites, addFavorite, deleteFavorite }) => {
+const ProductsList = ({ user }) => {
+
+    const [favorites, setFavorites] = useState([]);
 
     const indexList = ["All", 'Ladieswear', 'Baby/Children', 'Menswear', 'Sport', 'Divided']
     const [index, setIndex] = useState(indexList[0])
@@ -48,6 +50,48 @@ const ProductsList = ({ user, favorites, addFavorite, deleteFavorite }) => {
             retrieveProducts()
         }
     }, [filters])
+
+    const getFavorites = (userId) => {
+        // FavoritesDataService.getFavoritesById(userId)
+        //     .then(response => {
+        //         setFavorites(response.data.favorites);
+        //     })
+        //     .catch(e => {
+        //         console.log(`Get favorites by id failed: ${e}`);
+        //     })
+    }
+
+    const addFavorite = (productId) => {
+        // let newFavorites = [...favorites, productId];
+        // let data = {
+        //     _id: user.googleId,
+        //     favorites: newFavorites
+        // }
+        // FavoritesDataService.updateFavorite(data)
+        //     .then(response => {
+        //         setFavorites(newFavorites);
+        //     })
+        //     .catch(e => {
+        //         console.log(e);
+        //     })
+    }
+
+    const deleteFavorite = (productId) => {
+        // let filteredFavorites = favorites.filter(f => f !== productId);
+        // let data = {
+        //     _id: user.googleId,
+        //     favorites: filteredFavorites
+        // }
+        // FavoritesDataService.updateFavorite(data)
+        //     .then(response => {
+        //         setFavorites(filteredFavorites);
+        //     })
+        //     .catch(e => {
+        //         console.log(e);
+        //     });
+    }
+
+
 
 
     return (
