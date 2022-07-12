@@ -78,8 +78,8 @@
 }
 
 .selected-color {
-    border: 3px solid rgba(0, 0, 0, 0.8);
-    box-shadow: 0 0px 8px rgba(76, 76, 76, 0.9);
+    border: 3px solid rgba(31, 31, 31, 0.8);
+    /* box-shadow: 0 0px 15px rgb(54, 54, 54); */
 }
 
 .small-card-title {

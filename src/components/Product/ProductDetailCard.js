@@ -10,6 +10,30 @@ import './Product.css'
 import ImageGallery from 'react-image-gallery';
 import getImgURL from '../../services/utils';
 
+const shadow = {
+    "Black": "#2b3236",
+    "white": "#ffffff",
+    "undefined": "#ffffff",
+    "Unknown": "#ffffff",
+    "Beige": "rgb(255, 255, 203)",
+    "Grey": "#cfcece",
+    "Blue": "#4594ef",
+    "Pink": "#FFA3E5",
+    "Lilac-Purple": "#EADCF8",
+    "Red": "#b72d4f",
+    "Mole": "#C59A80",
+    "Orange": "#f7803c",
+    "Metal": "#C1C8CD",
+    "Brown": "#4E3104",
+    "Turquoise": "#2ECEC2",
+    "Yellow": "#F5A524",
+    "Khaki-green": "#88a045",
+    "Green": "#108944",
+    "Yellowish-Green": "#CEF72C",
+    "Bluish-Green": "#088B8B"
+}
+
+
 const ProductDetailCard = ({ user, product, visible, closeHandler, isFavorite, addFavorite, deleteFavorite }) => {
 
     const imgList = product.article_id.map(
@@ -90,6 +114,9 @@ const ProductDetailCard = ({ user, product, visible, closeHandler, isFavorite, a
                                                 className={color.replace(' ', '-') + (curNo === index ? " selected-color" : "")}
                                                 size="sm"
                                                 onClick={(e) => setCurNo(index)}
+                                                style={{
+                                                    boxShadow: curNo === index ? "0 0px 19px " + shadow[color] : "0 0 0"
+                                                }}
                                             />
                                         </Grid>
                                     )
