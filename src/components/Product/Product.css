@@ -107,13 +107,13 @@
 }
 
 .small-card-colorgroup {
-    margin-top: 5px;
+    margin-left: 0;
+    padding: 0;
+    width: 70%;
 }
 
 .small-card-large-colorgroup {
-    padding-left: 25px;
-    /* padding-right: 18px; */
-    margin-top: 10px;
+    padding-left: 10px;
 }
 
 .small-card-color {

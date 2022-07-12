@@ -8,6 +8,14 @@ class AccountDataService {
     updateFavorites(data) {
         return axios.put(`${process.env.REACT_APP_API_BASE_URL}/api/v1/account/favorites`, data);
     }
+
+    getCart(uid) {
+        return axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/v1/account/cart/id/` + uid);
+    }
+
+    updateCart(data) {
+        return axios.put(`${process.env.REACT_APP_API_BASE_URL}/api/v1/account/cart`, data);
+    }
 }
 
 export default new AccountDataService();
