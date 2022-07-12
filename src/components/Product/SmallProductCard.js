@@ -1,5 +1,6 @@
 import { Card, Button, Row, Text, Spacer, Avatar, Tooltip, Grid } from '@nextui-org/react';
 import { useState } from 'react';
+import CartIcon from '../icons/cart';
 
 import { FavoriteIcon, FavoriteFillIcon } from '../icons/favorite';
 import ExtendedImg from './ExtendedImg';
@@ -23,12 +24,65 @@ const SmallProductCard = ({ user, product, isFavorite, addFavorite, deleteFavori
                 isPressable
                 disableRipple
                 isHoverable
-                css={{ w: "330px", h: "415px", backgroundColor: "rgba(255, 255, 255, 0)" }}
+                css={{ w: "330px", h: "440px", backgroundColor: "rgba(255, 255, 255, 0)" }}
                 onClick={handler}
             >
 
                 <Card.Body css={{ p: 0, w: "100%", backgroundColor: "rgba(255, 255, 255, 0.4)" }}>
-                    <ExtendedImg articleId={product.article_id[0]} height="300px" />
+                    <ExtendedImg articleId={product.article_id[0]} height="330px" />
+                    {user && (isFavorite ?
+                        <Button
+                            auto
+                            rounded
+                            css={{
+                                backgroundColor: "rgba(255,255,255,0.5)",
+                                backdropFilter: "blur(5px)",
+                                position: "absolute",
+                                marginBottom: 441 - 330 + 15 + "px",
+                                marginLeft: "15px",
+                                left: 0,
+                                bottom: 0,
+                                aspectRatio: 1
+                            }}
+                            onClick={() => { deleteFavorite(product.product_code) }}
+                        >
+                            <FavoriteFillIcon size={20} filter="drop-shadow(0px 0px 3px rgb(245 85 85 / 0.8))" />
+                        </Button> :
+                        <Button
+                            auto
+                            rounded
+                            css={{
+                                backgroundColor: "rgba(255,255,255,0.5)",
+                                backdropFilter: "blur(5px)",
+                                position: "absolute",
+                                marginBottom: 441 - 330 + 15 + "px",
+                                marginLeft: "15px",
+                                left: 0,
+                                bottom: 0,
+                                aspectRatio: 1
+                            }}
+                            onClick={() => { addFavorite(product.product_code) }}
+                        >
+                            <FavoriteIcon size={20} fill="black" strokeWidth='0.2px' />
+                        </Button>)}
+
+                    {user && <Button
+                        auto
+                        rounded
+                        css={{
+                            backgroundColor: "rgba(255,255,255,0.5)",
+                            position: "absolute",
+                            marginBottom: 441 - 330 + 15 + "px",
+                            marginRight: "15px",
+                            right: 0,
+                            bottom: 0,
+                            aspectRatio: 1
+                        }}
+                        onClick={handler}
+                    >
+                        <CartIcon size={20} fill="black" ></CartIcon>
+                    </Button>}
+
 
                     <Spacer y={0.5} />
 
@@ -37,7 +91,7 @@ const SmallProductCard = ({ user, product, isFavorite, addFavorite, deleteFavori
                         <Text size={19} transform={"capitalize"} className="small-card-title">{product.prod_name}</Text>
                         <Text size={19} className="small-card-price">{"$ " + product.price.toFixed(2)}</Text>
                     </Row>
-                    <Row wrap="wrap" justify="space-between" align="center" className='small-card-body' style={{ marginTop: "5px" }}>
+                    <Row wrap="wrap" justify="space-between" align="center" className='small-card-body' style={{ marginTop: "15px" }}>
                         {
                             product.perceived_colour_master_name.length > 5 ?
                                 <Avatar.Group count={product.perceived_colour_master_name.length} className="small-card-large-colorgroup">
@@ -52,19 +106,6 @@ const SmallProductCard = ({ user, product, isFavorite, addFavorite, deleteFavori
                                     }
                                 </Avatar.Group>
                                 :
-                                // <div className="small-card-colorgroup">
-                                //     {
-                                //         product.perceived_colour_master_name.map((color, index) => {
-                                //             return (
-                                //                 <div className="small-card-color" key={index} style={{ marginLeft: 35 * index + 15 + "px" }}>
-                                //                     <Tooltip content={color} placement="bottom" hideArrow>
-                                //                         <Avatar className={color.replace(' ', '-')} size="sm" color="" />
-                                //                     </Tooltip>
-                                //                 </div>
-                                //             )
-                                //         })
-                                //     }
-                                // </div>
                                 <Grid.Container gap={0.3} display='flex' className='small-card-colorgroup'>
                                     {
                                         product.perceived_colour_master_name.map((color, index) => {
@@ -83,7 +124,7 @@ const SmallProductCard = ({ user, product, isFavorite, addFavorite, deleteFavori
                                     }
                                 </Grid.Container>
                         }
-                        {user && (isFavorite ?
+                        {/* {user && (isFavorite ?
                             <Button
                                 auto
                                 rounded
@@ -106,6 +147,18 @@ const SmallProductCard = ({ user, product, isFavorite, addFavorite, deleteFavori
                             >
                                 <FavoriteIcon size={24} fill="black" strokeWidth='0.2px' filter="drop-shadow(0px 0px 2px rgb(0 0 0 / 0.4))" />
                             </Button>)}
+                        {user && (
+                            <Button
+                                auto
+                                rounded
+                                css={{
+                                    backgroundColor: "rgba(255,255,255,0)",
+                                    aspectRatio: 1
+                                }}
+                                onClick={handler}
+                            >
+                                <CartIcon size={24} fill="black" strokeWidth='0.2px' filter="drop-shadow(0px 0px 2px rgb(0 0 0 / 0.4))" />
+                            </Button>)} */}
                     </Row>
                 </Card.Body>
             </Card >
