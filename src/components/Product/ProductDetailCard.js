@@ -56,15 +56,19 @@ const ProductDetailCard = ({ user, product, visible, closeHandler, isFavorite, a
     }
 
     const footer1 = (
-        < Dropdown placement="top" >
+        < Dropdown placement="bottom-right" >
             <Dropdown.Button bordered>
                 {
                     getSize(curSize) === "Size" ?
                         <pre className="detail-button" style={{ fontSize: "1rem" }}>      Size      </pre> :
                         <Row>
                             <Text color="inherit" className="detail-size">Size：</Text>
-                            <pre className="detail-button">
-                                {getSize(curSize) + "  ".repeat(3 - getSize(curSize).length)}
+                            <pre className="detail-button" style={{ "fontSize": "20px" }}>
+                                {
+                                    " ".repeat(3 - getSize(curSize).length) +
+                                    getSize(curSize) +
+                                    " ".repeat(3 - getSize(curSize).length)
+                                }
                             </pre>
                         </Row>
                 }
@@ -78,7 +82,7 @@ const ProductDetailCard = ({ user, product, visible, closeHandler, isFavorite, a
                 variant='flat'
                 selectedKeys={curSize}
                 onSelectionChange={setCurSize}
-                style={{ width: "20px" }}
+                css={{ width: "inherit" }}
             >
                 {sizeList.map((size) => <Dropdown.Item key={size} className="detail-button">{size}</Dropdown.Item>)}
             </Dropdown.Menu>
