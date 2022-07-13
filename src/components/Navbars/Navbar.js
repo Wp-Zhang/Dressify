@@ -58,4 +58,35 @@ const Navbar1 = ({ user, setUser }) => {
     )
 }
 
-export default Navbar1
+const Navbar2 = () => {
+
+    const navigate = useNavigate();
+    const indexList = ["All", 'Ladieswear', 'Baby/Children', 'Menswear', 'Sport', 'Divided']
+
+    return (
+        <Toolbar sx={{ marginTop: "0px", borderColor: 'rgba(0,0,0,0)' }}>
+            <Grid.Container gap={0} justify="center">
+                {
+                    indexList.map(idx => {
+                        return (
+                            <Grid key={idx} justify="center">
+                                <Button
+                                    auto
+                                    color=""
+                                    className="NavLink"
+                                    style={{ background: "transparent" }}
+                                    onPress={(e) => { navigate("/products", { params: { index: idx } }) }}
+                                >
+                                    {idx}
+                                </Button>
+                            </Grid>
+                        )
+                    })
+                }
+            </Grid.Container>
+        </Toolbar>
+    )
+}
+
+export { Navbar1 }
+export { Navbar2 }

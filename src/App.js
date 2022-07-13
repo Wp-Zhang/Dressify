@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import Navbar1 from "./components/NavBars/NavBar";
+import { Navbar1 } from "./components/NavBars/NavBar";
 import ProductsListPage from "./components/Product/ProductsListPage";
 import FavoriteListPage from "./components/Product/FavoriteListPage";
 import { useState, useEffect } from 'react';

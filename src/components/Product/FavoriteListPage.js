@@ -1,25 +1,20 @@
 import React, { useState, useEffect, useCallback } from "react";
 import ProductDataService from "../../services/products";
 import AccountDataService from "../../services/account";
-import { Container, Grid, Text, Button, Spacer, Image } from '@nextui-org/react';
+import { Container, Grid, Button, Spacer, Image } from '@nextui-org/react';
 import Toolbar from '@mui/material/Toolbar';
 
 import SmallProductCard from "./SmallProductCard";
-
-import { useNavigate } from 'react-router-dom';
+import { Navbar2 } from "../NavBars/NavBar";
 
 import './FavoritePage.css';
 
 
 const FavoriteListPage = ({ user }) => {
 
-    const navigate = useNavigate();
-
     const [favorites, setFavorites] = useState([]);
     const [products, setProducts] = useState([]);
     const [spacerNum, setSpacerNum] = useState(0);
-
-    const indexList = ["All", 'Ladieswear', 'Baby/Children', 'Menswear', 'Sport', 'Divided']
 
 
     const retrieveFavorites = useCallback(() => {
@@ -99,27 +94,7 @@ const FavoriteListPage = ({ user }) => {
 
     return (
         <div className="App">
-            <Toolbar sx={{ marginTop: "0px", borderColor: 'rgba(0,0,0,0)' }}>
-                <Grid.Container gap={0} justify="center">
-                    {
-                        indexList.map(idx => {
-                            return (
-                                <Grid key={idx} justify="center">
-                                    <Button
-                                        auto
-                                        color=""
-                                        className="NavLink"
-                                        style={{ background: "transparent" }}
-                                        onPress={(e) => { navigate("/products", { params: { index: idx } }) }}
-                                    >
-                                        {idx}
-                                    </Button>
-                                </Grid>
-                            )
-                        })
-                    }
-                </Grid.Container>
-            </Toolbar>
+            <Navbar2 />
 
             <Spacer y={1} />
 
