@@ -104,6 +104,7 @@ const SearchBar = ({ index, setFilters }) => {
                     <Dropdown>
                         <Dropdown.Button bordered ripple color="" className="filter">{orderBy}</Dropdown.Button>
                         <Dropdown.Menu
+                            color="secondary"
                             aria-label='order'
                             selectionMode="single"
                             disallowEmptySelection
@@ -124,12 +125,14 @@ const SearchBar = ({ index, setFilters }) => {
                     <Dropdown>
                         <Dropdown.Button bordered ripple color="" className="filter">{curSection}</Dropdown.Button>
                         <Dropdown.Menu
+                            color="error"
                             aria-label='section'
                             selectionMode="single"
                             selectedKeys={curSection}
                             disallowEmptySelection
                             onSelectionChange={setCurSection}
                             css={{ width: "100%" }}
+                            isVirtualized={true}
                             // disabledKeys={["Section"]}
                             items={[{ "key": "Section", "name": "All" }, ...sections]}
                         >
@@ -143,6 +146,7 @@ const SearchBar = ({ index, setFilters }) => {
                     <Dropdown>
                         <Dropdown.Button bordered ripple color="" className="filter">{curProductType}</Dropdown.Button>
                         <Dropdown.Menu
+                            color="warning"
                             aria-label="type"
                             selectionMode="single"
                             selectedKeys={curProductType}
