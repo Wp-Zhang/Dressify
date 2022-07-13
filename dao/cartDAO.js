@@ -15,6 +15,7 @@ export default class CartDAO {
     }
 
     static async updateCart(userId, cart) {
+        console.log(cart)
         try {
             const updateResponse = await cartCollection.updateOne(
                 { _id: userId },

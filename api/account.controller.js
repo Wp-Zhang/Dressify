@@ -45,7 +45,7 @@ export default class AccountController {
         try {
             const CartResponse = await CartDAO.updateCart(
                 req.body._id,
-                req.body.favorites
+                req.body.cart
             )
 
             var { error } = CartResponse
@@ -54,7 +54,7 @@ export default class AccountController {
             }
 
             if (CartResponse.modifiedCount === 0) {
-                throw new Error("Unable to update favorites.");
+                throw new Error("Unable to update cart.");
             }
 
             res.json({ status: "success" });
@@ -68,12 +68,12 @@ export default class AccountController {
     static async apiGetCart(req, res, next) {
         try {
             let uid = req.params.userId;
-            let favorites = await CartDAO.getCartById(uid);
-            if (!favorites) {
+            let cart = await CartDAO.getCartById(uid);
+            if (!cart) {
                 res.status(404).json({ error: "user not found" });
                 return
             }
-            res.json(favorites);
+            res.json(cart);
         } catch (e) {
             console.log(`API, ${e}`);
             res.status(500).json({ error: e });
