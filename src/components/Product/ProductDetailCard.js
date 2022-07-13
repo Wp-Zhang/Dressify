@@ -55,6 +55,57 @@ const ProductDetailCard = ({ user, product, visible, closeHandler, isFavorite, a
         setCurSize(new Set(["Size"]))
     }
 
+    const footer1 = (
+        < Dropdown placement="top" >
+            <Dropdown.Button bordered>
+                {
+                    getSize(curSize) === "Size" ?
+                        <pre className="detail-button" style={{ fontSize: "1rem" }}>      Size      </pre> :
+                        <Row>
+                            <Text color="inherit" className="detail-size">Size：</Text>
+                            <pre className="detail-button">
+                                {getSize(curSize) + "  ".repeat(3 - getSize(curSize).length)}
+                            </pre>
+                        </Row>
+                }
+            </Dropdown.Button>
+            <Dropdown.Menu
+                color="secondary"
+                // flat
+                aria-label="Size"
+                disallowEmptySelection
+                selectionMode="single"
+                variant='flat'
+                selectedKeys={curSize}
+                onSelectionChange={setCurSize}
+                style={{ width: "20px" }}
+            >
+                {sizeList.map((size) => <Dropdown.Item key={size} className="detail-button">{size}</Dropdown.Item>)}
+            </Dropdown.Menu>
+        </Dropdown >
+    )
+    const footer2 = (
+        < Button
+            bordered={getSize(curSize) === "Size"}
+            borderWeight='bold'
+            style={{ paddingLeft: "15px" }}
+            color="inherit"
+            disabled={getSize(curSize) === "Size"}
+            iconRight={
+                < CartIcon
+                    size={20}
+                    // strokeWidth="0.px"
+                    color={getSize(curSize) === "Size" ? "#7E868C" : "#FFFFFF"}
+                    fill={getSize(curSize) === "Size" ? "#7E868C" : "#FFFFFF"}
+                />
+            }
+            onClick={() => { addCart(product.article_id[curNo], getSize(curSize)) }}
+        >
+            <Text className="detail-button" color="inherit">Add To Cart</Text>
+        </Button >
+    )
+
+
     return (
         <Modal
             // closeButton
@@ -150,59 +201,31 @@ const ProductDetailCard = ({ user, product, visible, closeHandler, isFavorite, a
                         </Row>
 
                         <Container display="flex" style={{ justifyContent: 'center', marginTop: "10%" }} width="100%">
-                            {user &&
-                                <Button.Group
-                                    color="warning"
-                                    auto
-                                    ripple={false}
-                                    size="lg"
-                                >
-                                    <Dropdown placement="top">
-                                        <Dropdown.Button bordered>
-                                            {
-                                                getSize(curSize) === "Size" ?
-                                                    <pre className="detail-button" style={{ fontSize: "1rem" }}>      Size      </pre> :
-                                                    <Row>
-                                                        <Text color="inherit" className="detail-size">Size：</Text>
-                                                        <pre className="detail-button">
-                                                            {getSize(curSize) + "  ".repeat(3 - getSize(curSize).length)}
-                                                        </pre>
-                                                    </Row>
-                                            }
-                                        </Dropdown.Button>
-                                        <Dropdown.Menu
-                                            color="secondary"
-                                            // flat
-                                            aria-label="Size"
-                                            disallowEmptySelection
-                                            selectionMode="single"
-                                            variant='flat'
-                                            selectedKeys={curSize}
-                                            onSelectionChange={setCurSize}
-                                            style={{ width: "20px" }}
-                                        >
-                                            {sizeList.map((size) => <Dropdown.Item key={size} className="detail-button">{size}</Dropdown.Item>)}
-                                        </Dropdown.Menu>
-                                    </Dropdown>
-
-                                    <Button
-                                        bordered={getSize(curSize) === "Size"}
-                                        style={{ paddingLeft: "15px" }}
-                                        color="inherit"
-                                        disabled={getSize(curSize) === "Size"}
-                                        iconRight={
-                                            <CartIcon
-                                                size={20}
-                                                // strokeWidth="0.px"
-                                                color={getSize(curSize) === "Size" ? "#7E868C" : "#FFFFFF"}
-                                                fill={getSize(curSize) === "Size" ? "#7E868C" : "#FFFFFF"}
-                                            />
-                                        }
-                                        onClick={() => { addCart(product.article_id[curNo], getSize(curSize)) }}
+                            {user && (
+                                getSize(curSize) === "Size" ?
+                                    <Button.Group
+                                        color="warning"
+                                        auto
+                                        bordered
+                                        borderWeight='bold'
+                                        ripple={false}
+                                        size="lg"
                                     >
-                                        <Text className="detail-button" color="inherit">Add To Cart</Text>
-                                    </Button>
-                                </Button.Group>
+                                        {footer1}
+                                        {footer2}
+                                    </Button.Group>
+                                    :
+                                    <Button.Group
+                                        color="warning"
+                                        auto
+                                        borderWeight='bold'
+                                        ripple={false}
+                                        size="lg"
+                                    >
+                                        {footer1}
+                                        {footer2}
+                                    </Button.Group>
+                            )
                             }
                         </Container>
                     </Container>

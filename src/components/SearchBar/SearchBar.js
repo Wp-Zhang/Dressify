@@ -79,13 +79,13 @@ const SearchBar = ({ index, setFilters }) => {
                 <Grid>
                     <Input
                         className="search"
-                        clearable
-                        bordered
-                        // borderWeight='20px'
+                        // bordered
+                        status="default"
                         placeholder='Search ...'
                         initialValue=''
                         id="search"
                         aria-label='search-input'
+                        type="search"
                         contentRight={
                             <Button
                                 auto
