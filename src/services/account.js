@@ -14,6 +14,7 @@ class AccountDataService {
     }
 
     updateCart(data) {
+        data.cart = data.cart.filter((article) => article.num > 0)
         return axios.put(`${process.env.REACT_APP_API_BASE_URL}/api/v1/account/cart`, data);
     }
 }

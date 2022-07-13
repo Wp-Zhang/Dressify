@@ -8,7 +8,7 @@ import './Product.css'
 
 import ProductDetailCard from './ProductDetailCard';
 
-const SmallProductCard = ({ user, product, isFavorite, addFavorite, deleteFavorite }) => {
+const SmallProductCard = ({ user, product, isFavorite, addFavorite, deleteFavorite, addCart }) => {
 
     const [visible, setVisible] = useState(false);
     const handler = () => setVisible(true);
@@ -24,11 +24,12 @@ const SmallProductCard = ({ user, product, isFavorite, addFavorite, deleteFavori
                 isPressable
                 disableRipple
                 isHoverable
-                css={{ w: "325px", h: "440px", backgroundColor: "rgba(255, 255, 255, 0)" }}
+                variant="flat"
+                css={{ w: "325px", h: "440px", backgroundColor: "rgba(255, 255, 255, 1)" }}
                 onClick={handler}
             >
 
-                <Card.Body css={{ p: 0, w: "100%", backgroundColor: "rgba(255, 255, 255, 0.4)" }}>
+                <Card.Body css={{ p: 0, w: "100%", backgroundColor: "rgba(255, 255, 255, 0)" }}>
                     <ExtendedImg articleId={product.article_id[0]} height="325px" />
                     {user && (isFavorite ?
                         <Button
@@ -172,6 +173,7 @@ const SmallProductCard = ({ user, product, isFavorite, addFavorite, deleteFavori
                     isFavorite={isFavorite}
                     addFavorite={addFavorite}
                     deleteFavorite={deleteFavorite}
+                    addCart={addCart}
                 />
             </div>
         </div>

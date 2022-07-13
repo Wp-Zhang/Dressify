@@ -15,6 +15,7 @@ import 'boxicons';
 const ProductsListPage = ({ user }) => {
 
     const [favorites, setFavorites] = useState([]);
+    const [cart, setCart] = useState([])
 
     const indexList = ["All", 'Ladieswear', 'Baby/Children', 'Menswear', 'Sport', 'Divided']
     const [index, setIndex] = useState(indexList[0])
@@ -27,12 +28,20 @@ const ProductsListPage = ({ user }) => {
 
     const [spacerNum, setSpacerNum] = useState(0);
 
-    const retrieveFavorites = useCallback(() => {
+    const retrieveFavoritesAndCart = useCallback(() => {
         if (user) {
-            console.log("Retrieveing favorites...")
+            console.log("Retrieveing favorites and cart...")
             AccountDataService.getFavorites(user.id)
                 .then(response => {
                     setFavorites(response.data.favorites)
+                })
+                .catch(e => {
+                    console.log(e);
+                })
+            AccountDataService.getCart(user.id)
+                .then(response => {
+                    // console.log("Cart:", response.data.cart)
+                    setCart(response.data.cart)
                 })
                 .catch(e => {
                     console.log(e);
@@ -70,6 +79,31 @@ const ProductsListPage = ({ user }) => {
             });
     }
 
+    const addCart = (articleId, size) => {
+        let target = cart.filter((article) => article.article_id === articleId && article.size === size)
+        let rest = cart.filter((article) => article.article_id !== articleId || article.size !== size)
+        if (target.length === 0) {
+            // console.log("New cart item:", articleId, size)
+            target = { article_id: articleId, size: size, num: 1 }
+        } else {
+            target = target[0]
+            target.num += 1
+        }
+        let newCart = [target, ...rest]
+        let data = {
+            _id: user.id,
+            cart: newCart
+        }
+        AccountDataService.updateCart(data)
+            .then(response => {
+                setCart(newCart);
+                // retrieveFavoritesAndCart()
+            })
+            .catch(e => {
+                console.log(e);
+            })
+    }
+
 
     const retrieveProducts = useCallback(() => {
         // console.log("Retrieve items, page:", currentPage, "Filters:", filters)
@@ -99,8 +133,8 @@ const ProductsListPage = ({ user }) => {
     }, [filters])
 
     useEffect(() => {
-        retrieveFavorites();
-    }, [retrieveFavorites]);
+        retrieveFavoritesAndCart();
+    }, [retrieveFavoritesAndCart]);
 
     useEffect(() => {
         let rowNum = Math.ceil(products.length / 4)
@@ -150,6 +184,7 @@ const ProductsListPage = ({ user }) => {
                                 isFavorite={favorites.includes(product.product_code)}
                                 addFavorite={addFavorite}
                                 deleteFavorite={deleteFavorite}
+                                addCart={addCart}
                             />
                         </Grid>
                     ))}

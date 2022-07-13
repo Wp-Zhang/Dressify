@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import ProductDataService from "../../services/products";
 import AccountDataService from "../../services/account";
-import { Container, Grid, Text, Button, Spacer } from '@nextui-org/react';
+import { Container, Grid, Text, Button, Spacer, Image } from '@nextui-org/react';
 import Toolbar from '@mui/material/Toolbar';
 
 import SmallProductCard from "./SmallProductCard";
@@ -27,7 +27,7 @@ const FavoriteListPage = ({ user }) => {
             AccountDataService.getFavorites(user.id)
                 .then(response => {
                     setFavorites(response.data.favorites)
-                    console.log("Retrieveing favorites...", response.data.favorites)
+                    // console.log("Retrieveing favorites...", response.data.favorites)
                 })
                 .catch(e => {
                     console.log(e);
@@ -71,12 +71,11 @@ const FavoriteListPage = ({ user }) => {
 
     useEffect(() => {
         if (user && favorites && favorites.length > 0) {
-            console.log("!!!")
             // setProducts([])
             ProductDataService.getProductByIds(favorites)
                 .then(response => {
                     let info = response.map((res) => res.data)
-                    console.log(info)
+                    // console.log(info)
                     setProducts(info)
                 })
                 .catch(e => {
@@ -124,14 +123,16 @@ const FavoriteListPage = ({ user }) => {
 
             <Spacer y={1} />
 
-            <Text h1 className="favorite-title">Favorites</Text>
-
-            <Spacer y={2} />
+            {/* <Text h1 className="favorite-title" borderColor="black">Favorites</Text> */}
+            <Container xs>
+                <Image src="./images/favoritePageTitle.png" width={"40%"}></Image>
+            </Container>
+            <Spacer y={1} />
 
             <Container lg>
                 <Grid.Container gap={2} justify="flex-start">
                     {products.length > 0 && products.map((product, index) => {
-                        console.log("Product", index, ":", product)
+                        // console.log("Product", index, ":", product)
                         return (
                             <Grid xs={6} sm={3} key={index}>
                                 <SmallProductCard

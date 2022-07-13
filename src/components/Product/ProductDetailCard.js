@@ -1,6 +1,5 @@
 import { Button, Row, Text, Avatar, Modal, Image, Container, Grid, Dropdown } from '@nextui-org/react';
 import { useState } from 'react';
-import 'boxicons'
 
 import CartIcon from '../icons/cart';
 import CloseIcon from '../icons/close';
@@ -34,7 +33,7 @@ const shadow = {
 }
 
 
-const ProductDetailCard = ({ user, product, visible, closeHandler, isFavorite, addFavorite, deleteFavorite }) => {
+const ProductDetailCard = ({ user, product, visible, closeHandler, isFavorite, addFavorite, deleteFavorite, addCart }) => {
 
     const imgList = product.article_id.map(
         articleId => getImgURL(articleId)
@@ -46,14 +45,9 @@ const ProductDetailCard = ({ user, product, visible, closeHandler, isFavorite, a
         return size
     }
 
-
     const [curNo, setCurNo] = useState(0)
 
     const nameLen = product.prod_name.length
-
-    const addToCart = () => {
-
-    }
 
     const onClose = () => {
         closeHandler();
@@ -202,7 +196,9 @@ const ProductDetailCard = ({ user, product, visible, closeHandler, isFavorite, a
                                                 // strokeWidth="0.px"
                                                 color={getSize(curSize) === "Size" ? "#7E868C" : "#FFFFFF"}
                                                 fill={getSize(curSize) === "Size" ? "#7E868C" : "#FFFFFF"}
-                                            />}
+                                            />
+                                        }
+                                        onClick={() => { addCart(product.article_id[curNo], getSize(curSize)) }}
                                     >
                                         <Text className="detail-button" color="inherit">Add To Cart</Text>
                                     </Button>
