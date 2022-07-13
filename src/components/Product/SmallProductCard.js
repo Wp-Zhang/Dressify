@@ -24,12 +24,12 @@ const SmallProductCard = ({ user, product, isFavorite, addFavorite, deleteFavori
                 isPressable
                 disableRipple
                 isHoverable
-                css={{ w: "330px", h: "440px", backgroundColor: "rgba(255, 255, 255, 0)" }}
+                css={{ w: "325px", h: "440px", backgroundColor: "rgba(255, 255, 255, 0)" }}
                 onClick={handler}
             >
 
                 <Card.Body css={{ p: 0, w: "100%", backgroundColor: "rgba(255, 255, 255, 0.4)" }}>
-                    <ExtendedImg articleId={product.article_id[0]} height="330px" />
+                    <ExtendedImg articleId={product.article_id[0]} height="325px" />
                     {user && (isFavorite ?
                         <Button
                             auto

@@ -140,9 +140,9 @@ const ProductsListPage = ({ user }) => {
                 setFilters={setFilters}
             />
             <Container lg>
-                <Grid.Container gap={2} justify="flex-start">
+                <Grid.Container gap={1} justify="flex-start">
                     {products.map((product, index) => (
-                        <Grid xs={6} sm={3} key={index}>
+                        <Grid sm={3} key={index} justify="center">
                             <SmallProductCard
                                 key={product.product_code}
                                 user={user}
@@ -158,7 +158,7 @@ const ProductsListPage = ({ user }) => {
             {
                 [...Array(spacerNum).keys()].map((idx) => <Spacer y={10} />)
             }
-            {products.length == 16 &&
+            {products.length === 16 &&
                 (
                     <div>
                         < Spacer y={2} />
