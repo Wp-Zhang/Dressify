@@ -1,14 +1,13 @@
-import { Card, Button, Row, Text, Spacer, Avatar, Tooltip, Modal, Image, Container, Grid } from '@nextui-org/react';
+import { Button, Row, Text, Avatar, Modal, Image, Container, Grid, Dropdown } from '@nextui-org/react';
 import { useState } from 'react';
 import 'boxicons'
 
 import CartIcon from '../icons/cart';
 import CloseIcon from '../icons/close';
 import { FavoriteIcon, FavoriteFillIcon } from '../icons/favorite';
-import ExtendedImg from './ExtendedImg';
 import './Product.css'
 
-import ImageGallery from 'react-image-gallery';
+// import ImageGallery from 'react-image-gallery';
 import getImgURL from '../../services/utils';
 
 const shadow = {
@@ -40,10 +39,27 @@ const ProductDetailCard = ({ user, product, visible, closeHandler, isFavorite, a
     const imgList = product.article_id.map(
         articleId => getImgURL(articleId)
     )
+    const sizeList = ["XS", "S", "M", "L", "XL", "XXL"]
+    const [curSize, setCurSize] = useState(new Set(["Size"]))
+    const getSize = (sizeSet) => {
+        let [size] = sizeSet
+        return size
+    }
+
 
     const [curNo, setCurNo] = useState(0)
 
     const nameLen = product.prod_name.length
+
+    const addToCart = () => {
+
+    }
+
+    const onClose = () => {
+        closeHandler();
+        setCurNo(0);
+        setCurSize(new Set(["Size"]))
+    }
 
     return (
         <Modal
@@ -52,7 +68,7 @@ const ProductDetailCard = ({ user, product, visible, closeHandler, isFavorite, a
             color="error"
             aria-labelledby={product.prod_name}
             open={visible}
-            onClose={closeHandler}
+            onClose={onClose}
             width={user ? "1000px" : "850px"}
             css={{ aspectRatio: user ? 100 / 60 : 1.4167, padding: 0 }}
             className='large-card'
@@ -141,16 +157,56 @@ const ProductDetailCard = ({ user, product, visible, closeHandler, isFavorite, a
 
                         <Container display="flex" style={{ justifyContent: 'center', marginTop: "10%" }} width="100%">
                             {user &&
-                                <Button
-                                    auto
-                                    rounded
-                                    shadow
+                                <Button.Group
                                     color="warning"
+                                    auto
+                                    ripple={false}
                                     size="lg"
-                                    iconRight={<CartIcon size={20} strokeWidth="0.8px" color="white" fill="white" />}
                                 >
-                                    <Text className="large-card-price" style={{ color: "white" }}>Add To Cart</Text>
-                                </Button>
+                                    <Dropdown placement="top">
+                                        <Dropdown.Button bordered>
+                                            {
+                                                getSize(curSize) === "Size" ?
+                                                    <pre className="detail-button" style={{ fontSize: "1rem" }}>      Size      </pre> :
+                                                    <Row>
+                                                        <Text color="inherit" className="detail-size">Size：</Text>
+                                                        <pre className="detail-button">
+                                                            {getSize(curSize) + "  ".repeat(3 - getSize(curSize).length)}
+                                                        </pre>
+                                                    </Row>
+                                            }
+                                        </Dropdown.Button>
+                                        <Dropdown.Menu
+                                            color="secondary"
+                                            // flat
+                                            aria-label="Size"
+                                            disallowEmptySelection
+                                            selectionMode="single"
+                                            variant='flat'
+                                            selectedKeys={curSize}
+                                            onSelectionChange={setCurSize}
+                                            style={{ width: "20px" }}
+                                        >
+                                            {sizeList.map((size) => <Dropdown.Item key={size} className="detail-button">{size}</Dropdown.Item>)}
+                                        </Dropdown.Menu>
+                                    </Dropdown>
+
+                                    <Button
+                                        bordered={getSize(curSize) === "Size"}
+                                        style={{ paddingLeft: "15px" }}
+                                        color="inherit"
+                                        disabled={getSize(curSize) === "Size"}
+                                        iconRight={
+                                            <CartIcon
+                                                size={20}
+                                                // strokeWidth="0.px"
+                                                color={getSize(curSize) === "Size" ? "#7E868C" : "#FFFFFF"}
+                                                fill={getSize(curSize) === "Size" ? "#7E868C" : "#FFFFFF"}
+                                            />}
+                                    >
+                                        <Text className="detail-button" color="inherit">Add To Cart</Text>
+                                    </Button>
+                                </Button.Group>
                             }
                         </Container>
                     </Container>

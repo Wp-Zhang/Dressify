@@ -173,9 +173,19 @@
 
 .large-card-price {
     font-family: "Montserrat-Bold";
-    color: #262626;
+    /* color: #262626; */
     text-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
     align-self: top;
+}
+
+.detail-size {
+    font-family: "Montserrat-Medium";
+}
+
+.detail-button {
+    font-family: "Montserrat-Bold";
+    white-space: pre;
+
 }
 
 .image-gallery-slides {
