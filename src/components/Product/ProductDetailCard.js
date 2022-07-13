@@ -100,29 +100,32 @@ const ProductDetailCard = ({ user, product, visible, closeHandler, isFavorite, a
                                 <Text className='large-card-desc' size={19}>{product.detail_desc}</Text>
                             </Row>
                         }
+
                         <Row justify="space-between" align="left" style={{ marginTop: "10px" }}>
-                            <Text size={35} className="large-card-price">{"$ " + product.price.toFixed(2)}</Text>
+                            <Grid.Container gap={0.5} display='flex' style={{ marginTop: "20px", marginLeft: 0, padding: 0, width: "50%", alignSelf: "left" }}>
+                                {
+                                    product.perceived_colour_master_name.map((color, index) => {
+                                        return (
+                                            <Grid key={index} >
+                                                <Avatar
+                                                    color=""
+                                                    className={color.replace(' ', '-') + (curNo === index ? " selected-color" : "")}
+                                                    size="sm"
+                                                    onClick={(e) => setCurNo(index)}
+                                                    style={{
+                                                        boxShadow: curNo === index ? "0 0px 19px " + shadow[color] : "0 0 0"
+                                                    }}
+                                                />
+                                            </Grid>
+                                        )
+                                    })
+                                }
+                            </Grid.Container>
+                            <Container display='flex' style={{ width: "50%", alignContent: "center", paddingRight: 0 }}>
+                                <Text size={35} className="large-card-price">{"$ " + product.price.toFixed(2)}</Text>
+                            </Container>
                         </Row>
 
-                        <Grid.Container gap={0.5} display='flex' style={{ marginTop: "20px", marginLeft: 0, padding: 0, width: "70%", alignSelf: "left" }}>
-                            {
-                                product.perceived_colour_master_name.map((color, index) => {
-                                    return (
-                                        <Grid key={index} >
-                                            <Avatar
-                                                color=""
-                                                className={color.replace(' ', '-') + (curNo === index ? " selected-color" : "")}
-                                                size="sm"
-                                                onClick={(e) => setCurNo(index)}
-                                                style={{
-                                                    boxShadow: curNo === index ? "0 0px 19px " + shadow[color] : "0 0 0"
-                                                }}
-                                            />
-                                        </Grid>
-                                    )
-                                })
-                            }
-                        </Grid.Container>
                         <Container display="flex" style={{ justifyContent: 'center', marginTop: "10%" }} width="100%">
                             {user &&
                                 <Button

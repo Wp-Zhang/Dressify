@@ -84,7 +84,7 @@
 
 .small-card-title {
     font-family: "Montserrat-SemiBold";
-    max-width: 63%;
+    max-width: 66%;
     line-height: 100%;
 }
 
@@ -171,6 +171,7 @@
     font-family: "Montserrat-Bold";
     color: #3D3D3D;
     text-shadow: 0 0 5px rgba(104, 112, 118, 0.3);
+    align-self: top;
 }
 
 .image-gallery-slides {

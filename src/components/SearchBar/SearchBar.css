@@ -18,3 +18,8 @@
     text-shadow: 0 0 3px rgba(104, 112, 118, 0.3);
     /* box-shadow: 0 0 5px rgba(104, 112, 118, 0.3); */
 }
+
+.nextui-input-wrapper--shadow {
+    /* box-shadow: 0 0 0 rgb(0, 0, 0) */
+    /* border-color: rgb(0, 0, 0); */
+}

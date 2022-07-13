@@ -2,7 +2,8 @@ import { Routes, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import Navbar1 from "./components/NavBars/NavBar";
-import ProductsList from "./components/Product/ProductsList";
+import ProductsListPage from "./components/Product/ProductsListPage";
+import FavoriteListPage from "./components/Product/FavoriteListPage";
 import { useState, useEffect } from 'react';
 
 import { GoogleOAuthProvider } from '@react-oauth/google';
@@ -33,8 +34,9 @@ function App() {
                 <div className="blur">
                     <Navbar1 user={user} setUser={setUser} />
                     <Routes>
-                        <Route exact path={"/"} element={<ProductsList user={user} />} />
-                        <Route exact path={"/products"} element={<ProductsList user={user} />} />
+                        <Route exact path={"/"} element={<ProductsListPage user={user} />} />
+                        <Route exact path={"/products"} element={<ProductsListPage user={user} />} />
+                        <Route exact path={"/favorites"} element={<FavoriteListPage user={user} />} />
                     </Routes>
                 </div>
             </div >

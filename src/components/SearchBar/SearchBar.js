@@ -81,7 +81,7 @@ const SearchBar = ({ index, setFilters }) => {
                         className="search"
                         clearable
                         bordered
-                        // color=""
+                        // borderWeight='20px'
                         placeholder='Search ...'
                         initialValue=''
                         id="search"

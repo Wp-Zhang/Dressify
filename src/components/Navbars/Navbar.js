@@ -8,11 +8,13 @@ import Login from '../Account/Login';
 import Account from '../Account/Account';
 
 import CartIcon from "../icons/cart";
-import { FavoriteIcon } from "../icons/favorite";
+import { FavoriteIcon, FavoriteFillIcon } from "../icons/favorite";
 
 import 'boxicons';
+import { useNavigate } from "react-router-dom";
 
 const Navbar1 = ({ user, setUser }) => {
+    const navigate = useNavigate()
 
     return (
         <Container>
@@ -26,11 +28,18 @@ const Navbar1 = ({ user, setUser }) => {
 
 
                     <Row justify="right" className="Account">
-                        {user && <Button
+                        {user && (<Button
                             auto
                             style={{ backgroundColor: "rgba(255,255,255,0)", textAlign: "center" }}
-                            icon={<FavoriteIcon strokeWidth="0px" fill="black" size={19} filter="drop-shadow(0px 2px 2px rgb(0 0 0 / 0.3))" />}
-                        />}
+                            icon={window.location.pathname === "/favorites" ?
+                                <FavoriteFillIcon strokeWidth="0px" size={19} filter="drop-shadow(0px 0px 3px rgb(245 85 85 / 0.8))" />
+                                :
+                                <FavoriteIcon strokeWidth="0px" fill="black" size={19} filter="drop-shadow(0px 2px 2px rgb(0 0 0 / 0.3))" />
+                            }
+                            onClick={() => { navigate("/favorites") }}
+                        >
+                        </Button>)}
+
                         {user && <Button
                             auto
                             style={{ backgroundColor: "rgba(255,255,255,0)" }}
