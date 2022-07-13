@@ -3,6 +3,7 @@ import { useState } from 'react';
 import 'boxicons'
 
 import CartIcon from '../icons/cart';
+import CloseIcon from '../icons/close';
 import { FavoriteIcon, FavoriteFillIcon } from '../icons/favorite';
 import ExtendedImg from './ExtendedImg';
 import './Product.css'
@@ -46,8 +47,9 @@ const ProductDetailCard = ({ user, product, visible, closeHandler, isFavorite, a
 
     return (
         <Modal
-            closeButton
+            // closeButton
             // autoMargin
+            color="error"
             aria-labelledby={product.prod_name}
             open={visible}
             onClose={closeHandler}
@@ -56,6 +58,13 @@ const ProductDetailCard = ({ user, product, visible, closeHandler, isFavorite, a
             className='large-card'
         >
             <Modal.Body style={{ height: "100%", padding: 0 }}>
+                <Avatar
+                    color=""
+                    size="sm"
+                    style={{ position: "absolute", right: 0, margin: "10px" }}
+                    onClick={closeHandler}
+                    icon={<CloseIcon size={22} />}
+                />
                 <Row justify="space-between" align="left">
                     {/* <ImageGallery
                         items={imgList}
@@ -67,7 +76,11 @@ const ProductDetailCard = ({ user, product, visible, closeHandler, isFavorite, a
                     <Container style={{ padding: 0 }}>
                         <Image src={imgList[curNo]} objectFit="cover" style={{ height: "600px" }}></Image>
                     </Container>
-                    <Container display='flex' alignContent='space-around' style={{ padding: "60px 40px 30px 40px", alignSelf: "center", height: "80%" }}>
+                    <Container
+                        display='flex'
+                        alignContent='space-around'
+                        style={{ padding: "60px 40px 30px 40px", alignSelf: "center", height: "80%" }}
+                    >
                         <Row justify="space-between" align="left">
                             <Text
                                 className='large-card-title'

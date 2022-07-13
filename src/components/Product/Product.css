@@ -146,13 +146,17 @@
 }
 
 .nextui-backdrop-layer {
-    /* opacity: 0.8; */
-    /* background-color: rgba(104, 112, 118, 0); */
+    background-color: rgb(51, 51, 51);
+    opacity: 0.1;
 }
 
-.large-card .nextui-image-container {
-    margin: 0;
-    overflow: auto;
+.large-card svg {
+    /* stroke: "black"; */
+}
+
+.large-card {
+    background-color: rgba(255, 255, 255, 0.5);
+    backdrop-filter: brightness(130%) blur(100px);
 }
 
 .large-card-title {
@@ -170,7 +174,7 @@
 .large-card-price {
     font-family: "Montserrat-Bold";
     color: #3D3D3D;
-    text-shadow: 0 0 5px rgba(104, 112, 118, 0.3);
+    text-shadow: 0 0 7px rgba(0, 0, 0, 0.4);
     align-self: top;
 }
 
