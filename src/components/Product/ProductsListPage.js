@@ -73,7 +73,7 @@ const ProductsListPage = ({ user }) => {
 
     const retrieveProducts = useCallback(() => {
         // console.log("Retrieve items, page:", currentPage, "Filters:", filters)
-        // setProducts([])
+        setProducts([])
         ProductDataService.find(filters, currentPage)
             .then(response => {
                 setProducts(response.data.products);

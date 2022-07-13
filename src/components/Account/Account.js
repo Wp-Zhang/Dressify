@@ -1,15 +1,18 @@
 import React from 'react';
-import { Button, Container, Dropdown, Avatar, Text } from '@nextui-org/react';
+import { Button, Dropdown, Text } from '@nextui-org/react';
 import { googleLogout } from '@react-oauth/google';
-import { fontSize } from '@mui/system';
+import { useNavigate } from 'react-router-dom';
 
 function Account({ user, setUser }) {
+
+    const navigate = useNavigate()
 
     const handleLogout = () => {
         googleLogout();  // helper for logging out
         setUser(null);
         localStorage.setItem("login", null);  // clearing local storage
         console.log('Logout made successfully');
+        navigate("/")
     };
 
     return (
@@ -47,7 +50,7 @@ function Account({ user, setUser }) {
                             My Orders
                         </Button>
                     </Dropdown.Item>
-                    <Dropdown.Item key="logout" color="error" withDivider onClick={handleLogout} css={{ padding: "0px" }}>
+                    <Dropdown.Item key="logout" color="error" withDivider css={{ padding: "0px" }}>
                         <Button
                             color="error"
                             bordered

@@ -12,26 +12,26 @@ import ImageGallery from 'react-image-gallery';
 import getImgURL from '../../services/utils';
 
 const shadow = {
-    "Black": "#2b3236",
-    "white": "#ffffff",
-    "undefined": "#ffffff",
-    "Unknown": "#ffffff",
-    "Beige": "rgb(255, 255, 203)",
-    "Grey": "#cfcece",
+    "Black": "#000000",
+    "White": "#555555",
+    "undefined": "#555555",
+    "Unknown": "#555555",
+    "Beige": "#8E760B",
+    "Grey": "#555555",
     "Blue": "#4594ef",
-    "Pink": "#FFA3E5",
-    "Lilac-Purple": "#EADCF8",
+    "Pink": "#714865",
+    "Lilac Purple": "#EADCF8",
     "Red": "#b72d4f",
     "Mole": "#C59A80",
     "Orange": "#f7803c",
     "Metal": "#C1C8CD",
     "Brown": "#4E3104",
     "Turquoise": "#2ECEC2",
-    "Yellow": "#F5A524",
-    "Khaki-green": "#88a045",
+    "Yellow": "#7C4C00",
+    "Khaki green": "#404E21",
     "Green": "#108944",
-    "Yellowish-Green": "#CEF72C",
-    "Bluish-Green": "#088B8B"
+    "Yellowish Green": "#CEF72C",
+    "Bluish Green": "#088B8B"
 }
 
 
