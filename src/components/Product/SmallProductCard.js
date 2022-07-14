@@ -1,6 +1,6 @@
 import { Card, Button, Row, Text, Spacer, Avatar, Tooltip, Grid } from '@nextui-org/react';
 import { useState } from 'react';
-import CartIcon from '../icons/cart';
+import { CartIcon } from '../icons/cart';
 
 import { FavoriteIcon, FavoriteFillIcon } from '../icons/favorite';
 import ExtendedImg from './ExtendedImg';

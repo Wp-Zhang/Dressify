@@ -3,7 +3,6 @@ import { useState } from 'react';
 
 import { CartIcon } from '../icons/cart';
 import CloseIcon from '../icons/close';
-import { FavoriteIcon, FavoriteFillIcon } from '../icons/favorite';
 import './Product.css'
 
 // import ImageGallery from 'react-image-gallery';
@@ -33,44 +32,44 @@ const shadow = {
 }
 
 
-const ProductDetailCard = ({ user, product, visible, closeHandler, isFavorite, addFavorite, deleteFavorite, addCart }) => {
-
+const CartDetailCard = ({ user, product, size, no, visible, closeHandler, modifyColorAndSize }) => {
     const imgList = product.article_id.map(
         articleId => getImgURL(articleId)
     )
+
     const sizeList = ["XS", "S", "M", "L", "XL", "XXL"]
-    const [curSize, setCurSize] = useState(new Set(["Size"]))
     const getSize = (sizeSet) => {
         let [size] = sizeSet
         return size
     }
+    const [curSize, setCurSize] = useState(new Set([size]))
 
-    const [curNo, setCurNo] = useState(0)
+    const [curNo, setCurNo] = useState(no)
 
     const nameLen = product.prod_name.length
 
     const onClose = () => {
         closeHandler();
-        setCurNo(0);
-        setCurSize(new Set(["Size"]))
+        // setCurNo(0);
+        // setCurSize(new Set(["Size"]))
     }
 
     const footer1 = (
         < Dropdown placement="bottom-right" >
             <Dropdown.Button bordered>
                 {
-                    getSize(curSize) === "Size" ?
-                        <pre className="detail-button" style={{ fontSize: "1.3rem" }}>  Size  </pre> :
-                        <Row justify="flex-start" align='center'>
-                            {/* <Text color="inherit" className="detail-size">Size：</Text> */}
-                            <pre className="detail-button" style={{ "fontSize": "20px" }}>
-                                {
-                                    " ".repeat(3 - getSize(curSize).length) +
-                                    getSize(curSize) +
-                                    " ".repeat(3 - getSize(curSize).length)
-                                }
-                            </pre>
-                        </Row>
+                    // getSize(curSize) === "Size" ?
+                    // <pre className="detail-button" style={{ fontSize: "1rem" }}>      Size      </pre> :
+                    <Row justify="flex-start" align='center'>
+                        {/* <Text color="inherit" className="detail-size">Size：</Text> */}
+                        <pre className="detail-button" style={{ "fontSize": "20px" }}>
+                            {
+                                " ".repeat(3 - getSize(curSize).length) +
+                                getSize(curSize) +
+                                " ".repeat(3 - getSize(curSize).length)
+                            }
+                        </pre>
+                    </Row>
                 }
             </Dropdown.Button>
             <Dropdown.Menu
@@ -102,9 +101,12 @@ const ProductDetailCard = ({ user, product, visible, closeHandler, isFavorite, a
                     fill={getSize(curSize) === "Size" ? "#7E868C" : "#FFFFFF"}
                 />
             }
-            onClick={() => { addCart(product.article_id[curNo], getSize(curSize)) }}
+            onClick={() => {
+                closeHandler();
+                modifyColorAndSize(product.article_id[curNo], getSize(curSize))
+            }}
         >
-            <Text className="detail-button" color="inherit">Add To Cart</Text>
+            <Text className="detail-button" color="inherit">Change</Text>
         </Button >
     )
 
@@ -154,23 +156,6 @@ const ProductDetailCard = ({ user, product, visible, closeHandler, isFavorite, a
                             >
                                 {product.prod_name}
                             </Text>
-                            <div style={{ width: "20%", display: "flex", justifyContent: "center", alignItems: "center" }}>
-                                {user && (isFavorite ?
-                                    <FavoriteFillIcon
-                                        size={35}
-                                        filter="drop-shadow(0px 0px 8px rgb(245 85 85 / 0.8))"
-                                        onClick={() => { deleteFavorite(product.product_code) }}
-                                    />
-                                    :
-                                    <FavoriteIcon
-                                        size={35}
-                                        fill="black"
-                                        strokeWidth='0.2px'
-                                        filter="drop-shadow(0px 0px 4px rgb(0 0 0 / 0.5))"
-                                        onClick={() => { addFavorite(product.product_code) }}
-                                    />
-                                )}
-                            </div>
                         </Row>
                         {product.detail_desc.length > 1 &&
                             <Row justify="space-between" align="left" style={{ marginTop: "10px" }}>
@@ -238,4 +223,4 @@ const ProductDetailCard = ({ user, product, visible, closeHandler, isFavorite, a
     )
 }
 
-export default ProductDetailCard
+export default CartDetailCard

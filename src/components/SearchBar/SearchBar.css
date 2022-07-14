@@ -12,9 +12,7 @@
 }
 
 .filter {
-    border-color: #5d5d5d;
-    color: #3A3A3A;
+    color: #292929;
     font-family: "Montserrat-SemiBold";
     text-shadow: 0 0 3px rgba(104, 112, 118, 0.3);
-    /* box-shadow: 0 0 5px rgba(104, 112, 118, 0.3); */
 }
