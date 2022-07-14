@@ -8,6 +8,7 @@ const router = express.Router(); // get access to the express router
 
 router.route("/").get(ProductController.apiGetProducts);
 router.route("/id/:id").get(ProductController.apiGetProductById);
+router.route("/article/id/:id").get(ProductController.apiGetArticleById);
 
 // router.route("/favorites").put(FavoriteController.apiUpdateFavorites);
 // router.route("/favorites/id/:userId").get(FavoriteController.apiGetFavorites);

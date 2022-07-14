@@ -1,4 +1,5 @@
 import ProductsDAO from "../dao/productsDAO.js";
+import ArticlesDAO from "../dao/articlesDAO.js";
 
 export default class ProductsController {
     static async apiGetProducts(req, res, next) {
@@ -52,6 +53,21 @@ export default class ProductsController {
                 return
             }
             res.json(product);
+        } catch (e) {
+            console.log(`API, ${e}`);
+            res.status(500).json({ error: e });
+        }
+    }
+
+    static async apiGetArticleById(req, res, next) {
+        try {
+            let id = req.params.id || {}
+            let article = await ArticlesDAO.getArticleById(id);
+            if (!article) {
+                res.status(404).json({ error: "not found" });
+                return
+            }
+            res.json(article);
         } catch (e) {
             console.log(`API, ${e}`);
             res.status(500).json({ error: e });
