@@ -18,7 +18,7 @@ export default class OrdersDAO {
         try {
             const newOrderId = await this.getNewOrderId()
             order["order_id"] = newOrderId
-            console.log(order);
+            order['t_dat'] = new Date(Date.now());
             const addResponse = await ordersCollection.insertOne(order)
             return addResponse
         } catch (e) {
