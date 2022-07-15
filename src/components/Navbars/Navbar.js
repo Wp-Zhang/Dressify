@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React from "react";
 import { Container, Image, Link, Grid, Button, Row, Tooltip, Text } from '@nextui-org/react';
 import './NavBar.css';
 
@@ -57,9 +57,7 @@ const Navbar1 = ({ user, setUser, loginVisible = false }) => {
                             </Tooltip>
                         }
                         {user ?
-                            // <Tooltip content={<Text>Account</Text>} placement="bottom">
                             <Account user={user} setUser={setUser} />
-                            // </Tooltip>
                             :
                             <Login setUser={setUser} style={{ alignSelf: "right" }} defaultVisible={loginVisible} />}
                     </Row>
@@ -67,9 +65,6 @@ const Navbar1 = ({ user, setUser, loginVisible = false }) => {
 
                 </Container>
             </Toolbar>
-            {/* </Navbar> */}
-
-
         </Container >
     )
 }

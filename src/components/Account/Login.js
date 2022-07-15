@@ -1,11 +1,9 @@
 import { useState } from 'react';
 import { useGoogleLogin } from '@react-oauth/google';
 import { Button, Text, Modal, Image } from '@nextui-org/react';
-
-import 'boxicons'
+import axios from 'axios';
 
 import "./Account.css";
-import axios from 'axios';
 
 function Login({ setUser, defaultVisible = false }) {
     const [visible, setVisible] = useState(defaultVisible);
@@ -55,12 +53,6 @@ function Login({ setUser, defaultVisible = false }) {
             >
                 <Modal.Header justify='center'>
                     <Image src="./logo.png" alt="products logo" width={90} />
-                    {/* <Text id="modal-title" size={18}>
-                        Welcome to
-                        <Text b size={18}>
-                            NextUI
-                        </Text>
-                    </Text> */}
                 </Modal.Header>
                 <Modal.Body css={{ textAlign: "center" }}>
                     <Button onClick={() => login()}>

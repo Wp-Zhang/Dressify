@@ -1,11 +1,7 @@
 import { Button, Row, Text, Avatar, Modal, Image, Container, Grid, Dropdown } from '@nextui-org/react';
 import { useState } from 'react';
-
 import { CartIcon } from '../icons/cart';
 import CloseIcon from '../icons/close';
-// import './Product.css'
-
-// import ImageGallery from 'react-image-gallery';
 import getImgURL from '../../services/utils';
 
 const shadow = {
@@ -48,20 +44,11 @@ const CartDetailCard = ({ user, product, size, no, visible, closeHandler, modify
 
     const nameLen = product.prod_name.length
 
-    const onClose = () => {
-        closeHandler();
-        // setCurNo(0);
-        // setCurSize(new Set(["Size"]))
-    }
-
     const footer1 = (
         < Dropdown placement="bottom-right" >
             <Dropdown.Button bordered>
                 {
-                    // getSize(curSize) === "Size" ?
-                    // <pre className="detail-button" style={{ fontSize: "1rem" }}>      Size      </pre> :
                     <Row justify="flex-start" align='center'>
-                        {/* <Text color="inherit" className="detail-size">Size：</Text> */}
                         <pre className="detail-button" style={{ "fontSize": "20px" }}>
                             {
                                 " ".repeat(3 - getSize(curSize).length) +
@@ -113,12 +100,10 @@ const CartDetailCard = ({ user, product, size, no, visible, closeHandler, modify
 
     return (
         <Modal
-            // closeButton
-            // autoMargin
             color="error"
             aria-labelledby={product.prod_name}
             open={visible}
-            onClose={onClose}
+            onClose={closeHandler}
             width={user ? "1000px" : "850px"}
             css={{ aspectRatio: user ? 100 / 60 : 1.4167, padding: 0 }}
             className='large-card'
@@ -132,13 +117,6 @@ const CartDetailCard = ({ user, product, size, no, visible, closeHandler, modify
                     icon={<CloseIcon size={22} />}
                 />
                 <Row justify="space-between" align="left">
-                    {/* <ImageGallery
-                        items={imgList}
-                        showThumbnails={false}
-                        showPlayButton={false}
-                        lazyLoad={true}
-                    // infinite={false}
-                    /> */}
                     <Container style={{ padding: 0 }}>
                         <Image src={imgList[curNo]} objectFit="cover" style={{ height: "600px" }}></Image>
                     </Container>

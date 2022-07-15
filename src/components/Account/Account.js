@@ -62,9 +62,6 @@ function Account({ user, setUser }) {
                     </Dropdown.Item>
                 </Dropdown.Menu>
             </Dropdown>
-
-
-
         </div>
     );
 }

@@ -1,10 +1,8 @@
-import './SearchBar.css';
-
 import { Input, Button, Grid, Dropdown, Container } from '@nextui-org/react';
-
 import { useEffect, useState } from 'react';
-
 import CategoryDataService from '../../services/category';
+
+import './SearchBar.css';
 
 const SearchBar = ({ index, setFilters }) => {
     const [keyword, setKeyWord] = useState()
@@ -39,13 +37,11 @@ const SearchBar = ({ index, setFilters }) => {
         new_filters.garmentGroup = type
         new_filters.by = by
 
-        // console.log("New filters:", new_filters)
         setFilters(new_filters)
     }, [index, keyword, orderBy, curSection, curProductType, setFilters])
 
 
     useEffect(() => {
-        // console.log("Search bar:", index)
         CategoryDataService.getSections(index)
             .then(response => {
                 let new_sections = response.data.map(
@@ -61,7 +57,6 @@ const SearchBar = ({ index, setFilters }) => {
     useEffect(() => {
         const [section] = curSection;
         if (curSection !== "Section") {
-            // console.log("Cur section:", section)
             CategoryDataService.getTypes(index, section)
                 .then(response => {
                     let new_types = response.data.map(
@@ -79,7 +74,6 @@ const SearchBar = ({ index, setFilters }) => {
                 <Grid>
                     <Input
                         className="search"
-                        // bordered
                         status="default"
                         placeholder='Search ...'
                         initialValue=''
@@ -133,7 +127,6 @@ const SearchBar = ({ index, setFilters }) => {
                             onSelectionChange={setCurSection}
                             css={{ width: "100%" }}
                             isVirtualized={true}
-                            // disabledKeys={["Section"]}
                             items={[{ "key": "Section", "name": "All" }, ...sections]}
                         >
                             {item => (<Dropdown.Item key={item.key} > {item.name}</Dropdown.Item>)}
@@ -153,7 +146,6 @@ const SearchBar = ({ index, setFilters }) => {
                             disallowEmptySelection
                             onSelectionChange={setCurProductType}
                             css={{ width: "100%" }}
-                            // disabledKeys={["Product Type"]}
                             items={[{ "key": "Product Type", "name": "All" }, ...types]}
                         >
                             {item => (<Dropdown.Item key={item.key} > {item.name}</Dropdown.Item>)}

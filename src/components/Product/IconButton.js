@@ -23,10 +23,6 @@ export const IconButton = styled('button', {
         opacity: 0.8
     },
     '&:active': {
-        transform: 'scale(0.9)',
-        // svg: {
-        //     transform: 'translate(24px, -24px)',
-        //     opacity: 0
-        // }
+        transform: 'scale(0.9)'
     }
 });

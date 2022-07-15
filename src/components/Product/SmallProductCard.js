@@ -4,11 +4,10 @@ import { CartIcon } from '../icons/cart';
 
 import { FavoriteIcon, FavoriteFillIcon } from '../icons/favorite';
 import ExtendedImg from './ExtendedImg';
-import './Product.css'
-
 import ProductDetailCard from './ProductDetailCard';
 
-import "boxicons";
+import './Product.css'
+
 
 const SmallProductCard = ({ user, product, isFavorite, addFavorite, deleteFavorite, addCart }) => {
 
@@ -124,41 +123,6 @@ const SmallProductCard = ({ user, product, isFavorite, addFavorite, deleteFavori
                                     }
                                 </Grid.Container>
                         }
-                        {/* {user && (isFavorite ?
-                            <Button
-                                auto
-                                rounded
-                                css={{
-                                    backgroundColor: "rgba(255,255,255,0)",
-                                    aspectRatio: 1
-                                }}
-                                onClick={() => { deleteFavorite(product.product_code) }}
-                            >
-                                <FavoriteFillIcon size={24} filter="drop-shadow(0px 0px 3px rgb(245 85 85 / 0.8))" />
-                            </Button> :
-                            <Button
-                                auto
-                                rounded
-                                css={{
-                                    backgroundColor: "rgba(255,255,255,0)",
-                                    aspectRatio: 1
-                                }}
-                                onClick={() => { addFavorite(product.product_code) }}
-                            >
-                                <FavoriteIcon size={24} fill="black" strokeWidth='0.2px' filter="drop-shadow(0px 0px 2px rgb(0 0 0 / 0.4))" />
-                            </Button>)}
-                        {user && (
-                            <Button
-                                auto
-                                rounded
-                                css={{
-                                    backgroundColor: "rgba(255,255,255,0)",
-                                    aspectRatio: 1
-                                }}
-                                onClick={handler}
-                            >
-                                <CartIcon size={24} fill="black" strokeWidth='0.2px' filter="drop-shadow(0px 0px 2px rgb(0 0 0 / 0.4))" />
-                            </Button>)} */}
                     </Row>
                 </Card.Body>
             </Card >

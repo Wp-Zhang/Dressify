@@ -1,15 +1,10 @@
-import { Card, Checkbox, Button, Grid, Row, Text, Spacer, Avatar, Tooltip, Image, Container, Input, Popover } from '@nextui-org/react';
-import { useEffect, useState } from 'react';
+import { Card, Button, Grid, Row, Text, Spacer, Avatar, Tooltip, Image, Container, Popover } from '@nextui-org/react';
+import { useState } from 'react';
 import getImgURL from '../../services/utils';
 import "./CartPage.css";
-
-// import { Minus, Plus } from '../icons/symbol';
 import CartDetailCard from './CartDetailCard';
 
-import "boxicons";
-
 const CartProductCard = ({ user, cart, updateCart, article, product }) => {
-    // console.log("Card of:", article, product)
 
     const [visible, setVisible] = useState(false);
     const handler = () => setVisible(true);
@@ -62,13 +57,7 @@ const CartProductCard = ({ user, cart, updateCart, article, product }) => {
         <div>
             <Card className="CartCard" variant="flat" css={{ background: "transparent" }}>
                 <Row>
-                    {/* <Grid.Container justify="flex-start" alignContent='center'> */}
-                    {/* <Grid xs={3}> */}
-
-                    {/* <ExtendedImg articleId={article.article_id} height="100%" /> */}
                     <Image src={getImgURL(article.article_id)} css={{ borderRadius: "$lg", maxHeight: "240px", aspectRatio: 1 / 1.5, margin: 0 }}></Image>
-                    {/* </Grid> */}
-                    {/* <Grid xs> */}
                     <Container>
                         <Spacer y={0.5} />
                         <Row justify="space-between">
@@ -98,7 +87,6 @@ const CartProductCard = ({ user, cart, updateCart, article, product }) => {
                                         color=""
                                         className={article.perceived_colour_master_name.replace(' ', '-')}
                                         size="xs"
-                                    // onClick={handler}
                                     />
                                 </Tooltip>
                             </Container>
@@ -163,8 +151,6 @@ const CartProductCard = ({ user, cart, updateCart, article, product }) => {
                             </Popover>
                         </Row>
                     </Container>
-                    {/* </Grid> */}
-                    {/* </Grid.Container> */}
                 </Row>
             </Card>
             <CartDetailCard

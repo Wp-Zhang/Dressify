@@ -59,7 +59,6 @@ const CheckoutForm = ({ articles }) => {
 
     return (
         <div css={{ background: "transparent" }}>
-            {/* <Grid xs={12} > */}
             <form>
                 <Row css={{}}>
                     <Input
@@ -87,7 +86,6 @@ const CheckoutForm = ({ articles }) => {
                     <Input
                         bordered
                         size='md'
-                        //clearable
                         status="default"
                         label="Phone"
                         name="phone"
@@ -99,7 +97,6 @@ const CheckoutForm = ({ articles }) => {
                 <Spacer y={0.5} />
                 <Row css={{ justifyContent: "flex-start" }} >
                     <Input
-                        //clearable
                         bordered
                         size='md'
                         status="default"
@@ -112,7 +109,6 @@ const CheckoutForm = ({ articles }) => {
                     />
                     <Spacer x={1} />
                     <Input
-                        //clearable
                         bordered
                         size='md'
                         status="default"
@@ -125,11 +121,8 @@ const CheckoutForm = ({ articles }) => {
                     />
                 </Row>
                 <Spacer y={0.5} />
-                {/* </Grid> */}
-                {/* <Grid xs={6} justify="space-between" css={{ width: "100%" }}> */}
                 <Row css={{ justifyContent: "flex-start" }} >
                     <Input
-                        //clearable
                         bordered
                         size='md'
                         status="default"
@@ -141,7 +134,6 @@ const CheckoutForm = ({ articles }) => {
                     />
                     <Spacer x={0.8} />
                     <Input
-                        //clearable
                         bordered
                         size='md'
                         status="default"
@@ -153,7 +145,6 @@ const CheckoutForm = ({ articles }) => {
                     />
                     <Spacer x={0.8} />
                     <Input
-                        //clearable
                         bordered
                         size='md'
                         status="default"
@@ -165,7 +156,6 @@ const CheckoutForm = ({ articles }) => {
                     />
                     <Spacer x={0.8} />
                     <Input
-                        //clearable
                         bordered
                         size='md'
                         status="default"
@@ -216,7 +206,6 @@ const CheckoutForm = ({ articles }) => {
 
             </Row>
             <Spacer y={2} />
-            {/* </Grid> */}
         </div >
 
     )

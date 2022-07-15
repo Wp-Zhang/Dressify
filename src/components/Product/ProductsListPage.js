@@ -8,10 +8,6 @@ import SearchBar from "../SearchBar/SearchBar";
 import SmallProductCard from "./SmallProductCard";
 
 
-import 'boxicons';
-// import "./ProductsList.css";
-
-
 const ProductsListPage = ({ user }) => {
 
     const [favorites, setFavorites] = useState([]);
@@ -40,7 +36,6 @@ const ProductsListPage = ({ user }) => {
                 })
             AccountDataService.getCart(user.id)
                 .then(response => {
-                    // console.log("Cart:", response.data.cart)
                     setCart(response.data.cart)
                 })
                 .catch(e => {
@@ -83,7 +78,6 @@ const ProductsListPage = ({ user }) => {
         let target = cart.filter((article) => article.article_id === articleId && article.size === size)
         let rest = cart.filter((article) => article.article_id !== articleId || article.size !== size)
         if (target.length === 0) {
-            // console.log("New cart item:", articleId, size)
             target = { article_id: articleId, size: size, num: 1 }
         } else {
             target = target[0]
@@ -97,7 +91,6 @@ const ProductsListPage = ({ user }) => {
         AccountDataService.updateCart(data)
             .then(response => {
                 setCart(newCart);
-                // retrieveFavoritesAndCart()
             })
             .catch(e => {
                 console.log(e);
@@ -106,8 +99,6 @@ const ProductsListPage = ({ user }) => {
 
 
     const retrieveProducts = useCallback(() => {
-        // console.log("Retrieve items, page:", currentPage, "Filters:", filters)
-        // setProducts([])
         ProductDataService.find(filters, currentPage)
             .then(response => {
                 setProducts(response.data.products);
@@ -120,7 +111,6 @@ const ProductsListPage = ({ user }) => {
     }, [currentPage, filters]);
 
     useEffect(() => {
-        // console.log("Page changed to", currentPage)
         retrieveProducts();
     }, [currentPage])
 

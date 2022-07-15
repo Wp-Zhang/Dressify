@@ -6,7 +6,6 @@ import CloseIcon from '../icons/close';
 import { FavoriteIcon, FavoriteFillIcon } from '../icons/favorite';
 import './Product.css'
 
-// import ImageGallery from 'react-image-gallery';
 import getImgURL from '../../services/utils';
 
 const shadow = {
@@ -62,7 +61,6 @@ const ProductDetailCard = ({ user, product, visible, closeHandler, isFavorite, a
                     getSize(curSize) === "Size" ?
                         <pre className="detail-button" style={{ fontSize: "1.3rem" }}>  Size  </pre> :
                         <Row justify="flex-start" align='center'>
-                            {/* <Text color="inherit" className="detail-size">Size：</Text> */}
                             <pre className="detail-button" style={{ "fontSize": "20px" }}>
                                 {
                                     " ".repeat(3 - getSize(curSize).length) +
@@ -75,7 +73,6 @@ const ProductDetailCard = ({ user, product, visible, closeHandler, isFavorite, a
             </Dropdown.Button>
             <Dropdown.Menu
                 color="secondary"
-                // flat
                 aria-label="Size"
                 disallowEmptySelection
                 selectionMode="single"
@@ -111,8 +108,6 @@ const ProductDetailCard = ({ user, product, visible, closeHandler, isFavorite, a
 
     return (
         <Modal
-            // closeButton
-            // autoMargin
             color="error"
             aria-labelledby={product.prod_name}
             open={visible}
@@ -130,13 +125,6 @@ const ProductDetailCard = ({ user, product, visible, closeHandler, isFavorite, a
                     icon={<CloseIcon size={22} />}
                 />
                 <Row justify="space-between" align="left">
-                    {/* <ImageGallery
-                        items={imgList}
-                        showThumbnails={false}
-                        showPlayButton={false}
-                        lazyLoad={true}
-                    // infinite={false}
-                    /> */}
                     <Container style={{ padding: 0 }}>
                         <Image src={imgList[curNo]} objectFit="cover" style={{ height: "600px" }}></Image>
                     </Container>

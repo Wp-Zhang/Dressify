@@ -2,7 +2,7 @@ import { useState, lazy, Suspense } from 'react';
 import getImgURL from '../../services/utils';
 import rgbaster from 'rgbaster';
 
-import { Card, Loading } from '@nextui-org/react';
+import { Card } from '@nextui-org/react';
 
 const getBgColor = (img, setColor) => {
     rgbaster(img, {
