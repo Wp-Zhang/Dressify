@@ -56,17 +56,48 @@ function App() {
             <GoogleOAuthProvider clientId={clientId}>
                 <div className="App Background">
                     <div className="blur">
-                        <Navbar1 user={user} setUser={setUser} />
                         <Routes>
-                            <Route exact path={"/"} element={<ProductsListPage user={user} />} />
-                            <Route exact path={"/products"} element={<ProductsListPage user={user} />} />
-                            <Route exact path={"/favorites"} element={<FavoriteListPage user={user} />} />
-                            <Route exact path={"/cart"} element={<CartPage user={user} />} />
+                            <Route exact path={"/"} element={
+                                <div>
+                                    <Navbar1 user={user} setUser={setUser} />
+                                    <ProductsListPage user={user} />
+                                </div>
+                            } />
+                            <Route exact path={"/products"} element={
+                                <div>
+                                    <Navbar1 user={user} setUser={setUser} />
+                                    <ProductsListPage user={user} />
+                                </div>
+                            } />
+                            <Route exact path={"/favorites"} element={
+                                user ?
+                                    <div>
+                                        < Navbar1 user={user} setUser={setUser} />
+                                        <FavoriteListPage user={user} />
+                                    </div>
+                                    :
+                                    <div>
+                                        <Navbar1 user={user} setUser={setUser} loginVisible={true} />
+                                        <ProductsListPage user={user} />
+                                    </div>
+                            } />
+                            <Route exact path={"/cart"} element={
+                                user ?
+                                    <div>
+                                        < Navbar1 user={user} setUser={setUser} />
+                                        <CartPage user={user} />
+                                    </div>
+                                    :
+                                    <div>
+                                        <Navbar1 user={user} setUser={setUser} loginVisible={true} />
+                                        <ProductsListPage user={user} />
+                                    </div>
+                            } />
                         </Routes>
                     </div>
                 </div >
-            </GoogleOAuthProvider>
-        </NextUIProvider>
+            </GoogleOAuthProvider >
+        </NextUIProvider >
     );
 }
 

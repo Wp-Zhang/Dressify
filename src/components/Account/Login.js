@@ -7,8 +7,8 @@ import 'boxicons'
 import "./Account.css";
 import axios from 'axios';
 
-function Login({ setUser }) {
-    const [visible, setVisible] = useState(false);
+function Login({ setUser, defaultVisible = false }) {
+    const [visible, setVisible] = useState(defaultVisible);
     const handler = () => setVisible(true);
 
     const closeHandler = () => {

@@ -11,7 +11,7 @@ import { FavoriteIcon, FavoriteFillIcon } from "../icons/favorite";
 
 import { useNavigate } from "react-router-dom";
 
-const Navbar1 = ({ user, setUser }) => {
+const Navbar1 = ({ user, setUser, loginVisible = false }) => {
     const navigate = useNavigate()
 
     return (
@@ -61,7 +61,7 @@ const Navbar1 = ({ user, setUser }) => {
                             <Account user={user} setUser={setUser} />
                             // </Tooltip>
                             :
-                            <Login setUser={setUser} style={{ alignSelf: "right" }} />}
+                            <Login setUser={setUser} style={{ alignSelf: "right" }} defaultVisible={loginVisible} />}
                     </Row>
 
 
