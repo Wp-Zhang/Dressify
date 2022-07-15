@@ -8,7 +8,7 @@ router.route("/favorites/id/:userId").get(AccountController.apiGetFavorites);
 router.route("/cart").put(AccountController.apiUpdateCart);
 router.route("/cart/id/:userId").get(AccountController.apiGetCart);
 router.route("/order").put(AccountController.apiAddOrder);
-router.route("/order").delete(AccountController.apiDeleteOrder);
+router.route("/order/id/:orderId").delete(AccountController.apiDeleteOrder);
 router.route("/order/id/:userId").get(AccountController.apiGetOrders);
 
 export default router;

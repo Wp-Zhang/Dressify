@@ -29,6 +29,7 @@ export default class OrdersDAO {
 
     static async deleteOrder(orderId) {
         try {
+            console.log("Deleting ...", orderId)
             const deleteResponse = await ordersCollection.deleteOne(
                 { order_id: orderId }
             )

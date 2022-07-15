@@ -1,6 +1,7 @@
 import FavoritesDAO from '../dao/favoritesDAO.js';
 import CartDAO from '../dao/cartDAO.js';
 import OrdersDAO from '../dao/ordersDAO.js';
+import ArticlesDAO from '../dao/articlesDAO.js';
 
 export default class AccountController {
     static async apiUpdateFavorites(req, res, next) {
@@ -104,8 +105,9 @@ export default class AccountController {
 
     static async apiDeleteOrder(req, res, next) {
         try {
+            let order_id = req.params.orderId;
             const OrdersResponse = await OrdersDAO.deleteOrder(
-                parseInt(req.body.orderId)
+                parseInt(order_id)
             )
 
             var { error } = OrdersResponse
@@ -130,6 +132,17 @@ export default class AccountController {
             if (!orders) {
                 res.status(404).json({ error: "user not found" });
                 return
+            }
+            else {
+                for (let [i, order] of orders.entries()) {
+                    order.article_info = []
+                    for (let i = 0; i < order.article_id.length; i++) {
+                        let iid = order.article_id[i]
+                        let info = await ArticlesDAO.getArticleById(iid);
+                        order.article_info.push(info)
+                    }
+                    orders[i] = order
+                }
             }
             res.json(orders);
         } catch (e) {
