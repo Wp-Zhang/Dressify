@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 import { CartIcon } from '../icons/cart';
 import CloseIcon from '../icons/close';
-import './Product.css'
+// import './Product.css'
 
 // import ImageGallery from 'react-image-gallery';
 import getImgURL from '../../services/utils';

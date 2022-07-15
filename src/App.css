@@ -5,14 +5,16 @@
 
 .Background {
   background-image: url("../public/images/bg.png");
-  background-position: top;
   background-attachment: fixed;
-  /* width: 100%; */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+
 }
 
 .blur {
   /* background: rgba(255, 255, 255, 0); */
-  backdrop-filter: blur(150px) brightness(95%);
+  /* backdrop-filter: blur(150px) brightness(95%); */
 }
 
 body {

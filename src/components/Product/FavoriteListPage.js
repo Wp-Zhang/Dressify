@@ -123,9 +123,10 @@ const FavoriteListPage = ({ user }) => {
                     })}
                 </Grid.Container>
             </Container>
-            {[...Array(spacerNum).keys()].map((idx) => <Spacer y={9.5} />)
+            {
+                [...Array(spacerNum).keys()].map((idx) => <Spacer y={9.5} />)
             }
-        </div>
+        </div >
     )
 }
 

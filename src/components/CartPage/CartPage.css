@@ -1,5 +1,13 @@
 @import url('../../fonts/fonts.css');
 
+th {
+    padding-right: 30px;
+}
+
+.CartCard .nextui-image-container {
+    margin: 0
+}
+
 .nextui-table-select-all-checkbox {
     background: transparent;
 }
@@ -23,6 +31,21 @@
     font-family: "Montserrat-Medium";
 }
 
+.cart-text-regular {
+    white-space: pre;
+    font-family: "Montserrat-Regular";
+}
+
 .cart-text-bold {
     font-family: "Montserrat-Medium";
+}
+
+.calculator {
+    /* padding-right: 30px */
+}
+
+.selected-payment {
+    border: black;
+    border-width: 10px;
+    background-color: black;
 }

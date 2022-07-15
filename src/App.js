@@ -6,7 +6,7 @@ import { createTheme, NextUIProvider } from "@nextui-org/react"
 import { Navbar1 } from "./components/NavBars/NavBar";
 import ProductsListPage from "./components/Product/ProductsListPage";
 import FavoriteListPage from "./components/Product/FavoriteListPage";
-import CartPage from "./components/Product/CartPage";
+import CartPage from "./components/CartPage/CartPage";
 import { useState, useEffect } from 'react';
 
 import { GoogleOAuthProvider } from '@react-oauth/google';
@@ -23,8 +23,8 @@ function App() {
         type: "light",
         theme: {
             colors: {
-                primary: "#F5A524",
-                primarySolidHover: "#F5A524",
+                // primary: "#F5A524",
+                // primarySolidHover: "#F5A524",
                 // border: "transparent",
                 border: "#888888",
                 accents3: "transparent",

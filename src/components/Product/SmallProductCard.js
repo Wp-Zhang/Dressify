@@ -8,6 +8,8 @@ import './Product.css'
 
 import ProductDetailCard from './ProductDetailCard';
 
+import "boxicons";
+
 const SmallProductCard = ({ user, product, isFavorite, addFavorite, deleteFavorite, addCart }) => {
 
     const [visible, setVisible] = useState(false);
@@ -46,9 +48,9 @@ const SmallProductCard = ({ user, product, isFavorite, addFavorite, deleteFavori
                                 aspectRatio: 1
                             }}
                             onClick={() => { deleteFavorite(product.product_code) }}
-                        >
-                            <FavoriteFillIcon size={20} filter="drop-shadow(0px 0px 3px rgb(245 85 85 / 0.8))" />
-                        </Button> :
+                            icon={<FavoriteFillIcon size={20} filter="drop-shadow(0px 0px 3px rgb(245 85 85 / 0.8))" />}
+                        />
+                        :
                         <Button
                             auto
                             rounded
@@ -63,9 +65,9 @@ const SmallProductCard = ({ user, product, isFavorite, addFavorite, deleteFavori
                                 aspectRatio: 1
                             }}
                             onClick={() => { addFavorite(product.product_code) }}
-                        >
-                            <FavoriteIcon size={20} fill="black" strokeWidth='0.2px' />
-                        </Button>)}
+                            icon={<FavoriteIcon size={20} fill="black" strokeWidth='0.2px' />}
+                        />
+                    )}
 
                     {user && <Button
                         auto
@@ -80,13 +82,10 @@ const SmallProductCard = ({ user, product, isFavorite, addFavorite, deleteFavori
                             aspectRatio: 1
                         }}
                         onClick={handler}
-                    >
-                        <CartIcon size={20} fill="black" ></CartIcon>
-                    </Button>}
-
+                        icon={<CartIcon size={20} fill="black" />}
+                    />}
 
                     <Spacer y={0.5} />
-
 
                     <Row wrap="wrap" justify="space-between" align="center" className='small-card-body'>
                         <Text size={19} transform={"capitalize"} className="small-card-title">{product.prod_name}</Text>

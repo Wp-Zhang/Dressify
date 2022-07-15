@@ -3,14 +3,12 @@ import { Container, Image, Link, Grid, Button, Row, Tooltip, Text } from '@nextu
 import './NavBar.css';
 
 import Toolbar from '@mui/material/Toolbar';
-import Logo from "../icons/logo";
 import Login from '../Account/Login';
 import Account from '../Account/Account';
 
 import { CartIcon, CartFillIcon } from "../icons/cart";
 import { FavoriteIcon, FavoriteFillIcon } from "../icons/favorite";
 
-import 'boxicons';
 import { useNavigate } from "react-router-dom";
 
 const Navbar1 = ({ user, setUser }) => {
@@ -21,10 +19,11 @@ const Navbar1 = ({ user, setUser }) => {
             <Toolbar sx={{ borderBottom: 1, borderColor: 'rgba(0,0,0,0)' }}>
                 <Container className="NavBrand" display="grid" justify="space-between" style={{ paddingTop: "3%" }}>
 
-
-                    <Link href="/" className="Logo">
-                        <Image src="./logo.png" alt="products logo" width={150} />
-                    </Link>
+                    <Container className="Logo">
+                        <Link href="/" >
+                            <Image src="./logo.png" alt="products logo" width={150} />
+                        </Link>
+                    </Container>
 
 
                     <Row justify="right" className="Account">

@@ -10,6 +10,7 @@
 
 .Logo {
     grid-column-start: 2;
+    /* text-align: center; */
 }
 
 .Account {
