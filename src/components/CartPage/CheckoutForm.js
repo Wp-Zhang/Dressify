@@ -19,7 +19,7 @@ const CheckoutForm = ({ user, articles, totalPrice, setPopoverVisible }) => {
         city: '',
         state: '',
         country: '',
-        postalCode: 0,
+        postalCode: '',
         payment: '',
         // googleMapLink: 'aaa'
     })
@@ -64,7 +64,7 @@ const CheckoutForm = ({ user, articles, totalPrice, setPopoverVisible }) => {
             'size': articles.map((item) => item.size),
             'num': articles.map((item) => item.num),
             'shipping': 5,
-            'total': totalPrice,
+            'total': totalPrice + 5,
             'ship_info': shipInfo
         }
         AccountDataService.addOrder(order)

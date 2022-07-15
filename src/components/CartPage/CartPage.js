@@ -43,7 +43,7 @@ const CartPage = ({ user }) => {
                 _id: user.id,
                 cart: newCart
             }
-            if (newCart.length < cart.length) {
+            if (newCart.length < cart.length && formerIndex) {
                 let selected = new Set([...selectedItems])
                 selected.delete(formerIndex.toString())
                 selected = [...selected]

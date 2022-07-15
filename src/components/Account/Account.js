@@ -44,7 +44,7 @@ function Account({ user, setUser }) {
                         <Button
                             color=""
                             bordered
-                            onClick={(e) => { }}
+                            onClick={() => navigate("/order")}
                             style={{ background: "transparent", borderColor: "transparent", width: "100%", padding: "0px" }}
                         >
                             My Orders

@@ -87,7 +87,9 @@ const SmallProductCard = ({ user, product, isFavorite, addFavorite, deleteFavori
                     <Spacer y={0.5} />
 
                     <Row wrap="wrap" justify="space-between" align="center" className='small-card-body'>
-                        <Text size={19} transform={"capitalize"} className="small-card-title">{product.prod_name}</Text>
+                        <Text size={19} transform={"capitalize"} className="small-card-title">
+                            {product.prod_name}
+                        </Text>
                         <Text size={19} className="small-card-price">{"$ " + product.price.toFixed(2)}</Text>
                     </Row>
                     <Row wrap="wrap" justify="space-between" align="center" className='small-card-body' style={{ marginTop: "15px" }}>

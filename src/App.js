@@ -7,12 +7,13 @@ import { Navbar1 } from "./components/NavBars/NavBar";
 import ProductsListPage from "./components/Product/ProductsListPage";
 import FavoriteListPage from "./components/Product/FavoriteListPage";
 import CartPage from "./components/CartPage/CartPage";
+import OrderPage from "./components/OrderPage/OrderPage";
+
 import { useState, useEffect } from 'react';
 
 import { GoogleOAuthProvider } from '@react-oauth/google';
 
 import './App.css';
-import { checkboxClasses } from "@mui/material";
 
 const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
 
@@ -23,12 +24,8 @@ function App() {
         type: "light",
         theme: {
             colors: {
-                // primary: "#F5A524",
-                // primarySolidHover: "#F5A524",
-                // border: "transparent",
                 border: "#888888",
                 accents3: "transparent",
-                // primaryBorder: '$green500',
                 checkboxBorderColor: "#000000"
             },
             space: {},
@@ -86,6 +83,18 @@ function App() {
                                     <div>
                                         < Navbar1 user={user} setUser={setUser} />
                                         <CartPage user={user} />
+                                    </div>
+                                    :
+                                    <div>
+                                        <Navbar1 user={user} setUser={setUser} loginVisible={true} />
+                                        <ProductsListPage user={user} />
+                                    </div>
+                            } />
+                            <Route exact path={"/order"} element={
+                                user ?
+                                    <div>
+                                        < Navbar1 user={user} setUser={setUser} />
+                                        <OrderPage user={user} />
                                     </div>
                                     :
                                     <div>

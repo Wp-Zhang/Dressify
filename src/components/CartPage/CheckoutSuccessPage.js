@@ -1,6 +1,9 @@
 import { Button, Modal, Image } from '@nextui-org/react';
+import { useNavigate } from 'react-router-dom';
+
 
 function CheckoutPopover({ visible, setVisible }) {
+    const navigate = useNavigate();
 
     return (
         <Modal
@@ -15,7 +18,9 @@ function CheckoutPopover({ visible, setVisible }) {
                 <Image src="./logo.png" alt="products logo" width={90} />
             </Modal.Header>
             <Modal.Body css={{ textAlign: "center" }}>
-                <Button onClick={() => setVisible(false)}>
+                <Button onClick={() => {
+                    navigate("/order")
+                }}>
                     Jump to "My Order" page
                 </Button>
             </Modal.Body>

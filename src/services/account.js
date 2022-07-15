@@ -27,7 +27,7 @@ class AccountDataService {
     }
 
     delOrder(orderId) {
-        return axios.delete(`${process.env.REACT_APP_API_BASE_URL}/api/v1/account/order`, orderId);
+        return axios.delete(`${process.env.REACT_APP_API_BASE_URL}/api/v1/account/order/id/` + orderId);
     }
 }
 
