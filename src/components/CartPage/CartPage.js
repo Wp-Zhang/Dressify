@@ -37,11 +37,22 @@ const CartPage = ({ user }) => {
         }
     }, [user])
 
-    const updateCart = (newCart) => {
+    const updateCart = (newCart, formerIndex) => {
         if (user) {
             let data = {
                 _id: user.id,
                 cart: newCart
+            }
+            if (newCart.length < cart.length) {
+                let selected = new Set([...selectedItems])
+                selected.delete(formerIndex.toString())
+                selected = [...selected]
+                for (const [i, idx] of selected.entries()) {
+                    if (idx > formerIndex.toString()) {
+                        selected[i] = (idx - 1).toString()
+                    }
+                }
+                setSelectedItems(selected)
             }
             AccountDataService.updateCart(data)
                 .then(response => {
@@ -55,7 +66,7 @@ const CartPage = ({ user }) => {
     }
 
     useEffect(() => {
-        if (user && cart && cart.length > 0) {
+        if (user && cart && cart.length >= 0) {
             console.log("Retrieve articles...")
             ProductDataService.getArticleByIds(cart.map(item => item.article_id))
                 .then(response => {

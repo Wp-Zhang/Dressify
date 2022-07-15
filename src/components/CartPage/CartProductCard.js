@@ -12,7 +12,6 @@ const CartProductCard = ({ user, cart, updateCart, article, product }) => {
     const handler = () => setVisible(true);
     const closeHandler = () => {
         setVisible(false);
-        console.log("closed");
     };
 
     const [deleteIsOpen, openDelete] = useState(false)
@@ -23,7 +22,6 @@ const CartProductCard = ({ user, cart, updateCart, article, product }) => {
         let i = 0;
         for (; i < cart.length; i++) {
             if (cart[i].article_id === oldArticleId && cart[i].size === oldSize) {
-                console.log(i);
                 break;
             }
         }
@@ -34,7 +32,7 @@ const CartProductCard = ({ user, cart, updateCart, article, product }) => {
             newCart.splice(i, 1)
         }
 
-        updateCart(newCart)
+        updateCart(newCart, i)
     }
 
     const modifyColorAndSize = (articleId, size) => {
@@ -52,7 +50,7 @@ const CartProductCard = ({ user, cart, updateCart, article, product }) => {
         newCart[i].article_id = articleId
         newCart[i].size = size
         console.log("new cart:", newCart)
-        updateCart(newCart)
+        updateCart(newCart, i)
     }
 
     return (
