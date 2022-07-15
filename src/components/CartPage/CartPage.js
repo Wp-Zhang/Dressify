@@ -6,6 +6,7 @@ import { Divider } from "@mui/material";
 
 import CartProductCard from "./CartProductCard";
 import CheckoutForm from "./CheckoutForm";
+import CheckoutPopover from "./CheckoutSuccessPage";
 
 import { Navbar2 } from "../NavBars/NavBar";
 
@@ -21,6 +22,7 @@ const CartPage = ({ user }) => {
 
     const [selectedItems, setSelectedItems] = useState(new Set([]))
 
+    const [popoverVisible, setPopoverVisible] = useState(false)
 
     const retrieveCart = useCallback(() => {
         if (user) {
@@ -94,6 +96,19 @@ const CartPage = ({ user }) => {
         }
     }, [cart])
 
+    useEffect(() => {
+        if (popoverVisible) {
+            let newCart = [...cart]
+            let remove = [...selectedItems]
+
+            for (var i = remove.length - 1; i >= 0; i--)
+                newCart.splice(remove[i], 1);
+
+            setSelectedItems(new Set([]))
+            updateCart(newCart)
+        }
+    }, [popoverVisible])
+
     const getTotalPrice = () => {
         let items = [...selectedItems]
         items = items.map(idx => articles[parseInt(idx)])
@@ -166,12 +181,19 @@ const CartPage = ({ user }) => {
                         {
                             selectedItems.size > 0 &&
                             <Container css={{ width: "70%", maxWidth: "550px" }}>
-                                <CheckoutForm articles={[...selectedItems].map(idx => articles[parseInt(idx)])} />
+                                <CheckoutForm
+                                    user={user}
+                                    articles={[...selectedItems].map(idx => articles[parseInt(idx)])}
+                                    totalPrice={getTotalPrice()}
+                                    popoverVisible={popoverVisible}
+                                    setPopoverVisible={setPopoverVisible}
+                                />
                             </Container>
                         }
                     </Card.Body>
                 </Card>
 
+                <CheckoutPopover visible={popoverVisible} setVisible={setPopoverVisible} />
             </Container>
 
             {

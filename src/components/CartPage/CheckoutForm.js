@@ -1,12 +1,14 @@
 import { Button, Row, Spacer, Radio, Input } from '@nextui-org/react';
 import { useEffect, useState } from 'react';
-import "./CartPage.css";
 
 import { ApplePayIcon, VisaIcon, PaypalIcon, MasterCardIcon, GooglePayIcon } from '../icons/payment';
 import CheckoutIcon from '../icons/checkout';
+import AccountDataService from '../../services/account';
+
+import "./CartPage.css";
 
 
-const CheckoutForm = ({ articles }) => {
+const CheckoutForm = ({ user, articles, totalPrice, setPopoverVisible }) => {
 
     const [shipInfo, setShipInfo] = useState({
         firstName: '',
@@ -19,7 +21,7 @@ const CheckoutForm = ({ articles }) => {
         country: '',
         postalCode: 0,
         payment: '',
-        googleMapLink: 'aaa'
+        // googleMapLink: 'aaa'
     })
 
     const [disableCheckout, setDisableCheckout] = useState(true)
@@ -55,6 +57,23 @@ const CheckoutForm = ({ articles }) => {
 
     const checkout = () => {
         console.log("Checking out ...", shipInfo)
+        let order = {
+            'customer_id': user.id,
+            'article_id': articles.map((item) => item.article_id),
+            'price': articles.map((item) => item.price),
+            'size': articles.map((item) => item.size),
+            'num': articles.map((item) => item.num),
+            'shipping': 5,
+            'total': totalPrice,
+            'ship_info': shipInfo
+        }
+        AccountDataService.addOrder(order)
+            .then(response => {
+                console.log("New order added")
+                setPopoverVisible(true)
+            }).catch(e => {
+                console.log("Adding order failed:", e)
+            })
     }
 
     return (

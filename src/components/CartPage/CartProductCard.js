@@ -1,8 +1,10 @@
 import { Card, Button, Grid, Row, Text, Spacer, Avatar, Tooltip, Image, Container, Popover } from '@nextui-org/react';
 import { useState } from 'react';
 import getImgURL from '../../services/utils';
-import "./CartPage.css";
 import CartDetailCard from './CartDetailCard';
+
+import "boxicons";
+import "./CartPage.css";
 
 const CartProductCard = ({ user, cart, updateCart, article, product }) => {
 
