@@ -1,0 +1,51 @@
+@import url('../../fonts/fonts.css');
+
+th {
+    padding-right: 30px;
+}
+
+.CartCard .nextui-image-container {
+    margin: 0
+}
+
+.nextui-table-select-all-checkbox {
+    background: transparent;
+}
+
+.cart-title {
+    font-family: "Montserrat-Bold";
+}
+
+.cart-name {
+    font-family: "Montserrat-SemiBold";
+}
+
+.cart-price {
+    font-family: "Montserrat-SemiBold";
+    text-shadow: 0 0 3px rgb(0, 0, 0, 0.2);
+    /* font-size: large; */
+}
+
+.cart-text-block {
+    white-space: pre;
+    font-family: "Montserrat-Medium";
+}
+
+.cart-text-regular {
+    white-space: pre;
+    font-family: "Montserrat-Regular";
+}
+
+.cart-text-bold {
+    font-family: "Montserrat-Medium";
+}
+
+.calculator {
+    /* padding-right: 30px */
+}
+
+.selected-payment {
+    border: black;
+    border-width: 10px;
+    background-color: black;
+}

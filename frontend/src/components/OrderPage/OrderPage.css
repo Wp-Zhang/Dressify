@@ -1,0 +1,38 @@
+@import url('../../fonts/fonts.css');
+
+
+.OrderInfo p {
+    font-family: "Montserrat-Regular";
+    white-space: pre;
+}
+
+.OrderCard .nextui-image-container {
+    margin: 0
+}
+
+.order-title {
+    font-family: "Montserrat-Bold";
+}
+
+.order-name {
+    font-family: "Montserrat-SemiBold";
+}
+
+.order-price {
+    /* font-family: "Montserrat-SemiBold"; */
+    text-shadow: 0 0 3px rgb(0, 0, 0, 0.2);
+    /* font-size: large; */
+}
+
+.order-text-block {
+    white-space: pre;
+    /* font-family: "Montserrat-Medium"; */
+}
+
+.order-text-bold {
+    /* font-family: "Montserrat-Medium"; */
+}
+
+.calculator {
+    /* padding-right: 30px */
+}

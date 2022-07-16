@@ -1,0 +1,225 @@
+@import '../../fonts/fonts.css';
+@import "~react-image-gallery/styles/css/image-gallery.css";
+
+.Black {
+    background: #2b3236;
+}
+
+.White,
+.undefined,
+.Unknown {
+    background: #ffffff;
+    border: 2px solid rgb(173, 173, 173);
+}
+
+.Beige {
+    background: rgb(255, 255, 203);
+    border: 2px solid rgb(192, 192, 125);
+}
+
+.Grey {
+    background: #cfcece
+}
+
+.Blue {
+    background: #4594ef
+}
+
+.Pink {
+    background: #FFA3E5;
+}
+
+.Lilac-Purple {
+    background: #EADCF8;
+}
+
+.Red {
+    background: #b72d4f;
+}
+
+.Mole {
+    background: #C59A80;
+}
+
+.Orange {
+    background: #f7803c;
+}
+
+.Metal {
+    background: #C1C8CD;
+}
+
+.Brown {
+    background: #4E3104;
+}
+
+.Turquoise {
+    background: #2ECEC2;
+}
+
+.Yellow {
+    background: #F5A524;
+}
+
+.Khaki-green {
+    background: #88a045;
+}
+
+.Green {
+    background: #108944;
+}
+
+.Yellowish-Green {
+    background: #CEF72C;
+}
+
+.Bluish-Green {
+    background: #088B8B;
+}
+
+.selected-color {
+    border: 3px solid rgba(31, 31, 31, 0.8);
+    /* box-shadow: 0 0px 15px rgb(54, 54, 54); */
+}
+
+.small-card-title {
+    font-family: "Montserrat-SemiBold";
+    max-width: 66%;
+    line-height: 100%;
+}
+
+.small-card-price {
+    font-family: "Montserrat-Medium";
+    color: #3D3D3D;
+    text-shadow: 0 0 5px rgba(104, 112, 118, 0.3);
+}
+
+.small-card-sale {
+    font-family: "Montserrat-Medium";
+    color: #3D3D3D;
+    text-shadow: 0 0 5px rgba(104, 112, 118, 0.3);
+}
+
+.small-card-body {
+    padding-left: 18px;
+    padding-right: 18px;
+    /* margin-top: -3px; */
+}
+
+.small-card-colorgroup {
+    margin-left: 0;
+    padding: 0;
+    width: 70%;
+}
+
+.small-card-large-colorgroup {
+    padding-left: 10px;
+}
+
+.small-card-color {
+    position: absolute;
+    position: absolute;
+    margin-top: 0px;
+    margin-bottom: 10px;
+}
+
+.nextui-tooltip {
+    font-family: "Montserrat-SemiBold";
+}
+
+.NavLink {
+    font-family: "Montserrat-Medium";
+    font-size: 16px;
+    color: #16181A;
+    text-shadow: 0 0 3px rgba(104, 112, 118, 0.2);
+    padding-left: 9px;
+    padding-right: 9px;
+}
+
+.NavLink-clicked {
+    font-family: "Montserrat-Medium";
+    font-size: 16px;
+    color: #4ea7ff;
+    text-shadow: 0 0 3px rgba(200, 226, 252, 0.2);
+    padding-left: 9px;
+    padding-right: 9px;
+}
+
+.nextui-backdrop-layer {
+    background-color: rgb(51, 51, 51);
+    opacity: 0.1;
+}
+
+.large-card svg {
+    /* stroke: "black"; */
+}
+
+.large-card {
+    /* background-color: rgba(255, 255, 255, 0.5); */
+    /* backdrop-filter: brightness(120%) blur(100px); */
+}
+
+.large-card-title {
+    font-family: "Montserrat-Bold";
+    max-width: 75%;
+    line-height: 100%;
+}
+
+.large-card-desc {
+    font-family: "Montserrat-Medium";
+    max-width: 95%;
+    line-height: 110%;
+}
+
+.large-card-price {
+    font-family: "Montserrat-Bold";
+    /* color: #262626; */
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+    align-self: top;
+}
+
+.detail-size {
+    font-family: "Montserrat-Medium";
+}
+
+.detail-button {
+    font-family: "Montserrat-Bold";
+    white-space: pre;
+
+}
+
+.image-gallery-slides {
+    height: 100%;
+    /* overflow: hidden; */
+
+    text-align: center;
+    vertical-align: center;
+}
+
+.image-gallery-swipe {
+    height: 100%;
+    /* overflow: hidden; */
+}
+
+.image-gallery-slide-wrapper {
+    height: 100%
+        /* overflow: hidden; */
+}
+
+.image-gallery-content {
+    height: 100%;
+
+    /* overflow: hidden; */
+}
+
+.image-gallery {
+    height: 720px;
+    width: 800px;
+}
+
+.image-gallery img {
+    /* max-height: inherit; */
+    /* display: block; */
+    /* height: 720px; */
+    align-self: center;
+}
