@@ -3,7 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 import { createTheme, NextUIProvider } from "@nextui-org/react"
 
-import { Navbar1 } from "./components/NavBars/NavBar";
+import { Navbar1 } from "./components/NavBars/NavBar.js";
 import ProductsListPage from "./components/Product/ProductsListPage";
 import FavoriteListPage from "./components/Product/FavoriteListPage";
 import CartPage from "./components/CartPage/CartPage";
