@@ -99,5 +99,4 @@ const Navbar2 = () => {
     )
 }
 
-export { Navbar1 }
-export { Navbar2 }
+export { Navbar1, Navbar2 }

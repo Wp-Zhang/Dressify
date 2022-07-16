@@ -8,7 +8,7 @@ import CartProductCard from "./CartProductCard";
 import CheckoutForm from "./CheckoutForm";
 import CheckoutPopover from "./CheckoutSuccessPage";
 
-import { Navbar2 } from "../NavBars/NavBar";
+import { Navbar2 } from "../NavBars/NavBars";
 
 import './CartPage.css';
 
