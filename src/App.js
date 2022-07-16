@@ -5,7 +5,7 @@ import { createTheme, NextUIProvider } from "@nextui-org/react"
 
 import ProductsListPage from "./components/Product/ProductsListPage";
 import FavoriteListPage from "./components/Product/FavoriteListPage";
-import { Navbar1 } from "./components/NavBars/NavBars";
+import { Navbar1 } from "./components/NavBars";
 import CartPage from "./components/CartPage/CartPage";
 import OrderPage from "./components/OrderPage/OrderPage";
 

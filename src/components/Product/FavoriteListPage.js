@@ -4,7 +4,7 @@ import AccountDataService from "../../services/account";
 import { Container, Grid, Spacer, Image } from '@nextui-org/react';
 
 import SmallProductCard from "./SmallProductCard";
-import { Navbar2 } from "../NavBars/NavBars";
+import { Navbar2 } from "../NavBars";
 
 import './FavoritePage.css';
 

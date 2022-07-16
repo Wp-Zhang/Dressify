@@ -3,11 +3,11 @@ import { Container, Image, Link, Grid, Button, Row, Tooltip, Text } from '@nextu
 import './NavBar.css';
 
 import Toolbar from '@mui/material/Toolbar';
-import Login from '../Account/Login';
-import Account from '../Account/Account';
+import Login from './Account/Login';
+import Account from './Account/Account';
 
-import { CartIcon, CartFillIcon } from "../icons/cart";
-import { FavoriteIcon, FavoriteFillIcon } from "../icons/favorite";
+import { CartIcon, CartFillIcon } from "./icons/cart";
+import { FavoriteIcon, FavoriteFillIcon } from "./icons/favorite";
 
 import { useNavigate } from "react-router-dom";
 

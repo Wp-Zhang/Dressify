@@ -5,7 +5,7 @@ import { Container, Table, Card, Row, Text, Spacer } from '@nextui-org/react';
 
 import OrderProductCard from "./OrderProductCard";
 
-import { Navbar2 } from "../NavBars/NavBars";
+import { Navbar2 } from "../NavBars";
 
 import './OrderPage.css';
 
