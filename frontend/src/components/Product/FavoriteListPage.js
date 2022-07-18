@@ -93,7 +93,7 @@ const FavoriteListPage = ({ user }) => {
             <Navbar2 />
             <Spacer y={1} />
             {
-                products.length > 0 ?
+                favorites.length > 0 && products.length > 0 ?
                     <div>
                         <Container xs>
                             <Image src="./images/favoritePageTitle.png" width={"40%"}></Image>
@@ -101,7 +101,7 @@ const FavoriteListPage = ({ user }) => {
                         <Spacer y={1} />
                         <Container lg>
                             <Grid.Container gap={2} justify="flex-start">
-                                {products.length > 0 && products.map((product, index) => {
+                                {favorites.length > 0 && products.length > 0 && products.map((product, index) => {
                                     return (
                                         <Grid xs={6} sm={3} key={index}>
                                             <SmallProductCard
