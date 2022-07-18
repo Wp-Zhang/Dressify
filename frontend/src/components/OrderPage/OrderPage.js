@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
-import ProductDataService from "../../services/products";
 import AccountDataService from "../../services/account";
-import { Container, Table, Card, Row, Text, Spacer } from '@nextui-org/react';
+import { Container, Image, Text, Spacer } from '@nextui-org/react';
 
 import OrderProductCard from "./OrderProductCard";
 
@@ -61,21 +60,30 @@ const OrderPage = ({ user }) => {
             <Navbar2 />
             <Spacer y={1} />
 
-            <Container css={{ width: "47%", maxWidth: "850px" }}>
-                {
-                    user && orders && orders.length > 0 &&
-                    orders.map((order, index) => {
-                        return (
-                            <OrderProductCard
-                                key={order.order_id}
-                                order={order}
-                                index={index}
-                                deleteOrder={deleteOrder}
-                            />
-                        )
-                    })
-                }
-            </Container>
+            {
+                orders.length > 0 ?
+                    <Container css={{ width: "47%", maxWidth: "850px" }}>
+                        {
+                            user && orders && orders.length > 0 &&
+                            orders.map((order, index) => {
+                                return (
+                                    <OrderProductCard
+                                        key={order.order_id}
+                                        order={order}
+                                        index={index}
+                                        deleteOrder={deleteOrder}
+                                    />
+                                )
+                            })
+                        }
+                    </Container>
+                    :
+                    <Container>
+                        <Spacer y={3} />
+                        <Image src="./images/emptyOrder.png" width={"20%"}></Image>
+                        <Text size={20} css={{ fontFamily: "Montserrat-Medium" }}>You don't have any orders yet</Text>
+                    </Container>
+            }
 
             {
                 [...Array(spacerNum).keys()].map((idx) => <Spacer y={9.5} key={idx} />)

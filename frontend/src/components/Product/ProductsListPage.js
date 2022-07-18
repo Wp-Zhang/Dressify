@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import ProductDataService from "../../services/products";
 import AccountDataService from "../../services/account";
-import { Container, Grid, Pagination, Button, Spacer } from '@nextui-org/react';
+import { Container, Grid, Pagination, Button, Spacer, Image, Text } from '@nextui-org/react';
 import Toolbar from '@mui/material/Toolbar';
 
 import SearchBar from "../SearchBar/SearchBar";
@@ -163,23 +163,32 @@ const ProductsListPage = ({ user }) => {
                 index={index}
                 setFilters={setFilters}
             />
-            <Container lg>
-                <Grid.Container gap={1} justify="flex-start">
-                    {products.map((product, index) => (
-                        <Grid sm={3} key={index} justify="center">
-                            <SmallProductCard
-                                key={product.product_code}
-                                user={user}
-                                product={product}
-                                isFavorite={favorites.includes(product.product_code)}
-                                addFavorite={addFavorite}
-                                deleteFavorite={deleteFavorite}
-                                addCart={addCart}
-                            />
-                        </Grid>
-                    ))}
-                </Grid.Container>
-            </Container>
+            {
+                products.length > 0 ?
+                    <Container lg>
+                        <Grid.Container gap={1} justify="flex-start">
+                            {products.map((product, index) => (
+                                <Grid sm={3} key={index} justify="center">
+                                    <SmallProductCard
+                                        key={product.product_code}
+                                        user={user}
+                                        product={product}
+                                        isFavorite={favorites.includes(product.product_code)}
+                                        addFavorite={addFavorite}
+                                        deleteFavorite={deleteFavorite}
+                                        addCart={addCart}
+                                    />
+                                </Grid>
+                            ))}
+                        </Grid.Container>
+                    </Container>
+                    :
+                    <Container>
+                        <Spacer y={3} />
+                        <Image src="./images/noSearchResult.png" width={"20%"}></Image>
+                        <Text size={20} css={{ fontFamily: "Montserrat-Medium" }}>No search result</Text>
+                    </Container>
+            }
             {
                 [...Array(spacerNum).keys()].map((idx) => <Spacer y={10} />)
             }

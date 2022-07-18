@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import ProductDataService from "../../services/products";
 import AccountDataService from "../../services/account";
-import { Container, Grid, Spacer, Image } from '@nextui-org/react';
+import { Container, Grid, Spacer, Image, Text } from '@nextui-org/react';
 
 import SmallProductCard from "./SmallProductCard";
 import { Navbar2 } from "../NavBars";
@@ -92,30 +92,40 @@ const FavoriteListPage = ({ user }) => {
         <div className="App">
             <Navbar2 />
             <Spacer y={1} />
+            {
+                products.length > 0 ?
+                    <div>
+                        <Container xs>
+                            <Image src="./images/favoritePageTitle.png" width={"40%"}></Image>
+                        </Container>
+                        <Spacer y={1} />
+                        <Container lg>
+                            <Grid.Container gap={2} justify="flex-start">
+                                {products.length > 0 && products.map((product, index) => {
+                                    return (
+                                        <Grid xs={6} sm={3} key={index}>
+                                            <SmallProductCard
+                                                key={product.product_code}
+                                                user={user}
+                                                product={product}
+                                                isFavorite={favorites.includes(product.product_code)}
+                                                addFavorite={addFavorite}
+                                                deleteFavorite={deleteFavorite}
+                                            />
+                                        </Grid>
+                                    )
+                                })}
+                            </Grid.Container>
+                        </Container>
+                    </div>
+                    :
+                    <Container>
+                        <Spacer y={3} />
+                        <Image src="./images/emptyCart.png" width={"20%"}></Image>
+                        <Text size={20}>Your wish list is empty !</Text>
+                    </Container>
+            }
 
-            <Container xs>
-                <Image src="./images/favoritePageTitle.png" width={"40%"}></Image>
-            </Container>
-            <Spacer y={1} />
-
-            <Container lg>
-                <Grid.Container gap={2} justify="flex-start">
-                    {products.length > 0 && products.map((product, index) => {
-                        return (
-                            <Grid xs={6} sm={3} key={index}>
-                                <SmallProductCard
-                                    key={product.product_code}
-                                    user={user}
-                                    product={product}
-                                    isFavorite={favorites.includes(product.product_code)}
-                                    addFavorite={addFavorite}
-                                    deleteFavorite={deleteFavorite}
-                                />
-                            </Grid>
-                        )
-                    })}
-                </Grid.Container>
-            </Container>
             {
                 [...Array(spacerNum).keys()].map((idx) => <Spacer y={9.5} />)
             }
