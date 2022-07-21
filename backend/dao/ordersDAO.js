@@ -56,7 +56,12 @@ export default class OrdersDAO {
         try {
             let cursor = await ordersCollection.find().sort({ order_id: -1 }).limit(1);
             const latestOrder = await cursor.toArray();
-            let newOrderId = latestOrder[0].order_id;
+            let newOrderId;
+            if (latestOrder) {
+                newOrderId = latestOrder[0].order_id;
+            } else {
+                newOrderId = 0
+            }
             console.log("Max order_id:", newOrderId);
             return newOrderId + 1;
         } catch (e) {
