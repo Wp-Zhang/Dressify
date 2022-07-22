@@ -57,7 +57,7 @@ export default class OrdersDAO {
             let cursor = await ordersCollection.find().sort({ order_id: -1 }).limit(1);
             const latestOrder = await cursor.toArray();
             let newOrderId;
-            if (latestOrder) {
+            if (latestOrder[0]) {
                 newOrderId = latestOrder[0].order_id;
             } else {
                 newOrderId = 0

@@ -30,6 +30,10 @@ class ProductDataService {
     getArticleByIds(ids) {
         return Promise.all(ids.map(id => this.getArticleById(id)));
     }
+
+    getRecommendations(uid) {
+        return axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/v1/recommend/${uid}`);
+    }
 }
 
 export default new ProductDataService();

@@ -132,7 +132,7 @@ const CartPage = ({ user }) => {
         if (itemNum === 0) {
             spacerNum = 4
         } else {
-            spacerNum = 5 - itemNum
+            spacerNum = 5 - itemNum > 0 ? 5 - itemNum : 0
         }
         return [...Array(spacerNum).keys()].map((idx) => <Spacer y={9.5} key={idx} />)
     }, [cart])

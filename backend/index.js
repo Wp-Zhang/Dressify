@@ -7,6 +7,7 @@ import CategoryDAO from './dao/categoryDAO.js';
 import FavoritesDAO from './dao/favoritesDAO.js';
 import CartDAO from './dao/cartDAO.js';
 import OrdersDAO from './dao/ordersDAO.js';
+import RecDAO from './dao/recDAO.js';
 
 async function main() {
     dotenv.config();
@@ -23,6 +24,7 @@ async function main() {
         await FavoritesDAO.injectDB(client);
         await CartDAO.injectDB(client);
         await OrdersDAO.injectDB(client);
+        await RecDAO.injectDB(client);
 
         app.listen(port, () => {
             console.log('Server listening on port: ' + port);

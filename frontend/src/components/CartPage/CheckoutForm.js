@@ -60,6 +60,7 @@ const CheckoutForm = ({ user, articles, totalPrice, setPopoverVisible }) => {
         let order = {
             'customer_id': user.id,
             'article_id': articles.map((item) => item.article_id),
+            'product_code': articles.map((item) => item.product_code),
             'price': articles.map((item) => item.price),
             'size': articles.map((item) => item.size),
             'num': articles.map((item) => item.num),

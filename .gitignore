@@ -133,3 +133,4 @@ yarn-error.log*
 
 .env
 data/
+*.pyc

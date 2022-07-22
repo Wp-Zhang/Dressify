@@ -5,6 +5,7 @@ import { Container, Grid, Spacer, Image, Text } from '@nextui-org/react';
 
 import SmallProductCard from "./SmallProductCard";
 import { Navbar2 } from "../NavBars";
+import RecommendBar from "./RecommendBar";
 
 import './FavoritePage.css';
 
@@ -12,6 +13,7 @@ import './FavoritePage.css';
 const FavoriteListPage = ({ user }) => {
 
     const [favorites, setFavorites] = useState([]);
+    const [cart, setCart] = useState([])
     const [products, setProducts] = useState([]);
     const [spacerNum, setSpacerNum] = useState(0);
 
@@ -21,6 +23,13 @@ const FavoriteListPage = ({ user }) => {
             AccountDataService.getFavorites(user.id)
                 .then(response => {
                     setFavorites(response.data.favorites)
+                })
+                .catch(e => {
+                    console.log(e);
+                })
+            AccountDataService.getCart(user.id)
+                .then(response => {
+                    setCart(response.data.cart)
                 })
                 .catch(e => {
                     console.log(e);
@@ -60,6 +69,29 @@ const FavoriteListPage = ({ user }) => {
                     console.log(e);
                 });
         }
+    }
+
+    const addCart = (articleId, size) => {
+        let target = cart.filter((article) => article.article_id === articleId && article.size === size)
+        let rest = cart.filter((article) => article.article_id !== articleId || article.size !== size)
+        if (target.length === 0) {
+            target = { article_id: articleId, size: size, num: 1 }
+        } else {
+            target = target[0]
+            target.num += 1
+        }
+        let newCart = [target, ...rest]
+        let data = {
+            _id: user.id,
+            cart: newCart
+        }
+        AccountDataService.updateCart(data)
+            .then(response => {
+                setCart(newCart);
+            })
+            .catch(e => {
+                console.log(e);
+            })
     }
 
     useEffect(() => {
@@ -111,6 +143,7 @@ const FavoriteListPage = ({ user }) => {
                                                 isFavorite={favorites.includes(product.product_code)}
                                                 addFavorite={addFavorite}
                                                 deleteFavorite={deleteFavorite}
+                                                addCart={addCart}
                                             />
                                         </Grid>
                                     )
@@ -125,6 +158,15 @@ const FavoriteListPage = ({ user }) => {
                         <Text size={20}>Your wish list is empty !</Text>
                     </Container>
             }
+
+            <Spacer y={2} />
+            <RecommendBar
+                user={user}
+                favorites={favorites}
+                addFavorite={addFavorite}
+                deleteFavorite={deleteFavorite}
+                addCart={addCart}
+            />
 
             {
                 [...Array(spacerNum).keys()].map((idx) => <Spacer y={9.5} />)

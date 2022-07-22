@@ -6,7 +6,7 @@ import Toolbar from '@mui/material/Toolbar';
 
 import SearchBar from "../SearchBar/SearchBar";
 import SmallProductCard from "./SmallProductCard";
-
+import RecommendBar from "./RecommendBar";
 
 const ProductsListPage = ({ user }) => {
 
@@ -188,6 +188,19 @@ const ProductsListPage = ({ user }) => {
                         <Image src="./images/noSearchResult.png" width={"20%"}></Image>
                         <Text size={20} css={{ fontFamily: "Montserrat-Medium" }}>No search result</Text>
                     </Container>
+            }
+            {
+                user &&
+                <div>
+                    <Spacer y={2} />
+                    <RecommendBar
+                        user={user}
+                        favorites={favorites}
+                        addFavorite={addFavorite}
+                        deleteFavorite={deleteFavorite}
+                        addCart={addCart}
+                    />
+                </div>
             }
             {
                 [...Array(spacerNum).keys()].map((idx) => <Spacer y={10} />)
