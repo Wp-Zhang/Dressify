@@ -55,3 +55,15 @@ After choosing at least one product, the order calculator and checkout form will
 Users can view and manage their history orders on this page.
 
 ![order](./images/order.png)
+
+## Personalized Recommendation
+
+Personalized recommendations will be provided for login users. Recommendations will be based on product popularity and users' historical orders.
+
+- Case 1: A user who mostly bought men's wear and clothes for sport
+
+![rec1](./images/rec1.png)
+
+- Case 2: A user who mostly bought clothes for ladies
+
+![rec2](./images/rec2.png)
