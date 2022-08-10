@@ -6,7 +6,10 @@ import CloseIcon from '../icons/close';
 import { FavoriteIcon, FavoriteFillIcon } from '../icons/favorite';
 import './Product.css'
 
+import confetti from 'canvas-confetti';
+
 import getImgURL from '../../services/utils';
+import zIndex from '@mui/material/styles/zIndex';
 
 const shadow = {
     "Black": "#000000",
@@ -33,7 +36,6 @@ const shadow = {
 
 
 const ProductDetailCard = ({ user, product, visible, closeHandler, isFavorite, addFavorite, deleteFavorite, addCart }) => {
-
     const imgList = product.article_id.map(
         articleId => getImgURL(articleId)
     )
@@ -99,7 +101,24 @@ const ProductDetailCard = ({ user, product, visible, closeHandler, isFavorite, a
                     fill={getSize(curSize) === "Size" ? "#7E868C" : "#FFFFFF"}
                 />
             }
-            onClick={() => { addCart(product.article_id[curNo], getSize(curSize)) }}
+            onClick={
+                (e) => {
+                    const clickX = e.clientX
+                    const clickY = e.clientY
+                    const { innerWidth, innerHeight } = window
+                    addCart(product.article_id[curNo], getSize(curSize))
+                    confetti({
+                        zIndex: 10000,
+                        spread: 270,
+                        particleCount: 100,
+                        decay: 0.8,
+                        origin: {
+                            x: clickX / innerWidth,
+                            y: clickY / innerHeight
+                        }
+                    });
+                }
+            }
         >
             <Text className="detail-button" color="inherit">Add To Cart</Text>
         </Button >
