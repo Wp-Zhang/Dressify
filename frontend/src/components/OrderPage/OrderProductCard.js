@@ -12,7 +12,7 @@ import "./OrderPage.css";
 const iconDict = {
     'ApplePay': <ApplePayIcon size={55} />,
     'Visa': <VisaIcon size={55} />,
-    'Paypal': <PaypalIcon size={55} />,
+    'PayPal': <PaypalIcon size={55} />,
     'MasterCard': <MasterCardIcon size={55} />,
     'GooglePay': <GooglePayIcon size={55} />
 }
