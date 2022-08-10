@@ -9,7 +9,6 @@ import './Product.css'
 import confetti from 'canvas-confetti';
 
 import getImgURL from '../../services/utils';
-import zIndex from '@mui/material/styles/zIndex';
 
 const shadow = {
     "Black": "#000000",
