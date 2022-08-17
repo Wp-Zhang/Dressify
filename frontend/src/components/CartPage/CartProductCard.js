@@ -143,7 +143,7 @@ const CartProductCard = ({ user, cart, updateCart, article, product }) => {
                                         </Button.Group>
                                     </Grid>
 
-                                    <Grid sm={6} style={{ display: "flex" }}>
+                                    <Grid sm={6} style={{ display: "flex", justifyContent: "flex-end" }}>
                                         <Popover placement='top' isOpen={deleteIsOpen}>
                                             <Popover.Trigger>
                                                 <Button
