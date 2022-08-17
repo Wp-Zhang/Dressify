@@ -83,9 +83,9 @@ const CartProductCard = ({ user, cart, updateCart, article, product }) => {
                                                     // inlineSize: "150px",
                                                     // overflowWrap: "break-word"
                                                 }}>
-                                                    {/* <Button auto onClick={handler} css={{ background: "transparent", padding: 0 }}> */}
-                                                    <Text transform={"capitalize"} className="cart-name">{article.prod_name}</Text>
-                                                    {/* </Button> */}
+                                                    <Button auto onClick={handler} css={{ background: "transparent", padding: 0 }}>
+                                                        <Text transform={"capitalize"} className="cart-name">{article.prod_name}</Text>
+                                                    </Button>
                                                 </Container>
                                             </Row>
                                             <Row>
