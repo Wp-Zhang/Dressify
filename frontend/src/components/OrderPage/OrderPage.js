@@ -62,7 +62,7 @@ const OrderPage = ({ user }) => {
 
             {
                 orders.length > 0 ?
-                    <Container css={{ width: "47%", maxWidth: "850px" }}>
+                    <Container className="OrderList" css={{ width: "47%", maxWidth: "850px" }}>
                         {
                             user && orders && orders.length > 0 &&
                             orders.map((order, index) => {

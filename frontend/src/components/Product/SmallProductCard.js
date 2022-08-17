@@ -26,11 +26,10 @@ const SmallProductCard = ({ user, product, isFavorite, addFavorite, deleteFavori
                 disableRipple
                 isHoverable
                 variant="flat"
-                css={{ w: "325px", h: "440px", backgroundColor: "rgba(255, 255, 255, 1)" }}
+                css={{ backgroundColor: "rgba(255, 255, 255, 1)", aspectRatio: 325 / 440 }} // w: "325px", h: "440px", 
                 onClick={handler}
             >
-
-                <Card.Body css={{ p: 0, w: "100%", backgroundColor: "rgba(255, 255, 255, 0)" }}>
+                <Card.Body css={{ p: 0, backgroundColor: "rgba(255, 255, 255, 0)" }}>
                     <ExtendedImg articleId={product.article_id[0]} height="325px" />
                     {user && (isFavorite ?
                         <Button
@@ -40,8 +39,8 @@ const SmallProductCard = ({ user, product, isFavorite, addFavorite, deleteFavori
                                 backgroundColor: "rgba(255,255,255,0.5)",
                                 backdropFilter: "blur(5px)",
                                 position: "absolute",
-                                marginBottom: 441 - 330 + 15 + "px",
-                                marginLeft: "15px",
+                                marginBottom: "45%",// 441 - 330 + 15 + "px",
+                                marginLeft: "5%",
                                 left: 0,
                                 bottom: 0,
                                 aspectRatio: 1
@@ -57,8 +56,8 @@ const SmallProductCard = ({ user, product, isFavorite, addFavorite, deleteFavori
                                 backgroundColor: "rgba(255,255,255,0.5)",
                                 backdropFilter: "blur(5px)",
                                 position: "absolute",
-                                marginBottom: 441 - 330 + 15 + "px",
-                                marginLeft: "15px",
+                                marginBottom: "45%",//441 - 330 + 15 + "px",
+                                marginLeft: "5%",
                                 left: 0,
                                 bottom: 0,
                                 aspectRatio: 1
@@ -74,8 +73,8 @@ const SmallProductCard = ({ user, product, isFavorite, addFavorite, deleteFavori
                         css={{
                             backgroundColor: "rgba(255,255,255,0.5)",
                             position: "absolute",
-                            marginBottom: 441 - 330 + 15 + "px",
-                            marginRight: "15px",
+                            marginBottom: "45%",//441 - 330 + 15 + "px",
+                            marginRight: "5%",
                             right: 0,
                             bottom: 0,
                             aspectRatio: 1
@@ -87,10 +86,10 @@ const SmallProductCard = ({ user, product, isFavorite, addFavorite, deleteFavori
                     <Spacer y={0.5} />
 
                     <Row wrap="wrap" justify="space-between" align="center" className='small-card-body'>
-                        <Text size={19} transform={"capitalize"} className="small-card-title">
+                        <Text transform={"capitalize"} className="small-card-title">
                             {product.prod_name}
                         </Text>
-                        <Text size={19} className="small-card-price">{"$ " + product.price.toFixed(2)}</Text>
+                        <Text className="small-card-price">{"$ " + product.price.toFixed(2)}</Text>
                     </Row>
                     <Row wrap="wrap" justify="space-between" align="center" className='small-card-body' style={{ marginTop: "15px" }}>
                         {

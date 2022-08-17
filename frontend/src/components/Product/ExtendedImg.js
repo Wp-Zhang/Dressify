@@ -22,12 +22,16 @@ const ExtendedImg = ({ articleId, height }) => {
     getBgColor(imgURL, setColor)
 
     return (
-        <div style={{ background: color }}>
-            <Card.Image
+        <div style={{ background: color, maxHeight: "70%", textAlign: "center" }}>
+            <img src={getImgURL(articleId)} style={{ maxWidth: "100%", maxHeight: "100%" }}>
+            </img>
+            {/* <Card.Image
                 src={getImgURL(articleId)}
                 objectFit={"contain"}
-                style={{ height: height }}
-            />
+                // autoResize={true}
+                style={{ maxWidth: "100%", maxHeight: "100%" }}
+            //style={{ height: height }}
+            /> */}
         </div>
     )
 }

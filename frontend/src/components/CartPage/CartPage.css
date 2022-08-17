@@ -1,7 +1,15 @@
 @import url('../../fonts/fonts.css');
 
 th {
-    padding-right: 30px;
+    /* padding-right: 30px; */
+}
+
+.CartList {
+    width: 60%;
+}
+
+.Checkout {
+    width: 60%;
 }
 
 .CartCard .nextui-image-container {
@@ -14,14 +22,18 @@ th {
 
 .cart-title {
     font-family: "Montserrat-Bold";
+    font-size: 32px;
+    padding-right: 4.5%;
 }
 
 .cart-name {
     font-family: "Montserrat-SemiBold";
+    font-size: 22px;
 }
 
 .cart-price {
     font-family: "Montserrat-SemiBold";
+    font-size: 22px;
     text-shadow: 0 0 3px rgb(0, 0, 0, 0.2);
     /* font-size: large; */
 }
@@ -29,11 +41,13 @@ th {
 .cart-text-block {
     white-space: pre;
     font-family: "Montserrat-Medium";
+    font-size: 20px;
 }
 
 .cart-text-regular {
     white-space: pre;
     font-family: "Montserrat-Regular";
+    font-size: 20px;
 }
 
 .cart-text-bold {
@@ -48,4 +62,46 @@ th {
     border: black;
     border-width: 10px;
     background-color: black;
+}
+
+@media screen and (max-width: 1920px) {
+    .CartList {
+        width: 70%;
+    }
+
+    .Checkout {
+        width: 65%;
+    }
+}
+
+@media screen and (max-width: 1280px) {
+    .CartList {
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 959px) {
+    .cart-title {
+        font-size: 5vw;
+    }
+
+    .cart-name {
+        font-size: 3.5vw;
+    }
+
+    .cart-price {
+        font-size: 4.5vw;
+    }
+
+    .cart-text-block {
+        font-size: 4vw;
+    }
+
+    .cart-text-regular {
+        font-size: 4vw;
+    }
+
+    .Checkout {
+        width: 100%;
+    }
 }

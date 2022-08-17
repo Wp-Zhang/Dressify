@@ -1,9 +1,20 @@
 @import url('../../fonts/fonts.css');
 
+/* .OrderCard p {
+    font-size: 20px;
+} */
+
+.OrderList {
+    width: 60%;
+}
 
 .OrderInfo p {
     font-family: "Montserrat-Regular";
     white-space: pre;
+}
+
+.datetime {
+    font-family: "Montserrat-Regular";
 }
 
 .OrderCard .nextui-image-container {
@@ -35,4 +46,26 @@
 
 .calculator {
     /* padding-right: 30px */
+}
+
+@media screen and (max-width: 1920px) {
+    .OrderList {
+        width: 60%;
+    }
+}
+
+@media screen and (max-width: 1280px) {
+    .OrderList {
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 959px) {
+    .OrderCard p {
+        font-size: 3vw;
+    }
+
+    .datetime {
+        font-size: 2vw;
+    }
 }

@@ -9,6 +9,7 @@ import './Product.css'
 import confetti from 'canvas-confetti';
 
 import getImgURL from '../../services/utils';
+import { useMediaQuery } from 'react-responsive';
 
 const shadow = {
     "Black": "#000000",
@@ -35,6 +36,8 @@ const shadow = {
 
 
 const ProductDetailCard = ({ user, product, visible, closeHandler, isFavorite, addFavorite, deleteFavorite, addCart }) => {
+    const isSmallScreen = useMediaQuery({ query: '(max-width: 959px)' })
+
     const imgList = product.article_id.map(
         articleId => getImgURL(articleId)
     )
@@ -60,9 +63,9 @@ const ProductDetailCard = ({ user, product, visible, closeHandler, isFavorite, a
             <Dropdown.Button bordered>
                 {
                     getSize(curSize) === "Size" ?
-                        <pre className="detail-button" style={{ fontSize: "1.3rem" }}>  Size  </pre> :
+                        <pre className="detail-button" style={{ fontSize: "1.2rem" }}>  Size  </pre> :
                         <Row justify="flex-start" align='center'>
-                            <pre className="detail-button" style={{ "fontSize": "20px" }}>
+                            <pre className="detail-button" style={{ "fontSize": "1.1rem" }}>
                                 {
                                     " ".repeat(3 - getSize(curSize).length) +
                                     getSize(curSize) +
@@ -130,11 +133,12 @@ const ProductDetailCard = ({ user, product, visible, closeHandler, isFavorite, a
             aria-labelledby={product.prod_name}
             open={visible}
             onClose={onClose}
-            width={user ? "1000px" : "850px"}
-            css={{ aspectRatio: user ? 100 / 60 : 1.4167, padding: 0 }}
+            width={isSmallScreen ? "90%" : "60%"}
+            // width={user ? "65%" : "55%"}
+            style={{ display: "flex", justifyContent: "center", aspectRatio: isSmallScreen ? 45 / 100 : 100 / 60 }}
             className='large-card'
         >
-            <Modal.Body style={{ height: "100%", padding: 0 }}>
+            <Modal.Body style={{ padding: 0 }}>
                 <Avatar
                     color=""
                     size="sm"
@@ -142,102 +146,115 @@ const ProductDetailCard = ({ user, product, visible, closeHandler, isFavorite, a
                     onClick={closeHandler}
                     icon={<CloseIcon size={22} />}
                 />
-                <Row justify="space-between" align="left">
-                    <Container style={{ padding: 0 }}>
-                        <Image src={imgList[curNo]} objectFit="cover" style={{ height: "600px" }}></Image>
-                    </Container>
-                    <Container
-                        display='flex'
-                        alignContent='space-around'
-                        style={{ padding: "60px 40px 30px 40px", alignSelf: "center", height: "80%" }}
-                    >
-                        <Row justify="space-between" align="left">
-                            <Text
-                                className='large-card-title'
-                                transform='capitalize'
-                                size={nameLen <= 14 ? 48 : 40}
-                                style={{ width: "80%" }}
+                <Row
+                    justify="space-between"
+                    align="left"
+                    style={isSmallScreen ? { width: "100%" } : { height: "100%" }}
+                >
+                    <Grid.Container>
+                        <Grid
+                            sm={5.5}
+                            style={isSmallScreen ? { paddingLeft: 0, width: "100%" } : { paddingLeft: 0, height: "100%" }}
+                        >
+                            <img src={imgList[curNo]} style={isSmallScreen ? { width: "100%" } : { height: "100%" }}></img>
+                        </Grid>
+                        <Grid sm={6.5} style={{ width: "100%" }}>
+                            <Container
+                                display='flex'
+                                alignContent='space-around'
+                                style={{ padding: "12% 4% 4% 4%", alignSelf: "center" }}
                             >
-                                {product.prod_name}
-                            </Text>
-                            <div style={{ width: "20%", display: "flex", justifyContent: "center", alignItems: "center" }}>
-                                {user && (isFavorite ?
-                                    <FavoriteFillIcon
-                                        size={35}
-                                        filter="drop-shadow(0px 0px 8px rgb(245 85 85 / 0.8))"
-                                        onClick={() => { deleteFavorite(product.product_code) }}
-                                    />
-                                    :
-                                    <FavoriteIcon
-                                        size={35}
-                                        fill="black"
-                                        strokeWidth='0.2px'
-                                        filter="drop-shadow(0px 0px 4px rgb(0 0 0 / 0.5))"
-                                        onClick={() => { addFavorite(product.product_code) }}
-                                    />
-                                )}
-                            </div>
-                        </Row>
-                        {product.detail_desc.length > 1 &&
-                            <Row justify="space-between" align="left" style={{ marginTop: "10px" }}>
-                                <Text className='large-card-desc' size={19}>{product.detail_desc}</Text>
-                            </Row>
-                        }
-
-                        <Row justify="space-between" align="left" style={{ marginTop: "10px" }}>
-                            <Grid.Container gap={0.5} display='flex' style={{ marginTop: "20px", marginLeft: 0, padding: 0, width: "50%", alignSelf: "left" }}>
-                                {
-                                    product.perceived_colour_master_name.map((color, index) => {
-                                        return (
-                                            <Grid key={index} >
-                                                <Avatar
-                                                    color=""
-                                                    className={color.replace(' ', '-') + (curNo === index ? " selected-color" : "")}
-                                                    size="sm"
-                                                    onClick={(e) => setCurNo(index)}
-                                                    style={{
-                                                        boxShadow: curNo === index ? "0 0px 19px " + shadow[color] : "0 0 0"
-                                                    }}
-                                                />
-                                            </Grid>
-                                        )
-                                    })
+                                <Row justify="space-between" align="left">
+                                    <Text
+                                        className='large-card-title'
+                                        transform='capitalize'
+                                        // size={nameLen <= 14 ? 48 : 40}
+                                        style={{ width: "80%" }}
+                                    >
+                                        {product.prod_name}
+                                    </Text>
+                                    <div style={{ width: "20%", display: "flex", justifyContent: "center", alignItems: "center" }}>
+                                        {user && (isFavorite ?
+                                            <FavoriteFillIcon
+                                                size={35}
+                                                filter="drop-shadow(0px 0px 8px rgb(245 85 85 / 0.8))"
+                                                onClick={() => { deleteFavorite(product.product_code) }}
+                                            />
+                                            :
+                                            <FavoriteIcon
+                                                size={35}
+                                                fill="black"
+                                                strokeWidth='0.2px'
+                                                filter="drop-shadow(0px 0px 4px rgb(0 0 0 / 0.5))"
+                                                onClick={() => { addFavorite(product.product_code) }}
+                                            />
+                                        )}
+                                    </div>
+                                </Row>
+                                {product.detail_desc.length > 1 &&
+                                    <Row justify="space-between" align="left" style={{ marginTop: "10px" }}>
+                                        <Text className='large-card-desc'>{product.detail_desc}</Text>
+                                    </Row>
                                 }
-                            </Grid.Container>
-                            <Container display='flex' style={{ width: "50%", alignContent: "center", paddingRight: 0 }}>
-                                <Text size={35} className="large-card-price">{"$ " + product.price.toFixed(2)}</Text>
-                            </Container>
-                        </Row>
 
-                        <Container display="flex" style={{ justifyContent: 'center', marginTop: "10%" }} width="100%">
-                            {user && (
-                                getSize(curSize) === "Size" ?
-                                    <Button.Group
-                                        color="warning"
-                                        auto
-                                        bordered
-                                        borderWeight='bold'
-                                        ripple={false}
-                                        size="lg"
-                                    >
-                                        {footer1}
-                                        {footer2}
-                                    </Button.Group>
-                                    :
-                                    <Button.Group
-                                        color="warning"
-                                        auto
-                                        borderWeight='bold'
-                                        ripple={false}
-                                        size="lg"
-                                    >
-                                        {footer1}
-                                        {footer2}
-                                    </Button.Group>
-                            )
-                            }
-                        </Container>
-                    </Container>
+                                <Row justify="space-between" align="left" style={{ marginTop: "10px" }}>
+                                    <Grid.Container gap={0.5} display='flex' style={{ marginTop: "20px", marginLeft: 0, padding: 0, width: "50%", alignSelf: "left" }}>
+                                        {
+                                            product.perceived_colour_master_name.map((color, index) => {
+                                                return (
+                                                    <Grid key={index} >
+                                                        <Avatar
+                                                            color=""
+                                                            className={color.replace(' ', '-') + (curNo === index ? " selected-color" : "")}
+                                                            size="sm"
+                                                            onClick={(e) => setCurNo(index)}
+                                                            style={{
+                                                                boxShadow: curNo === index ? "0 0px 19px " + shadow[color] : "0 0 0"
+                                                            }}
+                                                        />
+                                                    </Grid>
+                                                )
+                                            })
+                                        }
+                                    </Grid.Container>
+                                    <Container display='flex' style={{ width: "50%", alignContent: "center", paddingRight: 0 }}>
+                                        <Text size={35} className="large-card-price">{"$ " + product.price.toFixed(2)}</Text>
+                                    </Container>
+                                </Row>
+
+                                <Container display="flex" style={{ justifyContent: 'center', marginTop: "10%" }} width="100%">
+                                    {user && (
+                                        getSize(curSize) === "Size" ?
+                                            <Button.Group
+                                                vertical={isSmallScreen}
+                                                color="warning"
+                                                auto
+                                                bordered
+                                                borderWeight='bold'
+                                                ripple={false}
+                                                size="lg"
+                                            >
+                                                {footer1}
+                                                {footer2}
+                                            </Button.Group>
+                                            :
+                                            <Button.Group
+                                                vertical={isSmallScreen}
+                                                color="warning"
+                                                auto
+                                                borderWeight='bold'
+                                                ripple={false}
+                                                size="lg"
+                                            >
+                                                {footer1}
+                                                {footer2}
+                                            </Button.Group>
+                                    )
+                                    }
+                                </Container>
+                            </Container>
+                        </Grid>
+                    </Grid.Container>
                 </Row>
             </Modal.Body>
         </Modal >

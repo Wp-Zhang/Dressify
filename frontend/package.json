@@ -25,6 +25,7 @@
     "react-dom": "^18.2.0",
     "react-image-gallery": "^1.2.8",
     "react-moment": "^1.1.2",
+    "react-responsive": "^9.0.0-beta.10",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
     "rgbaster": "^2.1.1",

@@ -11,9 +11,11 @@ import CheckoutPopover from "./CheckoutSuccessPage";
 import { Navbar2 } from "../NavBars";
 
 import './CartPage.css';
+import { useMediaQuery } from 'react-responsive';
 
 
 const CartPage = ({ user }) => {
+    const isSmallScreen = useMediaQuery({ query: '(max-width: 959px)' })
 
     const [cart, setCart] = useState([]);
     const [articles, setArticles] = useState([]);
@@ -142,7 +144,7 @@ const CartPage = ({ user }) => {
             <Navbar2 />
             <Spacer y={1} />
 
-            <Container css={{ width: "47%" }}>
+            <Container className="CartList">
                 {
                     cart.length > 0 ?
                         <Card css={{ background: "rgba(255,255,255,0.8)" }}>
@@ -154,11 +156,16 @@ const CartPage = ({ user }) => {
                                     color="default"
                                     selectedKeys={selectedItems}
                                     onSelectionChange={setSelectedItems}
-                                    css={{ background: "transparent", paddingLeft: "5%", paddingRight: "calc(4*$sm)", paddingBottom: "3%" }}
+                                    css={
+                                        isSmallScreen ?
+                                            { background: "transparent" }
+                                            :
+                                            { background: "transparent", paddingLeft: "5%", paddingRight: "calc(4*$sm)", paddingBottom: "3%" }
+                                    }
                                 >
                                     <Table.Header>
                                         <Table.Column css={{ background: "transparent", textAlign: "center" }}>
-                                            <Text className="cart-title" size={32} css={{ paddingRight: "4.5%" }}>Shopping Cart</Text>
+                                            <Text className="cart-title">Shopping Cart</Text>
                                         </Table.Column>
                                     </Table.Header>
                                     <Table.Body>
@@ -182,14 +189,22 @@ const CartPage = ({ user }) => {
                                 </Table>
 
                                 {selectedItems.size > 0 &&
-                                    <Container className='calculator' css={{ paddingRight: "calc(11*$sm)" }}>
+                                    <Container
+                                        className='calculator'
+                                        css={
+                                            isSmallScreen ?
+                                                {}
+                                                :
+                                                { paddingRight: "calc(11*$sm)" }
+                                        }
+                                    >
                                         <Row justify="flex-end">
-                                            <Text size={20} className="cart-text-regular">
+                                            <Text className="cart-text-regular">
                                                 Order Value:    {"$ " + getTotalPrice().toFixed(2)}
                                             </Text>
                                         </Row>
                                         <Row justify="flex-end">
-                                            <Text size={20} className="cart-text-regular">
+                                            <Text className="cart-text-regular">
                                                 Shipping Fee:    $ 5.00
                                             </Text>
                                         </Row>
@@ -204,7 +219,7 @@ const CartPage = ({ user }) => {
                                 <Spacer y={1} />
                                 {
                                     selectedItems.size > 0 &&
-                                    <Container css={{ width: "70%", maxWidth: "550px" }}>
+                                    <Container className="Checkout" style={{ justifyContent: "center" }}>
                                         <CheckoutForm
                                             user={user}
                                             articles={[...selectedItems].map(idx => articles[parseInt(idx)])}

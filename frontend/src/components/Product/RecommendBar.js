@@ -3,10 +3,11 @@ import SmallProductCard from "./SmallProductCard";
 
 import ProductDataService from "../../services/products";
 import { useCallback, useEffect, useState } from "react";
+import { useMediaQuery } from 'react-responsive';
 
 
 const RecommendBar = ({ user, favorites, addFavorite, deleteFavorite, addCart }) => {
-
+    const isSmallScreen = useMediaQuery({ query: '(max-width: 959px)' })
     const [products, setProducts] = useState([])
 
     useEffect(() => {
@@ -40,7 +41,7 @@ const RecommendBar = ({ user, favorites, addFavorite, deleteFavorite, addCart })
                         >
                             Recommend
                         </Text> */}
-                        <Image src="./images/recTitle.png" width={"22%"} />
+                        <Image src="./images/recTitle.png" width={isSmallScreen ? "60%" : "22%"} />
                         <Grid.Container gap={2} justify="flex-start">
                             {products.map((product, index) => (
                                 <Grid sm={3} key={index} justify="center">

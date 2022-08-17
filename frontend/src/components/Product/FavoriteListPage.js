@@ -135,7 +135,7 @@ const FavoriteListPage = ({ user }) => {
                             <Grid.Container gap={2} justify="flex-start">
                                 {favorites.length > 0 && products.length > 0 && products.map((product, index) => {
                                     return (
-                                        <Grid xs={6} sm={3} key={index}>
+                                        <Grid sm={3} key={index}>
                                             <SmallProductCard
                                                 key={product.product_code}
                                                 user={user}

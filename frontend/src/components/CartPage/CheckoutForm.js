@@ -1,14 +1,16 @@
-import { Button, Row, Spacer, Radio, Input } from '@nextui-org/react';
+import { Button, Row, Spacer, Radio, Input, Grid } from '@nextui-org/react';
 import { useEffect, useState } from 'react';
 
 import { ApplePayIcon, VisaIcon, PaypalIcon, MasterCardIcon, GooglePayIcon } from '../icons/payment';
 import CheckoutIcon from '../icons/checkout';
 import AccountDataService from '../../services/account';
+import { useMediaQuery } from 'react-responsive';
 
 import "./CartPage.css";
 
 
 const CheckoutForm = ({ user, articles, totalPrice, setPopoverVisible }) => {
+    const isSmallScreen = useMediaQuery({ query: '(max-width: 959px)' })
 
     const [shipInfo, setShipInfo] = useState({
         firstName: '',
@@ -80,115 +82,127 @@ const CheckoutForm = ({ user, articles, totalPrice, setPopoverVisible }) => {
     return (
         <div css={{ background: "transparent" }}>
             <form>
-                <Row css={{}}>
-                    <Input
-                        bordered
-                        size='md'
-                        status="default"
-                        label="First Name"
-                        name="firstName"
-                        placeholder=""
-                        width='30%'
-                        onChange={handleChange}
-                    />
-                    <Spacer x={0.8} />
-                    <Input
-                        bordered
-                        size='md'
-                        status="default"
-                        label="Last Name"
-                        name="lastName"
-                        placeholder=""
-                        width='30%'
-                        onChange={handleChange}
-                    />
-                    <Spacer x={1} />
-                    <Input
-                        bordered
-                        size='md'
-                        status="default"
-                        label="Phone"
-                        name="phone"
-                        placeholder=""
-                        width='40%'
-                        onChange={handleChange}
-                    />
-                </Row>
-                <Spacer y={0.5} />
-                <Row css={{ justifyContent: "flex-start" }} >
-                    <Input
-                        bordered
-                        size='md'
-                        status="default"
-                        label="Address"
-                        name="address"
-                        placeholder="Street Address"
-                        initialValue=""
-                        width='60%'
-                        onChange={handleChange}
-                    />
-                    <Spacer x={1} />
-                    <Input
-                        bordered
-                        size='md'
-                        status="default"
-                        label="Address line 2"
-                        name="address2"
-                        placeholder="Floor, Apt, Unit, .etc"
-                        initialValue=""
-                        width='40%'
-                        onChange={handleChange}
-                    />
-                </Row>
-                <Spacer y={0.5} />
-                <Row css={{ justifyContent: "flex-start" }} >
-                    <Input
-                        bordered
-                        size='md'
-                        status="default"
-                        label="Town/City"
-                        name="city"
-                        initialValue=""
-                        width='25%'
-                        onChange={handleChange}
-                    />
-                    <Spacer x={0.8} />
-                    <Input
-                        bordered
-                        size='md'
-                        status="default"
-                        label="State"
-                        name="state"
-                        initialValue=""
-                        width='25%'
-                        onChange={handleChange}
-                    />
-                    <Spacer x={0.8} />
-                    <Input
-                        bordered
-                        size='md'
-                        status="default"
-                        label="Country"
-                        name="country"
-                        initialValue=""
-                        width='25%'
-                        onChange={handleChange}
-                    />
-                    <Spacer x={0.8} />
-                    <Input
-                        bordered
-                        size='md'
-                        status="default"
-                        label="Postal Code"
-                        name="postalCode"
-                        width='25%'
-                        onChange={handleChange}
-                    />
-                </Row>
+                <Grid.Container gap={isSmallScreen ? 0 : 1.5}>
+                    <Grid sm={3}>
+                        <Input
+                            bordered
+                            size='md'
+                            status="default"
+                            label="First Name"
+                            name="firstName"
+                            placeholder=""
+                            width='100%'
+                            onChange={handleChange}
+                        />
+                    </Grid>
+                    <Grid sm={3}>
+                        <Input
+                            bordered
+                            size='md'
+                            status="default"
+                            label="Last Name"
+                            name="lastName"
+                            placeholder=""
+                            width='100%'
+                            onChange={handleChange}
+                        />
+                    </Grid>
+                    <Grid sm={6}>
+                        <Input
+                            bordered
+                            size='md'
+                            status="default"
+                            label="Phone"
+                            name="phone"
+                            placeholder=""
+                            width='100%'
+                            onChange={handleChange}
+                        />
+                    </Grid>
+                    <Grid sm={7}>
+                        <Input
+                            bordered
+                            size='md'
+                            status="default"
+                            label="Address"
+                            name="address"
+                            placeholder="Street Address"
+                            initialValue=""
+                            width='100%'
+                            onChange={handleChange}
+                        />
+                    </Grid>
+                    <Grid sm={5}>
+                        <Input
+                            bordered
+                            size='md'
+                            status="default"
+                            label="Address line 2"
+                            name="address2"
+                            placeholder="Floor, Apt, Unit, .etc"
+                            initialValue=""
+                            width='100%'
+                            onChange={handleChange}
+                        />
+                    </Grid>
+                    <Grid sm={3}>
+                        <Input
+                            bordered
+                            size='md'
+                            status="default"
+                            label="Town/City"
+                            name="city"
+                            initialValue=""
+                            width='100%'
+                            onChange={handleChange}
+                        />
+                    </Grid>
+                    <Grid sm={3}>
+                        <Input
+                            bordered
+                            size='md'
+                            status="default"
+                            label="State"
+                            name="state"
+                            initialValue=""
+                            width='100%'
+                            onChange={handleChange}
+                        />
+                    </Grid>
+                    <Grid sm={3}>
+                        <Input
+                            bordered
+                            size='md'
+                            status="default"
+                            label="Country"
+                            name="country"
+                            initialValue=""
+                            width='100%'
+                            onChange={handleChange}
+                        />
+                    </Grid>
+                    <Grid sm={3}>
+                        <Input
+                            bordered
+                            size='md'
+                            status="default"
+                            label="Postal Code"
+                            name="postalCode"
+                            width='100%'
+                            onChange={handleChange}
+                        />
+                    </Grid>
+                </Grid.Container>
             </form>
             <Spacer y={0.8} />
             <Row justify='center'>
-                <Radio.Group size="xs" color="primary" orientation="horizontal" isRequired={true} onChange={handlePaymentChange} >
+                <Radio.Group
+                    size="xs"
+                    color="primary"
+                    orientation={isSmallScreen ? "vertical" : "horizontal"}
+                    isRequired={true}
+                    onChange={handlePaymentChange}
+                >
                     <Radio value="Visa"><VisaIcon size={70} /></Radio>
                     <Radio value="MasterCard"><MasterCardIcon size={70} /></Radio>
                     <Radio value="PayPal"><PaypalIcon size={70} /></Radio>
